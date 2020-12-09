@@ -1,13 +1,14 @@
 package com.example.secondtravelapp.UI;
 
 
-
-import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,39 @@ public class LoginActivity extends AppCompatActivity implements
         findViewById(R.id.btn_verify_email).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+
+        final SharedPreferences sharedPreferences = getSharedPreferences("USER", MODE_PRIVATE);
+
+        //sharedPreference will give the password when the email is written on the edtEmail
+        edtEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (edtEmail.toString() == sharedPreferences.getString("email", "No email")) {
+                    edtPassword.setText(sharedPreferences.getString("password", "No password"));
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        Button rememberMe = (Button) findViewById(R.id.rememberMe);
+        rememberMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtEmail.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Please Enter all the data", Toast.LENGTH_LONG).show();
+                } else {
+                    String emailData = edtEmail.getText().toString().trim();
+                    String passwordData = edtPassword.getText().toString().trim();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("email", emailData);
+                    editor.putString("password", passwordData);
+                    editor.commit();
+                }
+            }
+        });
     }
+
 
     @Override
     protected void onStart() {
@@ -91,7 +124,7 @@ public class LoginActivity extends AppCompatActivity implements
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             Intent intent = new Intent(LoginActivity.this, NVDActivity.class);
-                            intent.putExtra("myEmail",user.getEmail());
+                            intent.putExtra("myEmail", user.getEmail());
                             startActivity(intent);
                         } else {
                             Log.e(TAG, "createAccount: Fail!", task.getException());
@@ -119,7 +152,7 @@ public class LoginActivity extends AppCompatActivity implements
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             Intent intent = new Intent(LoginActivity.this, NVDActivity.class);
-                            intent.putExtra("myEmail",user.getEmail());
+                            intent.putExtra("myEmail", user.getEmail());
                             startActivity(intent);
                         } else {
                             Log.e(TAG, "signIn: Fail!", task.getException());
@@ -150,8 +183,7 @@ public class LoginActivity extends AppCompatActivity implements
 
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                            if (user.isEmailVerified())
-                            {
+                            if (user.isEmailVerified()) {
                                 // user is verified, so you can finish this activity or send user to activity which you want.
                                 // finish();
                                 Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
