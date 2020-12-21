@@ -1,10 +1,13 @@
 package com.example.secondtravelapp.Models;
 
-import android.os.Build;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
-
-
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,26 +24,33 @@ import java.util.regex.Pattern;
 /**
  * @brief class represents travel which is an entity in our project.
  */
-
+@Entity (tableName = "travels")
 public class Travel {
 
     /*********** properties **************/
 
-
+    @NonNull
+    @PrimaryKey
     private String travelId = null;
     private String clientName = null;
     private String clientPhone = null;
     private String clientEmail = null;
+    @TypeConverters(UserLocationConverter.class)
     private UserLocation pickupAddress = null;
     private LinkedList<UserLocation> destAddresses;
     private Integer numOfPassengers = null;
     private Boolean isSafeGuarded = false;
     private Boolean isChildrenTransportation = false;
+    @TypeConverters(RequestType.class)
     private RequestType status = RequestType.sent;
+    @TypeConverters(CompanyConverter.class)
     private HashMap<String, Boolean> company;
+    @TypeConverters(DateConverter.class)
     private Date travelDate = null;
+    @TypeConverters(DateConverter.class)
     private Date arrivalDate = null;
     DateTimeFormatter formatter;
+
 
 
     /*********** Constructors ***************/
@@ -134,6 +145,7 @@ public class Travel {
      * Getter of id of travel
      * @return travel's id
      */
+    @NonNull
     public String getTravelId() {
         return travelId;
     }
@@ -289,6 +301,65 @@ public class Travel {
     }
 
 
+    /*************** Converters **************/
+    public static class DateConverter {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+        @TypeConverter
+        public Date fromTimestamp(String date) throws ParseException {
+            return (date == null ? null : format.parse(date));
+        }
+
+        @TypeConverter
+        public String dateToTimestamp(Date date) {
+            return date == null ? null : format.format(date);
+        }
+    }
+
+    public static class CompanyConverter {
+        @TypeConverter
+        public HashMap<String, Boolean> fromString(String value) {
+            if (value == null || value.isEmpty())
+                return null;
+            String[] mapString = value.split(","); //split map into array of (string,boolean) strings
+            HashMap<String, Boolean> hashMap = new HashMap<>();
+            for (String s1 : mapString) //for all (string,boolean) in the map string
+            {
+                if (!s1.isEmpty()) {//is empty maybe will needed because the last char in the string is ","
+                    String[] s2 = s1.split(":"); //split (string,boolean) to company string and boolean string.
+                    Boolean aBoolean = Boolean.parseBoolean(s2[1]);
+                    hashMap.put(/*company string:*/s2[0], aBoolean);
+                }
+            }
+            return hashMap;
+        }
+
+        @TypeConverter
+        public String asString(HashMap<String, Boolean> map) {
+            if (map == null)
+                return null;
+            StringBuilder mapString = new StringBuilder();
+            for (Map.Entry<String, Boolean> entry : map.entrySet())
+                mapString.append(entry.getKey()).append(":").append(entry.getValue()).append(",");
+            return mapString.toString();
+        }
+    }
+
+    public static class UserLocationConverter {
+        @TypeConverter
+        public UserLocation fromString(String value) {
+            if (value == null || value.equals(""))
+                return null;
+            double lat = Double.parseDouble(value.split(" ")[0]);
+            double lang = Double.parseDouble(value.split(" ")[1]);
+            return new UserLocation(lat, lang);
+        }
+
+        @TypeConverter
+        public String asString(UserLocation warehouseUserLocation) {
+            return warehouseUserLocation == null ? "" : warehouseUserLocation.getLat() + " " + warehouseUserLocation.getLon();
+        }
+    }
     /*************** Enums *****************/
 
 
@@ -305,10 +376,17 @@ public class Travel {
             return code;
         }
 
+        @TypeConverter
         public static RequestType getType(Integer numeral) {
             for (RequestType ds : values())
                 if (ds.code.equals(numeral))
                     return ds;
+            return null;
+        }
+        @TypeConverter
+        public static Integer getTypeInt(RequestType requestType) {
+            if (requestType != null)
+                return requestType.code;
             return null;
         }
     }
