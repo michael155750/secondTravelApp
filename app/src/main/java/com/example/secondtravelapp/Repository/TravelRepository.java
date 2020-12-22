@@ -1,27 +1,25 @@
 package com.example.secondtravelapp.Repository;
 
 import android.app.Application;
-import android.widget.TextView;
 
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
-import com.example.basictemplateapp2.Model.ITravelDataSource;
-import com.example.basictemplateapp2.Model.RoomDatabaseHelper;
-import com.example.basictemplateapp2.Model.Travel;
-import com.example.basictemplateapp2.Model.TravelFirebaseDataSource;
-import com.example.secondtravelapp.Models.HistoryDatabaseHelper;
+
+import com.example.secondtravelapp.Models.HistoryDataSource;
+import com.example.secondtravelapp.Models.IHistoryDataSource;
 import com.example.secondtravelapp.Models.ITravelDataSource;
+import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.TravelDataSource;
 
 import java.util.List;
 
-public class TravelRepository {
+public class TravelRepository implements ITravelRepository {
 
     ITravelDataSource  travelDataSource;
+    IHistoryDataSource historyDataSource;
+
     private MutableLiveData<List<Travel>> mutableLiveData = new MutableLiveData<>();
-    private ITravelDataSource parcelDataSource;
-    private HistoryDatabaseHelper databaseHelper;
+
     private static TravelRepository instance;
     public static TravelRepository getInstance(Application application) {
         if (instance == null)
@@ -31,15 +29,19 @@ public class TravelRepository {
 
     private TravelRepository(Application application) {
         travelDataSource = TravelDataSource.getInstance();
-        databaseHelper = new HistoryDatabaseHelper(application.getApplicationContext());
+        historyDataSource = new HistoryDataSource(application.getApplicationContext());
 
-        ITravelDataSource.TravelsChangedListener travelsChangedListener = new ITravelDataSource.TravelsChangedListener() {
+        ITravelDataSource.TravelsChangedListener travelsChangedListener =
+                new ITravelDataSource.TravelsChangedListener() {
             @Override
             public void onTravelsChanged() {
                 List<Travel> travelList = travelDataSource.getAllTravels();
-                mutableLiveData.setValue(travelList);
-                databaseHelper.clearTable();
-                databaseHelper.addTravel(travelList);
+
+                mutableLiveData.setValue(travelList);//here we need to change by the project instructions
+
+                //only relevant travels
+                historyDataSource.clearTable();
+                historyDataSource.addTravel(travelList);
 
             }
         };
@@ -57,6 +59,7 @@ public class TravelRepository {
         travelDataSource.updateTravel(travel);
     }
 
+   //change to three kinds of data by 3 view models
     @Override
     public MutableLiveData<List<Travel>> getAllTravels() {
         return mutableLiveData;

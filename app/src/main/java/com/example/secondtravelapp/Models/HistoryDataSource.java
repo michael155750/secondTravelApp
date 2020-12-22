@@ -1,23 +1,41 @@
 package com.example.secondtravelapp.Models;
 
 import android.content.Context;
+import androidx.lifecycle.LiveData;
+import java.util.List;
 
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
+public class HistoryDataSource implements IHistoryDataSource {
+    private TravelDao travelDao;
 
-@Database(entities = Travel.class, version = 1, exportSchema = false)
-@TypeConverters({Travel.RequestType.class, Travel.DateConverter.class, Travel.DateConverter.class, Travel.UserLocationConverter.class, Travel.CompanyConverter.class})
-public abstract class HistoryDataSource extends RoomDatabase {
-    public static final String DATABASE_NAME="database.db";
-    private static HistoryDataSource database;
-
-    public static HistoryDataSource getInstance(Context context){
-        if (database==null)
-            database= Room.databaseBuilder(context, HistoryDataSource.class,DATABASE_NAME).allowMainThreadQueries().build();
-        return database;
+    public HistoryDataSource(Context context){
+        RoomDataSource database= RoomDataSource.getInstance(context);
+        travelDao =database.getTravelDao();
+        travelDao.clear();
     }
 
-    public abstract TravelDao getTravelDao();
+    public LiveData<List<Travel>> getTravels(){
+        return travelDao.getAll();
+    }
+
+    public LiveData<Travel> getTravel(String id){
+        return travelDao.get(id);
+    }
+
+    public void addTravel(Travel p) {
+        travelDao.insert(p);
+    }
+
+    public void addTravel(List<Travel> travelList) {
+        travelDao.insert(travelList);
+    }
+
+    public void editTravel(Travel p) {
+        travelDao.update(p);
+    }
+
+    public void deleteTravel(Travel p){
+        travelDao.delete(p);
+    }
+
+    public void clearTable(){travelDao.clear();}
 }

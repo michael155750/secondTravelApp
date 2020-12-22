@@ -60,6 +60,7 @@ public class TravelDataSource implements  ITravelDataSource{
 
     private TravelsChangedListener travelsChangedListener;
     public void setTravelsChangedListener(TravelsChangedListener l) {
+
         travelsChangedListener = l;
     }
 

@@ -4,7 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.basictemplateapp2.Model.Travel;
+
+import com.example.secondtravelapp.Models.Travel;
 
 import java.util.List;
 
