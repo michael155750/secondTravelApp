@@ -10,8 +10,12 @@ import com.example.secondtravelapp.Models.IHistoryDataSource;
 import com.example.secondtravelapp.Models.ITravelDataSource;
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.TravelDataSource;
+import com.example.secondtravelapp.Models.UserLocation;
 
+import java.util.LinkedList;
 import java.util.List;
+
+import static java.lang.Math.sqrt;
 
 public class TravelRepository implements ITravelRepository {
 
@@ -19,7 +23,7 @@ public class TravelRepository implements ITravelRepository {
     IHistoryDataSource historyDataSource;
 
     private MutableLiveData<List<Travel>> mutableLiveData = new MutableLiveData<>();
-
+    List<Travel> travelList;
     private static TravelRepository instance;
     public static TravelRepository getInstance(Application application) {
         if (instance == null)
@@ -31,17 +35,27 @@ public class TravelRepository implements ITravelRepository {
         travelDataSource = TravelDataSource.getInstance();
         historyDataSource = new HistoryDataSource(application.getApplicationContext());
 
+        travelList = travelDataSource.getAllTravels();
+
         ITravelDataSource.TravelsChangedListener travelsChangedListener =
                 new ITravelDataSource.TravelsChangedListener() {
             @Override
             public void onTravelsChanged() {
-                List<Travel> travelList = travelDataSource.getAllTravels();
 
-                mutableLiveData.setValue(travelList);//here we need to change by the project instructions
+                 travelList.clear();
+                 travelList.addAll(travelDataSource.getAllTravels());
+                mutableLiveData.setValue(travelList);
 
-                //only relevant travels
+                //remove all non relevant travels from travelList
+                List<Travel> historyTravelList = new LinkedList<Travel>(travelList);
+                for (Travel travel :historyTravelList){
+                    if (travel.getStatus() != Travel.RequestType.close ||
+                            travel.getStatus() != Travel.RequestType.paid) {
+                        historyTravelList.remove(travel);
+                    }
+                }
                 historyDataSource.clearTable();
-                historyDataSource.addTravel(travelList);
+                historyDataSource.addTravel(historyTravelList);
 
             }
         };
@@ -64,6 +78,47 @@ public class TravelRepository implements ITravelRepository {
     public MutableLiveData<List<Travel>> getAllTravels() {
         return mutableLiveData;
     }
+
+    @Override
+    public MutableLiveData<List<Travel>> getClientTravels(String clientEmail) {
+        List<Travel> clientTravelList = new LinkedList<Travel>();
+        for (Travel travel: travelList){
+            if(travel.getClientEmail() == clientEmail &&
+                    travel.getStatus() == Travel.RequestType.sent){
+                clientTravelList.add(travel);
+            }
+        }
+        mutableLiveData.setValue(clientTravelList);
+        return mutableLiveData;
+    }
+
+    @Override
+    public MutableLiveData<List<Travel>> getCompanyTravels(Double distance, UserLocation currentAddress) {
+        List<Travel> companyTravelList = new LinkedList<Travel>();
+        Double companyDistance = 0d;
+        Double distanceX = 0d;
+        Double distanceY = 0d;
+        for (Travel travel : travelList){
+            distanceX = (travel.getPickupAddress().getLon() - currentAddress.getLon());
+            distanceY = (travel.getPickupAddress().getLat() - currentAddress.getLat());
+            companyDistance = sqrt(distanceX*distanceX + distanceY * distanceY);
+            if (companyDistance <= distance &&travel.getStatus() == Travel.RequestType.sent){
+
+                companyTravelList.add(travel);
+            }
+
+        }
+        mutableLiveData.setValue(companyTravelList);
+        return mutableLiveData;
+    }
+
+    @Override
+    public MutableLiveData<List<Travel>> getAllHistoryTravels(){
+        //working with casting
+
+        return (MutableLiveData<List<Travel>>) historyDataSource.getTravels();
+    }
+
 
     @Override
     public MutableLiveData<Boolean> getIsSuccess() {

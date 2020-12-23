@@ -103,7 +103,7 @@ public class Travel {
     /**
      * Construct a travel via document required and our own fields.
      * @param clientName - client name
-     * @param clientPhone
+     * @param R
      * @param clientEmail
      * @param pickupAddress
      * @param numOfPassengers
@@ -365,7 +365,7 @@ public class Travel {
 
 
     public enum RequestType {
-        sent(0), accepted(1), run(2), close(3);
+        sent(0), accepted(1), run(2), close(3), paid(4);
         private final Integer code;
 
         RequestType(Integer value) {
