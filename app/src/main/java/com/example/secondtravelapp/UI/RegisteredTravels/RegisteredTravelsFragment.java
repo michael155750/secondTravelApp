@@ -13,15 +13,16 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.secondtravelapp.R;
+import com.example.secondtravelapp.UI.MainTravelsViewModel;
 
 public class RegisteredTravelsFragment extends Fragment {
 
-    private RegisteredTravelsViewModel galleryViewModel;
+    private MainTravelsViewModel galleryViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
-                new ViewModelProvider(this).get(RegisteredTravelsViewModel.class);
+                new ViewModelProvider(this).get(MainTravelsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_registered_travels, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
         galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

@@ -13,15 +13,16 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.secondtravelapp.R;
+import com.example.secondtravelapp.UI.MainTravelsViewModel;
 
 public class HistoryTravelsFragment extends Fragment {
 
-    private HistoryTravelsViewModel homeViewModel;
+    private MainTravelsViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
-                new ViewModelProvider(this).get(HistoryTravelsViewModel.class);
+                new ViewModelProvider(this).get(MainTravelsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_history_travels, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

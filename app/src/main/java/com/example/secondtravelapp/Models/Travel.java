@@ -1,6 +1,9 @@
 package com.example.secondtravelapp.Models;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
@@ -103,12 +106,12 @@ public class Travel {
     /**
      * Construct a travel via document required and our own fields.
      * @param clientName - client name
-     * @param R
-     * @param clientEmail
-     * @param pickupAddress
-     * @param numOfPassengers
-     * @param travelDate
-     * @param isSafeGuarded
+     * @param clientPhone - client phone nnumber
+     * @param clientEmail - client email
+     * @param pickupAddress - pickup addresses
+     * @param numOfPassengers - number of passengers
+     * @param travelDate - date of the travel
+     * @param isSafeGuarded - kind of the bus: is safe from outside attacks boolean
      * @param isChildrenTransportation
      * @param destAddresses
      * @throws Exception
@@ -271,6 +274,11 @@ public class Travel {
     public void setCompany(String company) {
 
         this.company.put(company, false);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void changeCompanyValue(String email){
+        this.company.replace(email,true);
     }
 
     public Boolean getSafeGuarded() {

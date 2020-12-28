@@ -1,7 +1,9 @@
 package com.example.secondtravelapp.Repository;
 
 import android.app.Application;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
 
 
@@ -68,12 +70,28 @@ public class TravelRepository implements ITravelRepository {
         travelDataSource.addTravel(travel);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void updateTravel(Travel travel) {
+    public void acceptCompany(String email,Travel travel) {
+        travel.changeCompanyValue(email);
         travelDataSource.updateTravel(travel);
     }
 
-   //change to three kinds of data by 3 view models
+
+
+    @Override
+    public void acceptTravel(Travel travel) {
+        travel.setStatus(Travel.RequestType.accepted);
+        travelDataSource.updateTravel(travel);
+    }
+
+    @Override
+    public void sentSuggestion(String email, Travel travel) {
+        travel.setCompany(email);
+        travelDataSource.updateTravel(travel);
+    }
+
+    //change to three kinds of data by 3 view models
     @Override
     public MutableLiveData<List<Travel>> getAllTravels() {
         return mutableLiveData;
