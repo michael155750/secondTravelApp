@@ -30,13 +30,13 @@ public class CompanyTravelsFragment extends Fragment {
         viewModel =
                 new ViewModelProvider(this).get(MainTravelsViewModel.class);
         //move to on click for get the details of the company
-        viewModel.getCompanyTravels(distance, location).observe(this, new Observer<List<Travel>>() {
+        /*viewModel.getCompanyTravels(distance, location).observe(this, new Observer<List<Travel>>() {
             @Override
             public void onChanged(List<Travel> temp) {
                 travels.clear();
                 travels.addAll(temp);
             }
-        });
+        });*/
 
 
         View root = inflater.inflate(R.layout.fragment_company_travels, container, false);

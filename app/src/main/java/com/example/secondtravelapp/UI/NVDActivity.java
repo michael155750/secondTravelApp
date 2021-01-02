@@ -22,10 +22,6 @@ import androidx.appcompat.widget.Toolbar;
 public class NVDActivity extends AppCompatActivity {
 
 
-
-
-
-
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override

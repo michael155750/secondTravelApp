@@ -52,10 +52,10 @@ public class LoginActivity extends AppCompatActivity implements
 
         mAuth = FirebaseAuth.getInstance();
 
-        final SharedPreferences sharedPreferences = getSharedPreferences("USER", MODE_PRIVATE);
+        //final SharedPreferences sharedPreferences = getSharedPreferences("USER", MODE_PRIVATE);
 
         //sharedPreference will give the password when the email is written on the edtEmail
-        edtEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        /*edtEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (edtEmail.toString() == sharedPreferences.getString("email", "No email")) {
@@ -64,10 +64,10 @@ public class LoginActivity extends AppCompatActivity implements
                 }
                 return false;
             }
-        });
+        });*/
 
-        Button rememberMe = (Button) findViewById(R.id.rememberMe);
-        rememberMe.setOnClickListener(new View.OnClickListener() {
+        /*Button rememberMe = (Button) findViewById(R.id.rememberMe);
+        //rememberMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (edtEmail.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()) {
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements
                     editor.commit();
                 }
             }
-        });
+        });*/
     }
 
 

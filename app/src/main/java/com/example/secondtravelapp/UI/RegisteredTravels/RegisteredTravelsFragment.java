@@ -14,23 +14,26 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.secondtravelapp.R;
 import com.example.secondtravelapp.UI.MainTravelsViewModel;
+/**
+ * class registered travels fragment represents
 
+ */
 public class RegisteredTravelsFragment extends Fragment {
 
     private MainTravelsViewModel galleryViewModel;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
                 new ViewModelProvider(this).get(MainTravelsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_registered_travels, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 }
