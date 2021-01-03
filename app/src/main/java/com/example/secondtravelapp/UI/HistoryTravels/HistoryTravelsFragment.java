@@ -12,24 +12,29 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.R;
+import com.example.secondtravelapp.UI.MainTravelsViewModel;
+
+import java.util.List;
 
 public class HistoryTravelsFragment extends Fragment {
 
-    private HistoryTravelsViewModel homeViewModel;
+    private MainTravelsViewModel historyViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HistoryTravelsViewModel.class);
+        historyViewModel =
+                new ViewModelProvider(this).get(MainTravelsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        /*historyViewModel.getAllHistoryTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(@Nullable List<Travel> travelList) {
+                for (Travel travel: travelList)
+                    textView.setText(travel.getClientName());
             }
-        });
+        });*/
         return root;
     }
 }
