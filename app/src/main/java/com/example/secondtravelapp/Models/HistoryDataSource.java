@@ -13,27 +13,27 @@ public class HistoryDataSource implements IHistoryDataSource {
         travelDao.clear();
     }
 
-    public LiveData<List<Travel>> getTravels(){
+    public LiveData<List<Travel>> getTravels() throws Exception{
         return travelDao.getAll();
     }
 
-    public LiveData<Travel> getTravel(String id){
+    public LiveData<Travel> getTravel(String id) throws Exception{
         return travelDao.get(id);
     }
 
-    public void addTravel(Travel p) {
+    public void addTravel(Travel p) throws Exception{
         travelDao.insert(p);
     }
 
-    public void addTravel(List<Travel> travelList) {
+    public void addTravel(List<Travel> travelList) throws Exception{
         travelDao.insert(travelList);
     }
 
-    public void editTravel(Travel p) {
+    public void editTravel(Travel p) throws Exception{
         travelDao.update(p);
     }
 
-    public void deleteTravel(Travel p){
+    public void deleteTravel(Travel p) throws Exception{
         travelDao.delete(p);
     }
 

@@ -12,24 +12,24 @@ import java.util.List;
 
 @Dao
 public interface TravelDao {
-    @Query("select * from travel")
-    LiveData<List<Travel>> getAll();
+    @Query("select * from travels")
+    LiveData<List<Travel>> getAll() throws Exception;
 
-    @Query("select * from travel where travelId=:id")
+    @Query("select * from travels where travelId=:id")
     LiveData<Travel> get(String id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Travel travel);
+    void insert(Travel travel) throws Exception;
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<Travel> travels);
+    void insert(List<Travel> travels) throws Exception;
 
     @Update
-    void update(Travel travel);
+    void update(Travel travel) throws Exception;
 
     @Delete
-    void delete(Travel... travels);
+    void delete(Travel... travels) throws Exception;
 
-    @Query("delete from travel")
+    @Query("delete from travels")
     void clear();
 }

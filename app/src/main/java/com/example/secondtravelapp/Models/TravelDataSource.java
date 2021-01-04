@@ -25,35 +25,43 @@ public class TravelDataSource implements  ITravelDataSource{
 
     private static TravelDataSource instance;
 
-    public static TravelDataSource getInstance() {
+    public static TravelDataSource getInstance() throws Exception{
         if (instance == null)
             instance = new TravelDataSource();
         return instance;
     }
 
 
-    private TravelDataSource() {
+    private TravelDataSource() throws Exception{
         allTravelsList = new ArrayList<>();
-        travels.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                allTravelsList.clear();
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren())
-                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                            Travel travel = snapshot1.getValue(Travel.class);
-                            allTravelsList.add(travel);
+
+            travels.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    allTravelsList.clear();
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                            for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                                Travel travel = snapshot1.getValue(Travel.class);
+                                allTravelsList.add(travel);
+                            }
+                    }
+                    if (travelsChangedListener != null) {
+                        try {
+                            travelsChangedListener.onTravelsChanged();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
                         }
+                    }
                 }
-                if (travelsChangedListener != null)
-                    travelsChangedListener.onTravelsChanged();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+
+
 
     }
 

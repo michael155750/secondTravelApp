@@ -10,7 +10,7 @@ public interface ITravelDataSource {
     List<Travel> getAllTravels();
     MutableLiveData<Boolean> getIsSuccess();
     interface TravelsChangedListener {
-        void onTravelsChanged();
+        void onTravelsChanged() throws Exception;
     }
     void setTravelsChangedListener(TravelsChangedListener l);
 }

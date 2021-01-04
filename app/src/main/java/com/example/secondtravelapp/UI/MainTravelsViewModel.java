@@ -2,6 +2,7 @@ package com.example.secondtravelapp.UI;
 
 import android.app.Application;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -13,14 +14,14 @@ import com.example.secondtravelapp.Repository.TravelRepository;
 
 import java.util.List;
 
-public class MainTravelsViewModel extends ViewModel {
+public class MainTravelsViewModel extends AndroidViewModel {
     ITravelRepository repository;
     //private MutableLiveData<String> mText;
 
-    public MainTravelsViewModel() {
-    }
 
-    public MainTravelsViewModel(Application p) {
+
+    public MainTravelsViewModel(Application p) throws Exception {
+        super(p);
         repository = (ITravelRepository) TravelRepository.getInstance(p);
         //mText = new MutableLiveData<>();
         //mText.setValue("This is gallery fragment");
@@ -58,7 +59,7 @@ public class MainTravelsViewModel extends ViewModel {
         return repository.getIsSuccess();
     }
 
-    public MutableLiveData<List<Travel>> getAllHistoryTravels(){
+    public MutableLiveData<List<Travel>> getAllHistoryTravels() throws Exception {
         return repository.getAllHistoryTravels();
     }
 }

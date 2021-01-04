@@ -40,7 +40,8 @@ public class Travel {
     private String clientEmail = null;
     @TypeConverters(UserLocationConverter.class)
     private UserLocation pickupAddress = null;
-    private LinkedList<UserLocation> destAddresses;
+    @TypeConverters(UserLocationConverter.class)
+    private UserLocation destAddress;
     private Integer numOfPassengers = null;
     private Boolean isSafeGuarded = false;
     private Boolean isChildrenTransportation = false;
@@ -52,7 +53,7 @@ public class Travel {
     private Date travelDate = null;
     @TypeConverters(DateConverter.class)
     private Date arrivalDate = null;
-    DateTimeFormatter formatter;
+
 
 
 
@@ -63,7 +64,7 @@ public class Travel {
      */
 
     public Travel(){
-        this.destAddresses = new LinkedList<UserLocation>();
+
         this.company = new HashMap<String, Boolean>();
 
 
@@ -79,7 +80,7 @@ public class Travel {
      * @param travelDate
      * @param arrivalDate
      * @param request
-     * @param destAddresses
+     * @param destAddress
      * @throws Exception
      */
 
@@ -88,7 +89,7 @@ public class Travel {
 
 
                   Integer numOfPassengers, Date travelDate,
-                  Date arrivalDate, RequestType request, UserLocation... destAddresses) throws Exception {
+                  Date arrivalDate, RequestType request, UserLocation destAddress) throws Exception {
         this();
         setClientName(clientName);
         setClientPhone(clientPhone);
@@ -98,9 +99,8 @@ public class Travel {
         setTravelDate(travelDate);
         setArrivalDate(arrivalDate);
         setStatus(request);
-        for (UserLocation address:destAddresses){
-            setDestAddresses(address);
-        }
+        setDestAddress(destAddress);
+
     }
 
     /**
@@ -113,7 +113,7 @@ public class Travel {
      * @param travelDate - date of the travel
      * @param isSafeGuarded - kind of the bus: is safe from outside attacks boolean
      * @param isChildrenTransportation
-     * @param destAddresses
+     * @param destAddress
      * @throws Exception
      */
 
@@ -121,10 +121,10 @@ public class Travel {
                   UserLocation pickupAddress,
                   Integer numOfPassengers, Date travelDate,
                   Boolean isSafeGuarded, Boolean isChildrenTransportation,
-                  UserLocation... destAddresses) throws Exception {
+                  UserLocation destAddress) throws Exception {
 
         this(clientName,clientPhone,clientEmail,pickupAddress,
-                numOfPassengers,travelDate, null,RequestType.sent,destAddresses);
+                numOfPassengers,travelDate, null,RequestType.sent, destAddress);
 
         setSafeGuarded(isSafeGuarded);
         setChildrenTransportation(isChildrenTransportation);
@@ -192,7 +192,7 @@ public class Travel {
         if (m.matches())
             this.clientPhone = clientPhone;
         else
-            throw new IllegalArgumentException("illegal phone number format");
+            throw new RuntimeException("illegal phone number format");
 
     }
 
@@ -203,6 +203,7 @@ public class Travel {
     public String getClientEmail() {
         return clientEmail;
     }
+
 
     public void setClientEmail(String clientEmail) throws Exception{
         String regex = "(.*)@(.*)";
@@ -247,13 +248,13 @@ public class Travel {
         this.arrivalDate = arrivalDate;
     }
 
-    public LinkedList<UserLocation> getDestAddresses() {
-        return destAddresses;
+    public UserLocation getDestAddress() {
+        return destAddress;
     }
 
-    public void setDestAddresses(UserLocation destAddresses) {
+    public void setDestAddress(UserLocation destAddress) {
 
-        this.destAddresses.add(destAddresses);
+        this.destAddress = destAddress;
     }
 
     public Integer getNumOfPassengers() {
@@ -271,9 +272,14 @@ public class Travel {
         return company;
     }
 
-    public void setCompany(String company) {
+    public void setOneCompany(String company) {
 
         this.company.put(company, false);
+    }
+
+    public void setCompany(HashMap<String, Boolean> company) {
+
+        this.company= company;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -368,6 +374,8 @@ public class Travel {
             return warehouseUserLocation == null ? "" : warehouseUserLocation.getLat() + " " + warehouseUserLocation.getLon();
         }
     }
+
+
     /*************** Enums *****************/
 
 

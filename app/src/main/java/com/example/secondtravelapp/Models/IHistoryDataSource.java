@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public interface IHistoryDataSource {
-    public LiveData<List<Travel>> getTravels();
-    public LiveData<Travel> getTravel(String id);
-    public void addTravel(Travel p);
-    public void addTravel(List<Travel> travelList);
-    public void editTravel(Travel p);
-    public void deleteTravel(Travel p);
+    public LiveData<List<Travel>> getTravels() throws Exception;
+    public LiveData<Travel> getTravel(String id) throws Exception;
+    public void addTravel(Travel p) throws Exception;
+    public void addTravel(List<Travel> travelList) throws Exception;
+    public void editTravel(Travel p) throws Exception;
+    public void deleteTravel(Travel p) throws Exception;
     public void clearTable();
 }

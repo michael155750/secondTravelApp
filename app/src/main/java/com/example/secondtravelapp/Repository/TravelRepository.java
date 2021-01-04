@@ -27,13 +27,13 @@ public class TravelRepository implements ITravelRepository {
     private MutableLiveData<List<Travel>> mutableLiveData = new MutableLiveData<>();
     List<Travel> travelList;
     private static TravelRepository instance;
-    public static TravelRepository getInstance(Application application) {
+    public static TravelRepository getInstance(Application application) throws Exception {
         if (instance == null)
             instance = new TravelRepository(application);
         return instance;
     }
 
-    private TravelRepository(Application application) {
+    private TravelRepository(Application application) throws Exception {
         travelDataSource = TravelDataSource.getInstance();
         historyDataSource = new HistoryDataSource(application.getApplicationContext());
 
@@ -42,7 +42,7 @@ public class TravelRepository implements ITravelRepository {
         ITravelDataSource.TravelsChangedListener travelsChangedListener =
                 new ITravelDataSource.TravelsChangedListener() {
             @Override
-            public void onTravelsChanged() {
+            public void onTravelsChanged() throws Exception{
 
                  travelList.clear();
                  travelList.addAll(travelDataSource.getAllTravels());
@@ -58,6 +58,7 @@ public class TravelRepository implements ITravelRepository {
                 }
                 historyDataSource.clearTable();
                 historyDataSource.addTravel(historyTravelList);
+
 
             }
         };
@@ -87,7 +88,7 @@ public class TravelRepository implements ITravelRepository {
 
     @Override
     public void sentSuggestion(String email, Travel travel) {
-        travel.setCompany(email);
+        travel.setOneCompany(email);
         travelDataSource.updateTravel(travel);
     }
 
@@ -131,7 +132,7 @@ public class TravelRepository implements ITravelRepository {
     }
 
     @Override
-    public MutableLiveData<List<Travel>> getAllHistoryTravels(){
+    public MutableLiveData<List<Travel>> getAllHistoryTravels() throws Exception {
         //working with casting
 
         return (MutableLiveData<List<Travel>>) historyDataSource.getTravels();
