@@ -17,6 +17,9 @@ public class MainTravelsViewModel extends ViewModel {
     ITravelRepository repository;
     //private MutableLiveData<String> mText;
 
+    public MainTravelsViewModel() {
+    }
+
     public MainTravelsViewModel(Application p) {
         repository = (ITravelRepository) TravelRepository.getInstance(p);
         //mText = new MutableLiveData<>();
