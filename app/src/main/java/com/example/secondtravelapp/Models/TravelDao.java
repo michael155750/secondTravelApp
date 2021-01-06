@@ -16,7 +16,7 @@ public interface TravelDao {
     LiveData<List<Travel>> getAll() throws Exception;
 
     @Query("select * from travels where travelId=:id")
-    LiveData<Travel> get(String id);
+    LiveData<Travel> get(String id) throws Exception;
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Travel travel) throws Exception;
@@ -31,5 +31,5 @@ public interface TravelDao {
     void delete(Travel... travels) throws Exception;
 
     @Query("delete from travels")
-    void clear();
+    void clear() throws Exception;
 }

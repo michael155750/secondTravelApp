@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_view_item_company_name"
+        android:layout_width="66dp"
+        android:layout_height="60dp"
+        android:layout_margin="12dp"
+        android:padding="16dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_view_item_way"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_margin="12dp"
+        android:padding="16dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/change_status_button"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/button_corner"
+        android:text="change\n status" />
+
+    <Button
+        android:id="@+id/email_button"
+        android:background="@drawable/button_corner"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Email\n"
+        android:layout_margin="8dp"/>
+
+</LinearLayout>

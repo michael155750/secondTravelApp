@@ -11,5 +11,5 @@ public interface IHistoryDataSource {
     public void addTravel(List<Travel> travelList) throws Exception;
     public void editTravel(Travel p) throws Exception;
     public void deleteTravel(Travel p) throws Exception;
-    public void clearTable();
+    public void clearTable() throws Exception;
 }

@@ -75,8 +75,8 @@ public class NVDActivity extends AppCompatActivity {
      * temporary method for debugging
      */
     private void addInitialData(){
-        try {
-            viewModel.addTravel(new Travel("Avi Cohen","021234567","avi@gmail.com"
+       /* try {
+            /*viewModel.addTravel(new Travel("Avi Cohen","021234567","avi@gmail.com"
                     ,new UserLocation(1,2), 2,new Date(2020,2,2),
                     true,true, new UserLocation(3,2)));
             viewModel.addTravel(new Travel("David Levi","031234467","david@gmail.com"
@@ -87,7 +87,7 @@ public class NVDActivity extends AppCompatActivity {
                     false,true, new UserLocation(10,20)));
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 }

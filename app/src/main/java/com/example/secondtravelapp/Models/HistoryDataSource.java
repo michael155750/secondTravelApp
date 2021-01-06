@@ -7,7 +7,7 @@ import java.util.List;
 public class HistoryDataSource implements IHistoryDataSource {
     private TravelDao travelDao;
 
-    public HistoryDataSource(Context context){
+    public HistoryDataSource(Context context) throws Exception{
         RoomDataSource database= RoomDataSource.getInstance(context);
         travelDao =database.getTravelDao();
         travelDao.clear();
@@ -37,5 +37,5 @@ public class HistoryDataSource implements IHistoryDataSource {
         travelDao.delete(p);
     }
 
-    public void clearTable(){travelDao.clear();}
+    public void clearTable() throws Exception{travelDao.clear();}
 }
