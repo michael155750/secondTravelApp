@@ -1,20 +1,19 @@
 package com.example.secondtravelapp.UI;
 
+import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.UserLocation;
 import com.example.secondtravelapp.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -53,6 +52,10 @@ public class NVDActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+
+
+
+
         addInitialData();
     }
 
@@ -60,6 +63,13 @@ public class NVDActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.n_v_d, menu);
+        /*MenuItem signOut = menu.findItem(R.id.nav_sign_out);
+        signOut.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
+            }
+        });*/
         return true;
     }
 
@@ -70,24 +80,52 @@ public class NVDActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    /**
+    /*
      * Add some initial data in order to test if the application is working
      * temporary method for debugging
      */
     private void addInitialData(){
-       /* try {
-            /*viewModel.addTravel(new Travel("Avi Cohen","021234567","avi@gmail.com"
-                    ,new UserLocation(1,2), 2,new Date(2020,2,2),
-                    true,true, new UserLocation(3,2)));
-            viewModel.addTravel(new Travel("David Levi","031234467","david@gmail.com"
-                    ,new UserLocation(3,4), 4,new Date(2020,1,2),
-                    true,false, new UserLocation(3,8)));
-            viewModel.addTravel(new Travel("Hedva Izhaki","021237569","hedva@gmail.com"
-                    ,new UserLocation(5,6), 3,new Date(2020,3,1),
-                    false,true, new UserLocation(10,20)));
+        try {
+
+            Travel t1 = new Travel();
+            t1.setClientName("Avi Cohen");
+            t1.setClientEmail("avi@gmail.com");
+            t1.setClientPhone("021234567");
+            t1.setPickupAddress(new UserLocation(1,2));
+            t1.setNumOfPassengers(2);
+            t1.travelDateTypeSetter(new Date(2020,2,2));
+            t1.setChildrenTransportation(true);
+            t1.setSafeGuarded(true);
+            t1.setDestAddress(new UserLocation(3,2));
+            viewModel.addTravel(t1);
+
+            Travel t2 = new Travel();
+            t2.setClientName("Hedva Izhaki");
+            t2.setClientEmail("hedva@gmail.com");
+            t2.setClientPhone("021224597");
+            t2.setPickupAddress(new UserLocation(3,4));
+            t2.setNumOfPassengers(2);
+            t2.travelDateTypeSetter(new Date(2021,1,2));
+            t2.setChildrenTransportation(true);
+            t2.setSafeGuarded(true);
+            t2.setDestAddress(new UserLocation(7,2));
+            viewModel.addTravel(t2);
+
+            Travel t3 = new Travel();
+            t3.setClientName("David Levi");
+            t3.setClientEmail("david@gmail.com");
+            t3.setClientPhone("084224596");
+            t3.setPickupAddress(new UserLocation(9,9));
+            t3.setNumOfPassengers(4);
+            t3.travelDateTypeSetter(new Date(2020,9,2));
+            t3.setChildrenTransportation(false);
+            t3.setSafeGuarded(true);
+            t3.setDestAddress(new UserLocation(1,8));
+            viewModel.addTravel(t3);
+
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
 
     }
 }

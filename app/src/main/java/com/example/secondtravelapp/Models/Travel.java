@@ -49,13 +49,13 @@ public class Travel {
     private RequestType status = RequestType.sent;
     @TypeConverters(CompanyConverter.class)
     private HashMap<String, Boolean> company;
+    /*@TypeConverters(DateConverter.class)
+    private Date travelDate;
     @TypeConverters(DateConverter.class)
-    private Date travelDate = null;
-    @TypeConverters(DateConverter.class)
-    private Date arrivalDate = null;
+    private Date arrivalDate ;*/
 
-
-
+    private String travelDate;
+    private String arrivalDate;
 
     /*********** Constructors ***************/
 
@@ -193,7 +193,7 @@ public class Travel {
     public void changeCompanyValue(String email){
         this.company.replace(email,true);
     }
-
+/*
     public Date getTravelDate() {
         return travelDate;
     }
@@ -208,266 +208,59 @@ public class Travel {
 
     public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
-    }
-/**
-     * Construct a travel with the parameters that required by basic document
-     * @param clientName
-     * @param clientPhone
-     * @param clientEmail
-     * @param pickupAddress
-     * @param numOfPassengers
-     * @param travelDate
-     * @param arrivalDate
-     * @param request
-     * @param destAddress
-     * @throws Exception
-     *//*
-
-    public Travel(String clientName, String clientPhone, String clientEmail,
-                  UserLocation pickupAddress,
-
-
-                  Integer numOfPassengers, Date travelDate,
-                  Date arrivalDate, RequestType request, UserLocation destAddress) throws Exception {
-        this();
-        setClientName(clientName);
-        setClientPhone(clientPhone);
-        setClientEmail(clientEmail);
-        setPickupAddress(pickupAddress);
-        setNumOfPassengers(numOfPassengers);
-        setTravelDate(travelDate);
-        setArrivalDate(arrivalDate);
-        setStatus(request);
-        setDestAddress(destAddress);
-
-    }
-
-    *//**
-     * Construct a travel via document required and our own fields.
-     * @param clientName - client name
-     * @param clientPhone - client phone nnumber
-     * @param clientEmail - client email
-     * @param pickupAddress - pickup addresses
-     * @param numOfPassengers - number of passengers
-     * @param travelDate - date of the travel
-     * @param isSafeGuarded - kind of the bus: is safe from outside attacks boolean
-     * @param isChildrenTransportation
-     * @param destAddress
-     * @throws Exception
-     *//*
-
-    public Travel(String clientName, String clientPhone, String clientEmail,
-                  UserLocation pickupAddress,
-                  Integer numOfPassengers, Date travelDate,
-                  Boolean isSafeGuarded, Boolean isChildrenTransportation,
-                  UserLocation destAddress) throws Exception {
-
-        this(clientName,clientPhone,clientEmail,pickupAddress,
-                numOfPassengers,travelDate, null,RequestType.sent, destAddress);
-
-        setSafeGuarded(isSafeGuarded);
-        setChildrenTransportation(isChildrenTransportation);
-    }
-
-
-
-    *//*********** getters & setters *****************//*
-
-    *//**
-     * setter of id
-     * @param id - inner parameter of the program
-     *//*
-    public void setTravelId(String id) {
-
-        if (travelId == null)
-            travelId = id;
-    }
-
-    *//**
-     * Getter of id of travel
-     * @return travel's id
-     *//*
-    @NonNull
-    public String getTravelId() {
-        return travelId;
-    }
-
-    *//**
-     * Getter of the client's name
-     * @return client name
-     *//*
-    public String getClientName() {
-        return clientName;
-    }
-
-    *//**
-     * Setter of client name
-     * @param clientName
-     *//*
-    public void setClientName(String clientName) {
-
-        this.clientName = clientName;
-    }
-
-    *//**
-     * getter of client name
-     * @return client name
-     *//*
-    public String getClientPhone() {
-        return clientPhone;
-    }
-
-    *//**
-     * setter of cleint name
-     * @param clientPhone
-     * @throws Exception IllegalArgumentException("illegal phone number format") where email is not as format
-     *//*
-    public void setClientPhone(String clientPhone) {
-    try {
-        String regex = "(0[0-9]*)";
-        Pattern r = Pattern.compile(regex);
-
-        Matcher m = r.matcher(clientPhone.toString());
-        if (m.matches())
-            this.clientPhone = clientPhone;
-        else
-            throw new IllegalArgumentException("illegal phone number format");
-    }catch (Exception e){
-        this.clientPhone = "";
-    }
-
-    }
-
-    *//**
-     *
-     * @return client email
-     *//*
-    public String getClientEmail() {
-        return clientEmail;
-    }
-
-
-    public void setClientEmail(String clientEmail) {
-        try {
-            String regex = "(.*)@(.*)";
-            Pattern r = Pattern.compile(regex);
-
-            Matcher m = r.matcher(clientEmail);
-            if (m.matches())
-                this.clientEmail = clientEmail;
-            else
-                throw new IllegalArgumentException("illegal email format");
-        }catch (Exception e){
-            this.clientEmail = "";
-        }
-    }
-
-    public UserLocation getPickupAddress() {
-        return pickupAddress;
-    }
-
-    public void setPickupAddress(UserLocation pickupAddress) {
-
-
-        this.pickupAddress = pickupAddress;
-    }
-
-
-    public Date getTravelDate() {
-        return travelDate;
-    }
-
-
-    public void setTravelDate(Date travelDate) {
-
-        this.travelDate = travelDate;
-    }
-
-
-    public Date getArrivalDate() {
-        return arrivalDate;
-    }
-
-
-    public void setArrivalDate(Date arrivalDate) {
-
-        this.arrivalDate = arrivalDate;
-    }
-
-    public UserLocation getDestAddress() {
-        return destAddress;
-    }
-
-    public void setDestAddress(UserLocation destAddress) {
-
-        this.destAddress = destAddress;
-    }
-
-    public Integer getNumOfPassengers() {
-        return numOfPassengers;
-    }
-
-    public void setNumOfPassengers(Integer numOfPassengers) {
-
-        this.numOfPassengers = numOfPassengers;
-    }
-
-
-
-    public HashMap<String, Boolean> getCompany() {
-        return company;
-    }
-
-    public void setOneCompany(String company) {
-
-        this.company.put(company, false);
-    }
-
-    public void setCompany(HashMap<String, Boolean> company) {
-
-        this.company= company;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void changeCompanyValue(String email){
-        this.company.replace(email,true);
-    }
-
-    public Boolean getSafeGuarded() {
-        return isSafeGuarded;
-    }
-
-    public void setSafeGuarded(Boolean safeGuarded) {
-
-        isSafeGuarded = safeGuarded;
-    }
-
-    public Boolean getChildrenTransportation() {
-        return isChildrenTransportation;
-    }
-
-    public void setChildrenTransportation(Boolean childrenTransportation) {
-
-        isChildrenTransportation = childrenTransportation;
-    }
-
-    public RequestType getStatus() {
-        return status;
-    }
-
-    public void setStatus(RequestType status) {
-
-        this.status = status;
     }
 */
+
+
+    public String getTravelDate() {
+        return travelDate;
+    }
+
+    public void setTravelDate(String travelDate) {
+        this.travelDate = travelDate;
+    }
+
+    public String getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(String arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public Date travelDateTypeGetter() {
+        DateConverter dateConverter = new DateConverter();
+        return dateConverter.fromTimestamp(travelDate);
+    }
+
+    public void travelDateTypeSetter(Date travelDate) {
+        DateConverter dateConverter = new DateConverter();
+        this.travelDate = dateConverter.dateToTimestamp(travelDate);
+    }
+
+    public Date arrivalDateTypeGetter() {
+        DateConverter dateConverter = new DateConverter();
+        return dateConverter.fromTimestamp(arrivalDate);
+    }
+
+    public void arrivalDateTypeSetter(Date arrivalDate) {
+        DateConverter dateConverter = new DateConverter();
+        this.travelDate = dateConverter.dateToTimestamp(arrivalDate);
+    }
 
     /*************** Converters **************/
     public static class DateConverter {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
         @TypeConverter
-        public Date fromTimestamp(String date) throws ParseException {
-            return (date == null ? null : format.parse(date));
+        public Date fromTimestamp(String date)  {
+            Date d = null;
+            try {
+                return (date == null ? null : format.parse(date));
+            }catch (ParseException e){
+                e.printStackTrace();
+            }
+            return d;
         }
 
         @TypeConverter

@@ -59,7 +59,7 @@ public class MainTravelsViewModel extends AndroidViewModel {
         return repository.getIsSuccess();
     }
 
-    public MutableLiveData<List<Travel>> getAllHistoryTravels() throws Exception {
+    public LiveData<List<Travel>> getAllHistoryTravels() throws Exception {
         return repository.getAllHistoryTravels();
     }
 }

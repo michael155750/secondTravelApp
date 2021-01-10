@@ -1,5 +1,6 @@
 package com.example.secondtravelapp.Repository;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import androidx.lifecycle.MutableLiveData;
@@ -66,7 +67,7 @@ public interface ITravelRepository {
      *         get all travels in the history which stored in the data base
      * @return MutableLiveData of list of travels
      */
-    MutableLiveData<List<Travel>> getAllHistoryTravels() throws Exception;
+    LiveData<List<Travel>> getAllHistoryTravels() throws Exception;
 
     /**
      *         ???

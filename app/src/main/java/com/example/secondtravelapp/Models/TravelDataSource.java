@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TravelDataSource implements  ITravelDataSource{
@@ -33,7 +34,7 @@ public class TravelDataSource implements  ITravelDataSource{
 
 
     private TravelDataSource() throws Exception{
-        allTravelsList = new ArrayList<>();
+        allTravelsList = new LinkedList<>();
 
             travels.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -41,8 +42,8 @@ public class TravelDataSource implements  ITravelDataSource{
                     allTravelsList.clear();
                     if (dataSnapshot.exists()) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren())
-                            for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                                Travel travel = snapshot1.getValue(Travel.class);
+                           {
+                                Travel travel = snapshot.getValue(Travel.class);
                                 allTravelsList.add(travel);
                             }
                     }

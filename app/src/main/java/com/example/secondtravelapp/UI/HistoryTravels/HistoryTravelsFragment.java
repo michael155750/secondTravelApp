@@ -22,27 +22,32 @@ import java.util.List;
 
 public class HistoryTravelsFragment extends Fragment {
 
-    private MainTravelsViewModel historyViewModel;
+    private MainTravelsViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        historyViewModel =
+        viewModel =
                 new ViewModelProvider(this).get(MainTravelsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_history_travels, container, false);
 
-//        LiveData<List<Travel>> historyTravels = historyViewModel.getAllHistoryTravels();
-//        historyTravels.observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
-//            @Override
-//            public void onChanged(List<Travel> travelList) {
-//                TextView textView = (TextView) root.findViewById(R.id.history_text_view);
-//                String builder = "";
-//                for (Travel travel: travelList)
-//                    builder.concat(travel.getClientName()).concat("\n");
-//                textView.setText(builder);
-//            }
-//        });
+        LiveData<List<Travel>> historyTravels = null;
+        try {
+            historyTravels = viewModel.getAllHistoryTravels();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        historyTravels.observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
+            @Override
+            public void onChanged(List<Travel> travelList) {
+                TextView textView = (TextView) root.findViewById(R.id.history_text_view);
+                String builder = "";
+                for (Travel travel: travelList)
+                    builder.concat(travel.getClientName()).concat("\n");
+                textView.setText(builder);
+            }
+        });
         //ListView itemsListView = (ListView)findViewById(R.id.list_view_items);
         //CustomListAdapter adapter = new CustomListAdapter(this, generateItemsList());
 

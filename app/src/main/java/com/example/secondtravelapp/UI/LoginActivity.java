@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity implements
 
         findViewById(R.id.btn_email_sign_in).setOnClickListener(this);
         findViewById(R.id.btn_email_create_account).setOnClickListener(this);
-        findViewById(R.id.btn_sign_out).setOnClickListener(this);
-        findViewById(R.id.btn_verify_email).setOnClickListener(this);
+        //findViewById(R.id.btn_sign_out).setOnClickListener(this);
+        //findViewById(R.id.btn_verify_email).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+       // updateUI(currentUser);
     }
 
     @Override
@@ -100,11 +100,11 @@ public class LoginActivity extends AppCompatActivity implements
             createAccount(edtEmail.getText().toString(), edtPassword.getText().toString());
         } else if (i == R.id.btn_email_sign_in) {
             signIn(edtEmail.getText().toString(), edtPassword.getText().toString());
-        } else if (i == R.id.btn_sign_out) {
+        }/* else if (i == R.id.btn_sign_out) {
             signOut();
         } else if (i == R.id.btn_verify_email) {
             sendEmailVerification();
-        }
+        }*/
     }
 
     private void createAccount(String email, String password) {
@@ -122,14 +122,14 @@ public class LoginActivity extends AppCompatActivity implements
 
                             // update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            //updateUI(user);
                             Intent intent = new Intent(LoginActivity.this, NVDActivity.class);
                             intent.putExtra("myEmail", user.getEmail());
                             startActivity(intent);
                         } else {
                             Log.e(TAG, "createAccount: Fail!", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed!", Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            //updateUI(null);
                         }
                     }
                 });
@@ -150,26 +150,26 @@ public class LoginActivity extends AppCompatActivity implements
 
                             // update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            //updateUI(user);
                             Intent intent = new Intent(LoginActivity.this, NVDActivity.class);
                             intent.putExtra("myEmail", user.getEmail());
                             startActivity(intent);
                         } else {
                             Log.e(TAG, "signIn: Fail!", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed!", Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            //updateUI(null);
 
                         }
                     }
                 });
     }
 
-    private void signOut() {
+   /* private void signOut() {
         mAuth.signOut();
         updateUI(null);
-    }
+    }*/
 
-    private void sendEmailVerification() {
+   /* private void sendEmailVerification() {
         // Disable Verify Email button
         findViewById(R.id.btn_verify_email).setEnabled(false);
 
@@ -195,7 +195,7 @@ public class LoginActivity extends AppCompatActivity implements
                     }
                 });
     }
-
+*/
     private boolean validateForm(String email, String password) {
 
         if (TextUtils.isEmpty(email)) {
@@ -216,7 +216,7 @@ public class LoginActivity extends AppCompatActivity implements
         return true;
     }
 
-    private void updateUI(FirebaseUser user) {
+  /*  private void updateUI(FirebaseUser user) {
         if (user != null) {
             findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
             findViewById(R.id.email_password_fields).setVisibility(View.GONE);
@@ -228,7 +228,7 @@ public class LoginActivity extends AppCompatActivity implements
             findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);
             findViewById(R.id.layout_signed_in_buttons).setVisibility(View.GONE);
         }
-    }
+    }*/
 
 
 

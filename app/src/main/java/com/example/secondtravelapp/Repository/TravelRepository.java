@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 
@@ -132,10 +133,10 @@ public class TravelRepository implements ITravelRepository {
     }
 
     @Override
-    public MutableLiveData<List<Travel>> getAllHistoryTravels() throws Exception {
+    public LiveData<List<Travel>> getAllHistoryTravels() throws Exception {
         //working with casting
 
-        return (MutableLiveData<List<Travel>>) historyDataSource.getTravels();
+        return /*(MutableLiveData<List<Travel>>)*/ historyDataSource.getTravels();
     }
 
 
