@@ -15,6 +15,8 @@ import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.TravelDataSource;
 import com.example.secondtravelapp.Models.UserLocation;
 
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,23 +40,29 @@ public class TravelRepository implements ITravelRepository {
         travelDataSource = TravelDataSource.getInstance();
         historyDataSource = new HistoryDataSource(application.getApplicationContext());
 
-        travelList = travelDataSource.getAllTravels();
+
 
         ITravelDataSource.TravelsChangedListener travelsChangedListener =
                 new ITravelDataSource.TravelsChangedListener() {
             @Override
             public void onTravelsChanged() throws Exception{
-
-                 travelList.clear();
-                 travelList.addAll(travelDataSource.getAllTravels());
+                travelList = travelDataSource.getAllTravels();
+                // travelList.clear();
+                 //travelList.addAll(travelDataSource.getAllTravels());
                 mutableLiveData.setValue(travelList);
 
                 //remove all non relevant travels from travelList
-                List<Travel> historyTravelList = new LinkedList<Travel>(travelList);
-                for (Travel travel :historyTravelList){
-                    if (travel.getStatus() != Travel.RequestType.close ||
+                List<Travel> historyTravelList = new LinkedList<Travel>();
+                for (Travel travel : travelList)
+                {
+                    historyTravelList.add(travel);
+                }
+
+                for (Iterator<Travel> iterator = historyTravelList.iterator(); iterator.hasNext();){
+                    Travel travel = iterator.next();
+                    if (travel.getStatus() != Travel.RequestType.close &&
                             travel.getStatus() != Travel.RequestType.paid) {
-                        historyTravelList.remove(travel);
+                        iterator.remove();
                     }
                 }
                 historyDataSource.clearTable();

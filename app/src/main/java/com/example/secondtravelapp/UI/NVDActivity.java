@@ -90,13 +90,7 @@ public class NVDActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.n_v_d, menu);
-        /*MenuItem signOut = menu.findItem(R.id.nav_sign_out);
-        signOut.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                return false;
-            }
-        });*/
+
         return true;
     }
 
@@ -124,6 +118,7 @@ public class NVDActivity extends AppCompatActivity {
             t1.setChildrenTransportation(true);
             t1.setSafeGuarded(true);
             t1.setDestAddress(new UserLocation(3, 2));
+            t1.setStatus(Travel.RequestType.paid);
             viewModel.addTravel(t1);
 
             Travel t2 = new Travel();
@@ -136,6 +131,7 @@ public class NVDActivity extends AppCompatActivity {
             t2.setChildrenTransportation(true);
             t2.setSafeGuarded(true);
             t2.setDestAddress(new UserLocation(7, 2));
+            t2.setStatus(Travel.RequestType.close);
             viewModel.addTravel(t2);
 
             Travel t3 = new Travel();

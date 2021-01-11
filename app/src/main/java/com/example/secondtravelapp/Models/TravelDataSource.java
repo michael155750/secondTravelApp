@@ -33,8 +33,8 @@ public class TravelDataSource implements  ITravelDataSource{
     }
 
 
-    private TravelDataSource() throws Exception{
-        allTravelsList = new LinkedList<>();
+    private TravelDataSource(){
+        allTravelsList = new LinkedList<Travel>();
 
             travels.addValueEventListener(new ValueEventListener() {
                 @Override

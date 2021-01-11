@@ -53,18 +53,19 @@ public class LoginActivity extends AppCompatActivity implements
         mAuth = FirebaseAuth.getInstance();
 
         final SharedPreferences sharedPreferences = getSharedPreferences("USER", MODE_PRIVATE);
-
         //sharedPreference will give the password when the email is written on the edtEmail
-        edtEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (edtEmail.toString() == sharedPreferences.getString("email", "No email")) {
-                    edtPassword.setText(sharedPreferences.getString("password", "No password"));
-                    return true;
-                }
-                return false;
-            }
-        });
+        edtEmail.setText(sharedPreferences.getString("email", "no email"));
+        edtPassword.setText(sharedPreferences.getString("password", "no password"));
+//        /*edtEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (edtEmail.toString() == sharedPreferences.getString("email", "No email")) {
+//                    edtPassword.setText(sharedPreferences.getString("password", "No password"));
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });*/
 
         Button rememberMe = (Button) findViewById(R.id.rememberMe);
         rememberMe.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +74,7 @@ public class LoginActivity extends AppCompatActivity implements
                 if (edtEmail.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Please Enter all the data", Toast.LENGTH_LONG).show();
                 } else {
+                    Toast.makeText(LoginActivity.this, "saved", Toast.LENGTH_LONG).show();
                     String emailData = edtEmail.getText().toString().trim();
                     String passwordData = edtPassword.getText().toString().trim();
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -173,7 +175,7 @@ public class LoginActivity extends AppCompatActivity implements
 
    /* private void sendEmailVerification() {
         // Disable Verify Email button
-        findViewById(R.id.btn_verify_email).setEnabled(false);
+        //findViewById(R.id.btn_verify_email).setEnabled(false);
 
         final FirebaseUser user = mAuth.getCurrentUser();
         user.sendEmailVerification()
@@ -181,7 +183,7 @@ public class LoginActivity extends AppCompatActivity implements
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         // Re-enable Verify Email button
-                        findViewById(R.id.btn_verify_email).setEnabled(true);
+                        //findViewById(R.id.btn_verify_email).setEnabled(true);
 
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
@@ -196,8 +198,8 @@ public class LoginActivity extends AppCompatActivity implements
                         }
                     }
                 });
-    }
-*/
+    }*/
+
     private boolean validateForm(String email, String password) {
 
         if (TextUtils.isEmpty(email)) {

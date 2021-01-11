@@ -77,7 +77,7 @@ public class Travel {
     }
 
     public void setTravelId(@NonNull String travelId) {
-        if (travelId == null)
+        if (this.travelId == null)
             this.travelId = travelId;
 
     }
