@@ -126,6 +126,7 @@ public class LoginActivity extends AppCompatActivity implements
                             Intent intent = new Intent(LoginActivity.this, NVDActivity.class);
                             intent.putExtra("myEmail", user.getEmail());
                             startActivity(intent);
+                            finish();
                         } else {
                             Log.e(TAG, "createAccount: Fail!", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed!", Toast.LENGTH_SHORT).show();
@@ -154,6 +155,7 @@ public class LoginActivity extends AppCompatActivity implements
                             Intent intent = new Intent(LoginActivity.this, NVDActivity.class);
                             intent.putExtra("myEmail", user.getEmail());
                             startActivity(intent);
+                            finish();
                         } else {
                             Log.e(TAG, "signIn: Fail!", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed!", Toast.LENGTH_SHORT).show();
