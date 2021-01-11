@@ -22,4 +22,5 @@
         android:name="com.example.secondtravelapp.UI.CompanyTravels.CompanyTravelsFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_company_travels" />
+
 </navigation>
