@@ -12,6 +12,7 @@
             android:layout_width="match_parent"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/source"
                 android:layout_height="30dp"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -23,6 +24,7 @@
                 />
 
             <TextView
+                android:id="@+id/num_passengers"
                 android:layout_height="30dp"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -32,6 +34,7 @@
                 android:layout_height="match_parent"
                 />
             <Button
+                android:id="@+id/company_send_email"
                 android:layout_height="30dp"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.5"
@@ -41,6 +44,7 @@
                 android:layout_height="match_parent"
                 />
             <Button
+                android:id="@+id/accept"
                 android:layout_height="30dp"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.5"
@@ -52,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/dest"
                 android:layout_height="30dp"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -62,6 +67,7 @@
                 android:layout_height="match_parent"
                 />
             <TextView
+                android:id="@+id/client_name"
                 android:layout_height="30dp"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -72,6 +78,7 @@
                 android:layout_height="match_parent"
                 />
             <TextView
+                android:id="@+id/num_days"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="1"

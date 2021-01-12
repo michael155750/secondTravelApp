@@ -1,24 +1,23 @@
-/*
+package com.example.secondtravelapp.UI.HistoryTravels;
 
-package com.example.secondtravelapp.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
 
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.R;
 
-public class CustomListAdapter extends
-        BaseAdapter {
+public class HistoryCustomListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Travel> travels;
 
-    public CustomListAdapter(Context context, ArrayList<Travel> travels) {
+    public HistoryCustomListAdapter(Context context, ArrayList<Travel> travels) {
         this.context = context;
         this.travels = travels;
     }
@@ -43,7 +42,7 @@ public class CustomListAdapter extends
         ViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.travel_adapter_row, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.history_adapter_row, parent, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -51,17 +50,25 @@ public class CustomListAdapter extends
         }
 
         Travel currentItem = (Travel) getItem(position);
-        viewHolder.clientName.setText(currentItem.getClientName());
-        viewHolder.clientPhone.setText(currentItem.getClientPhone());
-        viewHolder.clientEmail.setText(currentItem.getClientEmail());
-        */
-/*viewHolder.pickupAddress.setText(currentItem.getPickupAddress());
-        viewHolder.destAddresses.setText(currentItem.getDestAddresses());
-        viewHolder.numOfPassengers.setText(currentItem.getNumOfPassengers());
-        viewHolder.status.setText(currentItem.getStatus());
-        viewHolder.company.setText(currentItem.getCompany());
-        viewHolder.travelDate.setText(currentItem.getTravelDate());
-        viewHolder.arrivalDate.setText(currentItem.getArrivalDate());*//*
+        String companyEmail = null;
+        for (String email: currentItem.getCompany().keySet()){
+            if (currentItem.getCompany().get(email))
+                companyEmail = email;
+        }
+        viewHolder.company.setText(currentItem.getCompany().get(companyEmail).toString());
+        //viewHolder.way.setText();
+        viewHolder.changeStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentItem.setStatus(Travel.RequestType.paid);
+            }
+        });
+        viewHolder.email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //send email
+            }
+        });
 
 
 
@@ -72,32 +79,22 @@ public class CustomListAdapter extends
 
     //ViewHolder inner class
     private class ViewHolder {
-        TextView clientName;
-        TextView clientPhone;
-        TextView clientEmail;
-        TextView pickupAddress;
-        TextView destAddresses;
-        TextView numOfPassengers;
-        TextView status;
+
         TextView company;
-        TextView travelDate;
-        TextView arrivalDate;
+        TextView way;
+        Button changeStatus;
+        Button email;
+
 
 
 
         public ViewHolder(View view) {
-            clientName = (TextView) view.findViewById(R.id.text_view_item_client_name);
-            clientPhone = (TextView)view.findViewById(R.id.text_view_item_client_phone);
-            clientEmail = (TextView) view.findViewById(R.id.text_view_item_client_email);
-            pickupAddress = (TextView)view.findViewById(R.id.text_view_item_pickup_address);
-            destAddresses = (TextView) view.findViewById(R.id.text_view_item_dest_addresses);
-            numOfPassengers = (TextView)view.findViewById(R.id.text_view_item_num_passengers);
-            status = (TextView) view.findViewById(R.id.text_view_item_status);
-            company = (TextView)view.findViewById(R.id.text_view_item_companies);
-            travelDate = (TextView) view.findViewById(R.id.text_view_item_travel_date);
-            arrivalDate = (TextView)view.findViewById(R.id.text_view_item_arrival_date);
 
+            company = (TextView)view.findViewById(R.id.text_view_item_company_name);
+            way = (TextView)view.findViewById(R.id.text_view_item_way);
+            changeStatus = (Button)view.findViewById(R.id.change_status_button);
+            email = (Button)view.findViewById(R.id.email_button);
         }
     }
 }
-*/
+
