@@ -52,7 +52,9 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         }
 
         Travel currentItem = (Travel) getItem(position);
-
+        //viewHolder.source.setText();
+        //viewHolder.dest.setText();
+        viewHolder.date.setText(currentItem.getTravelDate());
 
 
 
