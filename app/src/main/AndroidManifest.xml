@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.secondtravelapp">
+    package="com.example.secondtravelapp" >
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    ...
-    <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
     <uses-feature android:name="android.hardware.location.gps" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/Login_title"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SecondTravelApp">
+        android:theme="@style/Theme.SecondTravelApp" >
+        <activity
+            android:name=".UI.TryNVDActivity"
+            android:label="@string/title_activity_try_n_v_d"
+            android:theme="@style/Theme.SecondTravelApp.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".UI.TryNVD"
+            android:label="@string/title_activity_try_n_v_d"
+            android:theme="@style/Theme.SecondTravelApp.NoActionBar" >
+        </activity>
         <activity
             android:name=".UI.NVDActivity"
             android:label="@string/title_activity_n_v_d"
-            android:theme="@style/Theme.SecondTravelApp.NoActionBar"></activity>
-        <activity android:name=".UI.LoginActivity">
+            android:theme="@style/Theme.SecondTravelApp.NoActionBar" >
+        </activity>
+        <activity android:name=".UI.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

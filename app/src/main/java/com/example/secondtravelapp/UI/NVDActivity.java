@@ -1,26 +1,21 @@
 package com.example.secondtravelapp.UI;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 
+
+
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
 
-import com.example.secondtravelapp.Models.HistoryDataSource;
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.UserLocation;
 import com.example.secondtravelapp.R;
-import com.example.secondtravelapp.UI.CompanyTravels.CompanyTravelsFragment;
-import com.example.secondtravelapp.UI.HistoryTravels.HistoryTravelsFragment;
-import com.example.secondtravelapp.UI.RegisteredTravels.RegisteredTravelsFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -44,6 +39,8 @@ public class NVDActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nvd);
 
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -52,36 +49,16 @@ public class NVDActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_history, R.id.nav_company, R.id.nav_registered)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        /*
-        navigationView.setNavigationItemSelectedListener((menuItem) -> {
-            switch (menuItem.getItemId()) {
-                case R.id.nav_sign_out:
-                    Intent intent = new Intent(NVDActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    break;
-                case R.id.nav_home:
-                    Intent intent1 = new Intent(NVDActivity.this, RegisteredTravelsFragment.class);
-                    startActivity(intent1);
-                    break;
-                case R.id.nav_gallery:
-                    Intent intent2 = new Intent(NVDActivity.this, CompanyTravelsFragment.class);
-                    startActivity(intent2);
-                    break;
-                case R.id.nav_slideshow:
-                    Intent intent3 = new Intent(NVDActivity.this, HistoryTravelsFragment.class);
-                    startActivity(intent3);
-                    break;
-            }
-            return true;
-        });
-*/
+
+
+
 
         addInitialData();
     }

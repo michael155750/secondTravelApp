@@ -106,6 +106,7 @@ public class RegisteredTravelsFragment extends Fragment {
 
 
         adapter = new RegisteredCustomListAdapter(mData, mSpinnerData, typeSpinnerData, getActivity());
+        listView.setAdapter(adapter);
         return root;
     }
 }

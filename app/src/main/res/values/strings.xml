@@ -11,7 +11,8 @@
         Travels Foreground
     </string>
 
-    <string name="menu_home">Registered travels</string>
-    <string name="menu_gallery">Company travels</string>
-    <string name="menu_slideshow">History travels</string>
+    <string name="menu_home">History travels</string>
+    <string name="menu_gallery">registered travels</string>
+    <string name="menu_slideshow">company travels</string>
+    <string name="title_activity_try_n_v_d">TryNVD</string>
 </resources>
