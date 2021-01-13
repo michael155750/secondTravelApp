@@ -28,6 +28,7 @@ public class GPS {
     
 
     //getLocation From Address
+
     public static UserLocation getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);
