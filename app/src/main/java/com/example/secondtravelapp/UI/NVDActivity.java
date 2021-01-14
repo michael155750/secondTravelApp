@@ -11,6 +11,7 @@ import android.view.Menu;
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.UserLocation;
 import com.example.secondtravelapp.R;
+import com.example.secondtravelapp.services.TravelChangeService;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -58,6 +59,7 @@ public class NVDActivity extends AppCompatActivity {
 
 
 
+        startService(new Intent(com.example.secondtravelapp.UI.NVDActivity.this, TravelChangeService.class));
 
 
         addInitialData();
@@ -142,4 +144,6 @@ public class NVDActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

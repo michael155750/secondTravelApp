@@ -1,4 +1,4 @@
-package com.example.secondtravelapp.UI;
+package com.example.secondtravelapp.services;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
