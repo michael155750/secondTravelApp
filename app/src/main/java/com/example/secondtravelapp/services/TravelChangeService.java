@@ -43,14 +43,13 @@ public class TravelChangeService extends LifecycleService {
             isSuccess.observe((LifecycleOwner) this, new Observer<Boolean>() {
                 @Override
                 public void onChanged(Boolean element) {
-                    // don't know if it the correct context
-                    /* if (element)
-                        Toast.makeText(getApplicationContext()
-                                ,"The travel had inserted successfully!", Toast.LENGTH_LONG).show();
-                    else
-                        Toast.makeText(getApplicationContext(),
-                                "The travel had not inserted", Toast.LENGTH_LONG).show();*/
 
+
+                     if (element){
+                         Intent intent1 = new Intent();
+                         intent1.setAction(Intent.ACTION_TIME_TICK);
+                         sendBroadcast(intent1);
+                     }
                 }
             });
 
