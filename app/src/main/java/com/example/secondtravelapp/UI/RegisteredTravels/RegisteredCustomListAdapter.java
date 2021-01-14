@@ -112,7 +112,7 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
 
         });
 
-        return convertView;
+        return view;
     }
 
     /*

@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.secondtravelapp.Models.Travel;
+import com.example.secondtravelapp.Models.UserLocation;
 import com.example.secondtravelapp.R;
+import com.example.secondtravelapp.UI.GPS;
 import com.example.secondtravelapp.UI.MainTravelsViewModel;
 
 import java.util.ArrayList;
@@ -50,14 +52,15 @@ public class RegisteredTravelsFragment extends Fragment {
         t1.setClientName("Avi Cohen");
         t1.setClientEmail("avi@gmail.com");
         t1.setClientPhone("021234567");
-        //t1.setPickupAddress(new UserLocation(1, 2));
+
+        t1.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
+
         t1.setNumOfPassengers(2);
         t1.travelDateTypeSetter(new Date(2020, 2, 2));
         t1.setChildrenTransportation(true);
         t1.setSafeGuarded(true);
-        //t1.setSource("Jerusalem, Hacotel");
-        //t1.setDest("Ramat Gan");
-        //t1.setDestAddress(new UserLocation(3, 2));
+
+        t1.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
         t1.setStatus(Travel.RequestType.paid);
         mData.add(t1);
 
@@ -90,6 +93,113 @@ public class RegisteredTravelsFragment extends Fragment {
         //t3.setDestAddress(new UserLocation(1, 8));
         mData.add(t3);
 
+        Travel t4 = new Travel();
+        t4.setClientName("Avi Cohen");
+        t4.setClientEmail("avi@gmail.com");
+        t4.setClientPhone("021234567");
+
+        t4.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
+
+        t4.setNumOfPassengers(2);
+        t4.travelDateTypeSetter(new Date(2020, 2, 2));
+        t4.setChildrenTransportation(true);
+        t4.setSafeGuarded(true);
+
+        t4.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
+        t4.setStatus(Travel.RequestType.paid);
+        mData.add(t4);
+        Travel t5 = new Travel();
+        t5.setClientName("Avi Cohen");
+        t5.setClientEmail("avi@gmail.com");
+        t5.setClientPhone("021234567");
+
+        t5.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
+
+        t5.setNumOfPassengers(2);
+        t5.travelDateTypeSetter(new Date(2020, 2, 2));
+        t5.setChildrenTransportation(true);
+        t5.setSafeGuarded(true);
+
+        t5.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
+        t5.setStatus(Travel.RequestType.paid);
+        mData.add(t5);
+        Travel t6 = new Travel();
+        t6.setClientName("Avi Cohen");
+        t6.setClientEmail("avi@gmail.com");
+        t6.setClientPhone("021234567");
+
+        t6.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
+
+        t6.setNumOfPassengers(2);
+        t6.travelDateTypeSetter(new Date(2020, 2, 2));
+        t6.setChildrenTransportation(true);
+        t6.setSafeGuarded(true);
+
+        t6.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
+        t6.setStatus(Travel.RequestType.paid);
+        mData.add(t6);
+        Travel t7 = new Travel();
+        t7.setClientName("Avi Cohen");
+        t7.setClientEmail("avi@gmail.com");
+        t7.setClientPhone("021234567");
+
+        t7.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
+
+        t7.setNumOfPassengers(2);
+        t7.travelDateTypeSetter(new Date(2020, 2, 2));
+        t7.setChildrenTransportation(true);
+        t7.setSafeGuarded(true);
+
+        t7.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
+        t7.setStatus(Travel.RequestType.paid);
+        mData.add(t7);
+        Travel t8 = new Travel();
+        t8.setClientName("Avi Cohen");
+        t8.setClientEmail("avi@gmail.com");
+        t8.setClientPhone("021234567");
+
+        t8.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
+
+        t8.setNumOfPassengers(2);
+        t8.travelDateTypeSetter(new Date(2020, 2, 2));
+        t8.setChildrenTransportation(true);
+        t8.setSafeGuarded(true);
+
+        t8.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
+        t8.setStatus(Travel.RequestType.paid);
+        mData.add(t8);
+        Travel t9 = new Travel();
+        t9.setClientName("Avi Cohen");
+        t9.setClientEmail("avi@gmail.com");
+        t9.setClientPhone("021234567");
+
+        t9.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
+
+        t9.setNumOfPassengers(2);
+        t9.travelDateTypeSetter(new Date(2020, 2, 2));
+        t9.setChildrenTransportation(true);
+        t9.setSafeGuarded(true);
+
+        t9.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
+        t9.setStatus(Travel.RequestType.paid);
+        mData.add(t9);
+
+        Travel t11 = new Travel();
+        t11.setClientName("Avi Cohen");
+        t11.setClientEmail("avi@gmail.com");
+        t11.setClientPhone("021234567");
+
+        t11.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
+
+        t11.setNumOfPassengers(2);
+        t11.travelDateTypeSetter(new Date(2020, 2, 2));
+        t11.setChildrenTransportation(true);
+        t11.setSafeGuarded(true);
+
+        t11.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
+        t11.setStatus(Travel.RequestType.paid);
+        mData.add(t11);
+
         ArrayList<String> mSpinnerData = new ArrayList<>();
         //mSpinnerData.add(0, "Chose company");//Select
         mSpinnerData.add("Dan");
@@ -105,7 +215,7 @@ public class RegisteredTravelsFragment extends Fragment {
         typeSpinnerData.add("Paid");
 
 
-        adapter = new RegisteredCustomListAdapter(mData, mSpinnerData, typeSpinnerData, getActivity());
+        adapter = new RegisteredCustomListAdapter(mData, mSpinnerData, typeSpinnerData, this.getContext());
         listView.setAdapter(adapter);
         return root;
     }

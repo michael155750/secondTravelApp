@@ -70,7 +70,7 @@ public class GPS {
                 String cityName = addresses.get(0).getAddressLine(0);
                 String stateName = addresses.get(0).getAddressLine(1);
                 String countryName = addresses.get(0).getAddressLine(2);
-                return stateName + "\n" + cityName + "\n" + countryName;
+                return /*stateName + "\n" + */cityName + "\n"/* + countryName*/;
             }
 
             return "no place: \n (" + location.getLongitude() + " , " + location.getLatitude() + ")";
