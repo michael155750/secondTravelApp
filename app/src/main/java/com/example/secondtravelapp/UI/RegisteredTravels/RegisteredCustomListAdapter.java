@@ -75,14 +75,14 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
 
         TextView textView = (TextView) view.findViewById(R.id.source_registered);//source
         TextView date = view.findViewById(R.id.date_registered);
-        //TextView destination = view.findViewById(R.id.dest_registered);
+        TextView destination = view.findViewById(R.id.dest_registered);
 
         Spinner companySpinner = (Spinner) view.findViewById(R.id.compay_registered);
         Spinner type = view.findViewById(R.id.status_registered);
 
         textView.setText(GPS.getPlace(context, travels.get(position).getPickupAddress()));
         date.setText(travels.get(position).getTravelDate());
-        //destination.setText(GPS.getPlace(context, travels.get(position).getDestAddress()));
+        destination.setText(GPS.getPlace(context, travels.get(position).getDestAddress()));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, this.companySpinner);
         companySpinner.setAdapter(adapter);

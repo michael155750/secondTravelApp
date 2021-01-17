@@ -46,8 +46,9 @@ public class TravelChangeService extends LifecycleService {
 
 
                      if (element){
-                         Intent intent1 = new Intent();
-                         intent1.setAction(Intent.ACTION_TIME_TICK);
+                         Intent intent1 = new Intent("CustomIntent");
+
+                         intent1.setAction("com.javacodegeeks.android.A_CUSTOM_INTENT");
                          sendBroadcast(intent1);
                      }
                 }
