@@ -77,6 +77,11 @@ public class TravelRepository implements ITravelRepository {
     }
 
     @Override
+    public void updateTravel(Travel travel) {
+        travelDataSource.updateTravel(travel);
+    }
+
+    @Override
     public void addTravel(Travel travel) {
         travelDataSource.addTravel(travel);
     }

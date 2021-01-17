@@ -2,11 +2,15 @@ package com.example.secondtravelapp.UI.RegisteredTravels;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +24,7 @@ import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.UserLocation;
 import com.example.secondtravelapp.R;
 import com.example.secondtravelapp.Repository.TravelRepository;
+import com.example.secondtravelapp.UI.CompanyTravels.CompanyCustomListAdapter;
 import com.example.secondtravelapp.UI.NVDActivity;
 import com.example.secondtravelapp.services.GPS;
 import com.example.secondtravelapp.UI.MainTravelsViewModel;
@@ -31,7 +36,6 @@ import java.util.List;
 
 /**
  * class registered travels fragment represents
-
  */
 public class RegisteredTravelsFragment extends Fragment {
 
@@ -49,7 +53,6 @@ public class RegisteredTravelsFragment extends Fragment {
     }
 
     /**
-     *
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -58,7 +61,7 @@ public class RegisteredTravelsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        activity = ((NVDActivity)getActivity());
+        activity = ((NVDActivity) getActivity());
         email = activity.getEmail();
 
         viewModel =
@@ -68,7 +71,7 @@ public class RegisteredTravelsFragment extends Fragment {
 
 
         //Connection with the above layers
-       // MutableLiveData<List<Travel>> travels = viewModel.getRepository().getClientTravels(viewModel.getEmail());
+        // MutableLiveData<List<Travel>> travels = viewModel.getRepository().getClientTravels(viewModel.getEmail());
 
         //ArrayList<Travel> mData = new ArrayList<>(travels.getValue());
 
@@ -247,6 +250,26 @@ public class RegisteredTravelsFragment extends Fragment {
 
 
         adapter = new RegisteredCustomListAdapter(mData, mSpinnerData, typeSpinnerData, this.getContext());
+
+
+        adapter.setListener(new RegisteredCustomListAdapter.RegisteredTravelListener() {
+            @Override
+            public void onButtonClicked(int position, int spinnerPosition, View view) {
+                if (view.getId() == R.id.compay_registered) {
+                    mData.get(position).setOneCompany(mSpinnerData.get(spinnerPosition));
+                    viewModel.updateTravel(mData.get(position));
+
+
+                }
+                if (view.getId() == R.id.status_registered) {
+
+                    //mData.get(position).setStatus(st(spinnerPosition));
+
+                }
+            }
+        });
+
+
         listView.setAdapter(adapter);
         return root;
     }

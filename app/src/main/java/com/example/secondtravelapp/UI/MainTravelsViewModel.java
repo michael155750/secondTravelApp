@@ -16,12 +16,8 @@ public class MainTravelsViewModel extends AndroidViewModel {
     //private MutableLiveData<String> mText;
     private MutableLiveData<List<Travel>> allTravelsLiveData = new MutableLiveData<>();
     //public ITravelRepository getRepository(){
-      //  return  repository;
-   // }
-
-
-
-
+    //  return  repository;
+    // }
 
 
     public MainTravelsViewModel(Application p) throws Exception {
@@ -38,22 +34,27 @@ public class MainTravelsViewModel extends AndroidViewModel {
         repository.setNotifyToTravelListListener(notifyToTravelListListener);
     }
 
-   // public LiveData<String> getText() {
-      //  return mText;
-   // }
+    // public LiveData<String> getText() {
+    //  return mText;
+    // }
 
-    public void addTravel(Travel travel)
-    {
+    public void addTravel(Travel travel) {
         repository.addTravel(travel);
     }
-    public void acceptTravel(Travel travel)
-    {
+
+    public void updateTravel(Travel travel){
+        repository.updateTravel(travel);
+    }
+
+    public void acceptTravel(Travel travel) {
         repository.acceptTravel(travel);
     }
-   public void sentSuggestions(String email, Travel travel){
+
+    public void sentSuggestions(String email, Travel travel) {
         repository.sentSuggestion(email, travel);
     }
-    public MutableLiveData<List<Travel>> getAllTravels(){
+
+    public MutableLiveData<List<Travel>> getAllTravels() {
 
         return allTravelsLiveData;
     }

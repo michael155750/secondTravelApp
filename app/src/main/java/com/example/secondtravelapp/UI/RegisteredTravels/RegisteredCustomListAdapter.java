@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.TravelDataSource;
 import com.example.secondtravelapp.R;
+import com.example.secondtravelapp.UI.CompanyTravels.CompanyCustomListAdapter;
 import com.example.secondtravelapp.services.GPS;
 
 
@@ -24,6 +25,7 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
     private ArrayList<String> companySpinner;
     private ArrayList<String> statusSpinner;
     private ArrayList<Travel> travels;
+    private RegisteredCustomListAdapter.RegisteredTravelListener listener;
     static boolean lockFirstTime = false;
 
 
@@ -36,6 +38,14 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         this.travels = travels;
         this.companySpinner = spinnerItems;
         this.statusSpinner = type;
+    }
+
+    public interface RegisteredTravelListener {
+        void onButtonClicked(int position, int spinnerPosition, View view);
+    }
+
+    public void setListener(RegisteredCustomListAdapter.RegisteredTravelListener listener){
+        this.listener=listener;
     }
 
     @Override

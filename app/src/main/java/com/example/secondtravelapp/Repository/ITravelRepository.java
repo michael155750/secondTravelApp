@@ -22,6 +22,8 @@ public interface ITravelRepository {
      */
     void addTravel(Travel travel);
 
+    void updateTravel(Travel travel);
+
     /**
      * @brief accept travel company
      * @param email - email of company, the id of the company in our case
