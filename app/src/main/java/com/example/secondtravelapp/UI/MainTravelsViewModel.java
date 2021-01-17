@@ -3,12 +3,9 @@ package com.example.secondtravelapp.UI;
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.secondtravelapp.Models.Travel;
-import com.example.secondtravelapp.Models.UserLocation;
 import com.example.secondtravelapp.Repository.ITravelRepository;
 import com.example.secondtravelapp.Repository.TravelRepository;
 
@@ -17,20 +14,12 @@ import java.util.List;
 public class MainTravelsViewModel extends AndroidViewModel {
     ITravelRepository repository;
     //private MutableLiveData<String> mText;
+    private MutableLiveData<List<Travel>> allTravelsLiveData = new MutableLiveData<>();
+    //public ITravelRepository getRepository(){
+      //  return  repository;
+   // }
 
-    public ITravelRepository getRepository(){
-        return  repository;
-    }
 
-    private String email;
-
-    public void setEmail(String _email) {
-        email = _email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
 
 
 
@@ -38,30 +27,38 @@ public class MainTravelsViewModel extends AndroidViewModel {
     public MainTravelsViewModel(Application p) throws Exception {
         super(p);
         repository = (ITravelRepository) TravelRepository.getInstance(p);
-        //mText = new MutableLiveData<>();
-        //mText.setValue("This is gallery fragment");
+        ITravelRepository.NotifyToTravelListListener notifyToTravelListListener = new ITravelRepository.NotifyToTravelListListener() {
+            @Override
+            public void onTravelsChanged() {
+                List<Travel> travelList = repository.getAllTravels();
+                allTravelsLiveData.setValue(travelList);
+
+            }
+        };
+        repository.setNotifyToTravelListListener(notifyToTravelListListener);
     }
 
    // public LiveData<String> getText() {
       //  return mText;
    // }
 
-    void addTravel(Travel travel)
+    public void addTravel(Travel travel)
     {
         repository.addTravel(travel);
     }
-    void acceptTravel(Travel travel)
+    public void acceptTravel(Travel travel)
     {
         repository.acceptTravel(travel);
     }
-    void sentSuggestions(String email, Travel travel){
+   public void sentSuggestions(String email, Travel travel){
         repository.sentSuggestion(email, travel);
     }
     public MutableLiveData<List<Travel>> getAllTravels(){
-        return repository.getAllTravels();
+
+        return allTravelsLiveData;
     }
 
-    public MutableLiveData<List<Travel>> getClientTravels(String name){
+    /*public MutableLiveData<List<Travel>> getClientTravels(String name){
         return repository.getClientTravels(name);
     }
 
@@ -76,5 +73,5 @@ public class MainTravelsViewModel extends AndroidViewModel {
 
     public LiveData<List<Travel>> getAllHistoryTravels() throws Exception {
         return repository.getAllHistoryTravels();
-    }
+    }*/
 }

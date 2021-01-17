@@ -1,6 +1,7 @@
 package com.example.secondtravelapp.UI.CompanyTravels;
 
 import android.content.Context;
+import android.location.LocationListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.R;
@@ -19,10 +21,19 @@ import com.example.secondtravelapp.services.GPS;
 public class CompanyCustomListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Travel> travels;
-
+    private CompanyTravelListener listener;
     public CompanyCustomListAdapter(Context context, ArrayList<Travel> travels) {
         this.context = context;
         this.travels = travels;
+
+
+    }
+
+    public interface CompanyTravelListener {
+        void onButtonClicked(int position, View view);
+    }
+    public void setListener(CompanyTravelListener listener){
+        this.listener=listener;
     }
 
     @Override
@@ -79,7 +90,7 @@ public class CompanyCustomListAdapter extends BaseAdapter {
         View view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.registered_adapter_row, null);
+            view = inflater.inflate(R.layout.company_adapter_row, null);
         }
 
         TextView source = view.findViewById(R.id.source);
@@ -91,14 +102,39 @@ public class CompanyCustomListAdapter extends BaseAdapter {
         TextView numOfDays = view.findViewById(R.id.num_days);
 
         source.setText(GPS.getPlace(context, travels.get(position).getPickupAddress()));
-        numOfPassengers.setText(travels.get(position).getNumOfPassengers());
+        Integer passengers = travels.get(position).getNumOfPassengers();
+        numOfPassengers.setText(passengers.toString());
 
         dest.setText(GPS.getPlace(context, travels.get(position).getDestAddress()));
         clientName.setText(travels.get(position).getClientName());
-        //numOfDays.setText(travels.get(position));
+        if (travels.get(position).arrivalDateTypeGetter() != null &&
+                travels.get(position).travelDateTypeGetter() != null)
+            numOfDays.setText(numberOfDays(travels.get(position).arrivalDateTypeGetter(),travels.get(position).travelDateTypeGetter()).toString());
+        else
+            numOfDays.setText("0");
+
+       phoneCall.setTag(R.integer.call_pos, position);
+        phoneCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
 
+                Integer pos = (Integer) phoneCall.getTag(R.integer.call_pos);
+                if (listener!=null)
+                    listener.onButtonClicked(pos,view);
+            }
+        });
 
+        accept.setTag(R.integer.accept_pos, position);
+       accept.setOnClickListener( new View.OnClickListener(){
+           @Override
+           public void onClick(View v) {
+               Integer pos = (Integer) accept.getTag(R.integer.accept_pos);
+               if ( ((CheckBox)v).isChecked() ) {
+                   listener.onButtonClicked(pos,v);
+               }
+           }
+       });
         return view;
 
 
@@ -134,5 +170,10 @@ public class CompanyCustomListAdapter extends BaseAdapter {
 
      */
 
-
+Integer numberOfDays(Date date1, Date date2){
+  Long time =  Math.abs(date1.getTime() - date2.getTime());
+  Long result = time/1000/60/60/24;
+  return result.intValue();
 }
+}
+

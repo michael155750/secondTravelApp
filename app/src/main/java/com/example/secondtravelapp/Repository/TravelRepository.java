@@ -24,12 +24,14 @@ import static java.lang.Math.sqrt;
 
 public class TravelRepository implements ITravelRepository {
 
-    ITravelDataSource  travelDataSource;
+    ITravelDataSource travelDataSource;
     IHistoryDataSource historyDataSource;
+    private ITravelRepository.NotifyToTravelListListener notifyToTravelListListenerRepository;
 
     private MutableLiveData<List<Travel>> mutableLiveData = new MutableLiveData<>();
     List<Travel> travelList;
     private static TravelRepository instance;
+
     public static TravelRepository getInstance(Application application) throws Exception {
         if (instance == null)
             instance = new TravelRepository(application);
@@ -41,36 +43,35 @@ public class TravelRepository implements ITravelRepository {
         historyDataSource = new HistoryDataSource(application.getApplicationContext());
 
 
-
         ITravelDataSource.TravelsChangedListener travelsChangedListener =
                 new ITravelDataSource.TravelsChangedListener() {
-            @Override
-            public void onTravelsChanged() throws Exception{
-                travelList = travelDataSource.getAllTravels();
-                // travelList.clear();
-                 //travelList.addAll(travelDataSource.getAllTravels());
-                mutableLiveData.setValue(travelList);
+                    @Override
+                    public void onTravelsChanged() throws Exception {
+                        travelList = travelDataSource.getAllTravels();
+                        // travelList.clear();
+                        //travelList.addAll(travelDataSource.getAllTravels());
+                        //mutableLiveData.setValue(travelList);
 
-                //remove all non relevant travels from travelList
-                List<Travel> historyTravelList = new LinkedList<Travel>();
-                for (Travel travel : travelList)
-                {
-                    historyTravelList.add(travel);
-                }
+                        //remove all non relevant travels from travelList
+                        List<Travel> historyTravelList = new LinkedList<Travel>();
+                        for (Travel travel : travelList) {
+                            historyTravelList.add(travel);
+                        }
 
-                for (Iterator<Travel> iterator = historyTravelList.iterator(); iterator.hasNext();){
-                    Travel travel = iterator.next();
-                    if (travel.getStatus() != Travel.RequestType.close &&
-                            travel.getStatus() != Travel.RequestType.paid) {
-                        iterator.remove();
+                        for (Iterator<Travel> iterator = historyTravelList.iterator(); iterator.hasNext(); ) {
+                            Travel travel = iterator.next();
+                            if (travel.getStatus() != Travel.RequestType.close &&
+                                    travel.getStatus() != Travel.RequestType.paid) {
+                                iterator.remove();
+                            }
+                        }
+                        historyDataSource.clearTable();
+                        historyDataSource.addTravel(historyTravelList);
+
+                        if (notifyToTravelListListenerRepository != null)
+                            notifyToTravelListListenerRepository.onTravelsChanged();
                     }
-                }
-                historyDataSource.clearTable();
-                historyDataSource.addTravel(historyTravelList);
-
-
-            }
-        };
+                };
 
         travelDataSource.setTravelsChangedListener(travelsChangedListener);
     }
@@ -82,11 +83,10 @@ public class TravelRepository implements ITravelRepository {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void acceptCompany(String email,Travel travel) {
+    public void acceptCompany(String email, Travel travel) {
         travel.changeCompanyValue(email);
         travelDataSource.updateTravel(travel);
     }
-
 
 
     @Override
@@ -103,53 +103,57 @@ public class TravelRepository implements ITravelRepository {
 
     //change to three kinds of data by 3 view models
     @Override
-    public MutableLiveData<List<Travel>> getAllTravels() {
-        return mutableLiveData;
+    public List<Travel> getAllTravels() {
+        return travelList;
     }
 
     @Override
-    public MutableLiveData<List<Travel>> getClientTravels(String clientEmail) {
+    public List<Travel> getClientTravels(String clientEmail) {
         List<Travel> clientTravelList = new LinkedList<Travel>();
-        for (Travel travel: travelList){
-            if(travel.getClientEmail() == clientEmail &&
-                    travel.getStatus() == Travel.RequestType.sent){
+        for (Travel travel : travelList) {
+            if (travel.getClientEmail() == clientEmail &&
+                    travel.getStatus() == Travel.RequestType.sent) {
                 clientTravelList.add(travel);
             }
         }
-        mutableLiveData.setValue(clientTravelList);
-        return mutableLiveData;
+        return clientTravelList;
+
     }
 
     @Override
-    public MutableLiveData<List<Travel>> getCompanyTravels(Double distance, UserLocation currentAddress) {
+    public List<Travel> getCompanyTravels(Double distance, UserLocation currentAddress) {
         List<Travel> companyTravelList = new LinkedList<Travel>();
         Double companyDistance = 0d;
         Double distanceX = 0d;
         Double distanceY = 0d;
-        for (Travel travel : travelList){
+        for (Travel travel : travelList) {
             distanceX = (travel.getPickupAddress().getLon() - currentAddress.getLon());
             distanceY = (travel.getPickupAddress().getLat() - currentAddress.getLat());
-            companyDistance = sqrt(distanceX*distanceX + distanceY * distanceY);
-            if (companyDistance <= distance &&travel.getStatus() == Travel.RequestType.sent){
+            companyDistance = sqrt(distanceX * distanceX + distanceY * distanceY);
+            if (companyDistance <= distance && travel.getStatus() == Travel.RequestType.sent) {
 
                 companyTravelList.add(travel);
             }
 
         }
-        mutableLiveData.setValue(companyTravelList);
-        return mutableLiveData;
+        return companyTravelList;
     }
 
-    @Override
-    public LiveData<List<Travel>> getAllHistoryTravels() throws Exception {
+ /*   @Override
+    public List<Travel> getAllHistoryTravels() throws Exception {
         //working with casting
 
-        return /*(MutableLiveData<List<Travel>>)*/ historyDataSource.getTravels();
-    }
+        return historyDataSource.getTravels();
+    }*/
 
 
     @Override
     public MutableLiveData<Boolean> getIsSuccess() {
         return travelDataSource.getIsSuccess();
+    }
+
+
+    public void setNotifyToTravelListListener(ITravelRepository.NotifyToTravelListListener l) {
+        notifyToTravelListListenerRepository = l;
     }
 }

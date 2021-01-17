@@ -46,14 +46,14 @@ public interface ITravelRepository {
      *         gets all the travels
      * @return MutableLiveData of list of travels
      */
-    MutableLiveData<List<Travel>> getAllTravels();
+    List<Travel> getAllTravels();
 
     /**
      *         gets a travels of certain client
      * @param  clientEmail - the email of the customer
      * @return MutableLiveData of list travels
      */
-    MutableLiveData<List<Travel>> getClientTravels(String clientEmail);
+    List<Travel> getClientTravels(String clientEmail);
 
     /**
      *         gets all the travel that belong to certain company
@@ -61,17 +61,22 @@ public interface ITravelRepository {
      * @param  currentAddress  the address of the company
      * @return MutableLiveData of list of travels
      */
-    MutableLiveData<List<Travel>> getCompanyTravels(Double distance, UserLocation currentAddress);
+   List<Travel> getCompanyTravels(Double distance, UserLocation currentAddress);
 
     /**
      *         get all travels in the history which stored in the data base
      * @return MutableLiveData of list of travels
      */
-    LiveData<List<Travel>> getAllHistoryTravels() throws Exception;
+   // List<Travel> getAllHistoryTravels() throws Exception;
 
     /**
      *         ???
      * @return MutableLiveData<Boolean>
      */
     MutableLiveData<Boolean> getIsSuccess();
+
+    interface NotifyToTravelListListener {
+        void onTravelsChanged();
+    }
+    void setNotifyToTravelListListener(ITravelRepository.NotifyToTravelListListener l);
 }

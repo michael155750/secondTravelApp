@@ -32,6 +32,11 @@ public class NVDActivity extends AppCompatActivity {
 
     private MainTravelsViewModel viewModel;
     private AppBarConfiguration mAppBarConfiguration;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +44,8 @@ public class NVDActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(MainTravelsViewModel.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nvd);
-        String email = getIntent().getStringExtra("myEmail");
-        viewModel.setEmail(email);
+       email = getIntent().getStringExtra("myEmail");
+
 
 
 

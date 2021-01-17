@@ -38,9 +38,9 @@ public class HistoryTravelsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_history_travels, container, false);
 
         listView = root.findViewById(R.id.list_view_items);
-        LiveData<List<Travel>> historyTravels = null;
+       /* LiveData<List<Travel>> historyTravels = null;
         try {
-            historyTravels = viewModel.getAllHistoryTravels();
+         //   historyTravels = viewModel.getAllHistoryTravels();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,9 +53,9 @@ public class HistoryTravelsFragment extends Fragment {
                     builder.concat(travel.getClientName()).concat("\n");
                 textView.setText(builder);
 
-                */
+
             }
-        });
+        });*/
         //ListView itemsListView = (ListView)findViewById(R.id.list_view_items);
         //CustomListAdapter adapter = new CustomListAdapter(this, generateItemsList());
 

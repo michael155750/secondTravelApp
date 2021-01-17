@@ -1,5 +1,7 @@
 package com.example.secondtravelapp.UI.RegisteredTravels;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.UserLocation;
 import com.example.secondtravelapp.R;
 import com.example.secondtravelapp.Repository.TravelRepository;
+import com.example.secondtravelapp.UI.NVDActivity;
 import com.example.secondtravelapp.services.GPS;
 import com.example.secondtravelapp.UI.MainTravelsViewModel;
 
@@ -35,7 +38,15 @@ public class RegisteredTravelsFragment extends Fragment {
     private MainTravelsViewModel viewModel;
     public RegisteredCustomListAdapter adapter;
     private ListView listView;
+    Context context;
+    NVDActivity activity;
+    String email;
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
 
     /**
      *
@@ -44,8 +55,12 @@ public class RegisteredTravelsFragment extends Fragment {
      * @param savedInstanceState
      * @return
      */
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        activity = ((NVDActivity)getActivity());
+        email = activity.getEmail();
+
         viewModel =
                 new ViewModelProvider(getActivity()).get(MainTravelsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_registered_travels, container, false);
@@ -59,8 +74,8 @@ public class RegisteredTravelsFragment extends Fragment {
 
 
         ArrayList<Travel> mData = new ArrayList<>();
-        //LiveData travels = viewModel.getClientTravels()
-        LiveData travels = viewModel.getAllTravels();
+        //MutableLiveData<List<Travel>> travels = viewModel.getClientTravels(email);
+        MutableLiveData<List<Travel>> travels = viewModel.getAllTravels();
         travels.observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
             @Override
             public void onChanged(List<Travel> travelList) {
