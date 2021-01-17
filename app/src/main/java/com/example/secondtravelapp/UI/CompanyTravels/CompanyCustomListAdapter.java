@@ -79,7 +79,7 @@ public class CompanyCustomListAdapter extends BaseAdapter {
         View view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.registered_adapter_row, null);
+            view = inflater.inflate(R.layout.company_adapter_row, null);
         }
 
         TextView source = view.findViewById(R.id.source);

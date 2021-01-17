@@ -57,8 +57,10 @@ public class RegisteredTravelsFragment extends Fragment {
 
         //ArrayList<Travel> mData = new ArrayList<>(travels.getValue());
 
-
         ArrayList<Travel> mData = new ArrayList<>();
+
+        /*
+
         //LiveData travels = viewModel.getClientTravels()
         LiveData travels = viewModel.getAllTravels();
         travels.observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
@@ -67,7 +69,9 @@ public class RegisteredTravelsFragment extends Fragment {
                 mData.addAll(travelList);
             }
         });
-       /* Travel t1 = new Travel();
+        */
+
+        Travel t1 = new Travel();
         t1.setClientName("Avi Cohen");
         t1.setClientEmail("avi@gmail.com");
         t1.setClientPhone("021234567");
@@ -215,7 +219,6 @@ public class RegisteredTravelsFragment extends Fragment {
         t11.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
         t11.setStatus(Travel.RequestType.paid);
         mData.add(t11);
-*/
 
         ArrayList<String> mSpinnerData = new ArrayList<>();
         //mSpinnerData.add(0, "Chose company");//Select
