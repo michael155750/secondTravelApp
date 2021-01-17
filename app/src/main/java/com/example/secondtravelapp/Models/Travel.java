@@ -235,6 +235,8 @@ public class Travel {
 
     public void travelDateTypeSetter(Date travelDate) {
         DateConverter dateConverter = new DateConverter();
+        travelDate.setYear(travelDate.getYear() - 1900);
+        travelDate.setMonth(travelDate.getMonth() - 1);
         this.travelDate = dateConverter.dateToTimestamp(travelDate);
     }
 

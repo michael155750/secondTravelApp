@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -13,8 +14,9 @@ import java.util.ArrayList;
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.R;
 import com.example.secondtravelapp.UI.HistoryTravels.HistoryCustomListAdapter;
+import com.example.secondtravelapp.services.GPS;
 
-public class CompanyCustomListAdapter extends BaseAdapter{
+public class CompanyCustomListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Travel> travels;
 
@@ -40,7 +42,7 @@ public class CompanyCustomListAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        CompanyCustomListAdapter.ViewHolder viewHolder;
+        /*CompanyCustomListAdapter.ViewHolder viewHolder;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.company_adapter_row, parent, false);
@@ -71,15 +73,38 @@ public class CompanyCustomListAdapter extends BaseAdapter{
         Long daysNumMiliSec = Math.abs(currentItem.arrivalDateTypeGetter().getTime() - currentItem.travelDateTypeGetter().getTime());
         Long daysNum = (daysNumMiliSec / 1000 / 60 / 60 / 24);
         viewHolder.numOfDays.setText(daysNum.toString());
+          return convertView;
+         */
+
+        View view = convertView;
+        if (view == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.registered_adapter_row, null);
+        }
+
+        TextView source = view.findViewById(R.id.source);
+        TextView numOfPassengers = view.findViewById(R.id.num_passengers);
+        Button phoneCall = view.findViewById(R.id.company_call_client);
+        CheckBox accept = view.findViewById(R.id.accept);
+        TextView dest = view.findViewById(R.id.dest);
+        TextView clientName = view.findViewById(R.id.client_name);
+        TextView numOfDays = view.findViewById(R.id.num_days);
+
+        source.setText(GPS.getPlace(context, travels.get(position).getPickupAddress()));
+        numOfPassengers.setText(travels.get(position).getNumOfPassengers());
+
+        dest.setText(GPS.getPlace(context, travels.get(position).getDestAddress()));
+        clientName.setText(travels.get(position).getClientName());
+        //numOfDays.setText(travels.get(position));
 
 
 
+        return view;
 
 
-
-        return convertView;
     }
 
+    /*
     //ViewHolder inner class
     private class ViewHolder {
 
@@ -106,5 +131,8 @@ public class CompanyCustomListAdapter extends BaseAdapter{
             numOfDays = (TextView)view.findViewById(R.id.num_days);
             //date = (DatePicker)view.findViewById(R.id.)
         }
-    }
+
+     */
+
+
 }

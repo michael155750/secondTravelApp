@@ -8,15 +8,19 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.R;
+import com.example.secondtravelapp.Repository.TravelRepository;
 import com.example.secondtravelapp.services.GPS;
 import com.example.secondtravelapp.UI.MainTravelsViewModel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * class registered travels fragment represents
@@ -43,8 +47,13 @@ public class RegisteredTravelsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_registered_travels, container, false);
         listView = (ListView) root.findViewById(R.id.listview_registered);
 
+        /*
+        Connection with the above layers
+        MutableLiveData<List<Travel>> travels = viewModel.getRepository().getClientTravels(viewModel.getEmail());
 
-        //
+        ArrayList<Travel> mData = new ArrayList<>(travels.getValue());
+
+         */
         ArrayList<Travel> mData = new ArrayList<>();
         Travel t1 = new Travel();
         t1.setClientName("Avi Cohen");
@@ -174,7 +183,7 @@ public class RegisteredTravelsFragment extends Fragment {
         t9.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
 
         t9.setNumOfPassengers(2);
-        t9.travelDateTypeSetter(new Date(2020, 2, 2));
+        t9.travelDateTypeSetter(new Date(2020, 12, 2));
         t9.setChildrenTransportation(true);
         t9.setSafeGuarded(true);
 
@@ -198,6 +207,7 @@ public class RegisteredTravelsFragment extends Fragment {
         t11.setStatus(Travel.RequestType.paid);
         mData.add(t11);
 
+
         ArrayList<String> mSpinnerData = new ArrayList<>();
         //mSpinnerData.add(0, "Chose company");//Select
         mSpinnerData.add("Dan");
@@ -210,7 +220,6 @@ public class RegisteredTravelsFragment extends Fragment {
         typeSpinnerData.add("Accepted");
         typeSpinnerData.add("Run");
         typeSpinnerData.add("Close");
-        typeSpinnerData.add("Paid");
 
 
         adapter = new RegisteredCustomListAdapter(mData, mSpinnerData, typeSpinnerData, this.getContext());

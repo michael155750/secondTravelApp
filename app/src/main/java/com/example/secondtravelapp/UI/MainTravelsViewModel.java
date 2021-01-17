@@ -18,6 +18,21 @@ public class MainTravelsViewModel extends AndroidViewModel {
     ITravelRepository repository;
     //private MutableLiveData<String> mText;
 
+    public ITravelRepository getRepository(){
+        return  repository;
+    }
+
+    private String email;
+
+    public void setEmail(String _email) {
+        email = _email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+
 
 
     public MainTravelsViewModel(Application p) throws Exception {
