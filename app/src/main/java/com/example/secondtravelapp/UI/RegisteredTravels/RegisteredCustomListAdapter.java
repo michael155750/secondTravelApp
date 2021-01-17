@@ -26,7 +26,8 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
     private ArrayList<String> statusSpinner;
     private ArrayList<Travel> travels;
     private RegisteredCustomListAdapter.RegisteredTravelListener listener;
-    static boolean lockFirstTime = false;
+    static boolean lockFirstTimeCompany = false;
+    static boolean lockFirstTimeStatus = false;
 
 
     public RegisteredCustomListAdapter(/*Context context, ArrayList<Travel> travels,
@@ -99,15 +100,14 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         companySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int _position, long id) {
-                /* if(lockFirstTime) {
-                    travels.get(position).setOneCompany(companySpinner.getSelectedItem().toString());
-                    data.updateTravel(travels.get(position));
+                if(lockFirstTimeCompany) {
+                    listener.onButtonClicked(position, _position, selectedItemView);
                 }
 
 
-                lockFirstTime = true;
+                lockFirstTimeCompany = true;
 
-                 */
+
                 //Toast.makeText(context, companySpinner.get(_position), Toast.LENGTH_LONG).show();
             }
 
@@ -122,17 +122,15 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int _position, long id) {
-                /*
-                 if(lockFirstTime) {
-                     //companySpinner.get(_position);
-                    travels.get(position).setStatus(new Travel.RequestType(type.getSelectedItem().toString()));
-                    .updateTravel(travels.get(position));
+
+                 if(lockFirstTimeStatus) {
+                    listener.onButtonClicked(position, _position, selectedItemView);
                 }
 
 
-                lockFirstTime = true;
-                 */
-                Toast.makeText(context, statusSpinner.get(_position), Toast.LENGTH_LONG).show();
+                lockFirstTimeStatus = true;
+
+                //Toast.makeText(context, statusSpinner.get(_position), Toast.LENGTH_LONG).show();
             }
 
             @Override

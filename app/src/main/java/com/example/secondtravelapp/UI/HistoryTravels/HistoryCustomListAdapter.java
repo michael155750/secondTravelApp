@@ -49,18 +49,22 @@ public class HistoryCustomListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        /*
         Travel currentItem = (Travel) getItem(position);
         String companyEmail = null;
         for (String email: currentItem.getCompany().keySet()){
             if (currentItem.getCompany().get(email))
                 companyEmail = email;
         }
-        viewHolder.company.setText(currentItem.getCompany().get(companyEmail).toString());
+
+         */
+
+        viewHolder.company.setText(travels.get(position).getCompany().toString());
         //viewHolder.way.setText();
         viewHolder.changeStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentItem.setStatus(Travel.RequestType.paid);
+                travels.get(position).setStatus(Travel.RequestType.paid);
             }
         });
         viewHolder.email.setOnClickListener(new View.OnClickListener() {

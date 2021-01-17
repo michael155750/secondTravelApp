@@ -59,7 +59,7 @@ public class HistoryTravelsFragment extends Fragment {
         //ListView itemsListView = (ListView)findViewById(R.id.list_view_items);
         //CustomListAdapter adapter = new CustomListAdapter(this, generateItemsList());
 
-        /*
+
         ArrayList<Travel> mData = new ArrayList<>();
         Travel t1 = new Travel();
         t1.setClientName("Avi Cohen");
@@ -215,7 +215,7 @@ public class HistoryTravelsFragment extends Fragment {
 
         HistoryCustomListAdapter adapter = new HistoryCustomListAdapter(this.getContext(), mData);
         listView.setAdapter(adapter);
-*/
+
 
         return root;
     }

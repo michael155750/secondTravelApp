@@ -103,15 +103,15 @@ public class CompanyCustomListAdapter extends BaseAdapter {
 
         source.setText(GPS.getPlace(context, travels.get(position).getPickupAddress()));
         Integer passengers = travels.get(position).getNumOfPassengers();
-        numOfPassengers.setText(passengers.toString());
+        numOfPassengers.setText("מספר הנוסעים: " + passengers.toString());
 
         dest.setText(GPS.getPlace(context, travels.get(position).getDestAddress()));
         clientName.setText(travels.get(position).getClientName());
         if (travels.get(position).arrivalDateTypeGetter() != null &&
                 travels.get(position).travelDateTypeGetter() != null)
-            numOfDays.setText(numberOfDays(travels.get(position).arrivalDateTypeGetter(),travels.get(position).travelDateTypeGetter()).toString());
+            numOfDays.setText(numberOfDays(travels.get(position).arrivalDateTypeGetter(),travels.get(position).travelDateTypeGetter()).toString() + "מספר הימים: "  );
         else
-            numOfDays.setText("0");
+            numOfDays.setText("0 " + "מספר הימים");
 
        phoneCall.setTag(R.integer.call_pos, position);
         phoneCall.setOnClickListener(new View.OnClickListener() {

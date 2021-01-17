@@ -77,6 +77,8 @@ public class RegisteredTravelsFragment extends Fragment {
 
 
         ArrayList<Travel> mData = new ArrayList<>();
+        /*
+
         //MutableLiveData<List<Travel>> travels = viewModel.getClientTravels(email);
         MutableLiveData<List<Travel>> travels = viewModel.getAllTravels();
         travels.observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
@@ -85,7 +87,9 @@ public class RegisteredTravelsFragment extends Fragment {
                 mData.addAll(travelList);
             }
         });
-       /* Travel t1 = new Travel();
+
+         */
+       Travel t1 = new Travel();
         t1.setClientName("Avi Cohen");
         t1.setClientEmail("avi@gmail.com");
         t1.setClientPhone("021234567");
@@ -233,7 +237,7 @@ public class RegisteredTravelsFragment extends Fragment {
         t11.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
         t11.setStatus(Travel.RequestType.paid);
         mData.add(t11);
-*/
+
 
         ArrayList<String> mSpinnerData = new ArrayList<>();
         //mSpinnerData.add(0, "Chose company");//Select
@@ -262,6 +266,17 @@ public class RegisteredTravelsFragment extends Fragment {
 
                 }
                 if (view.getId() == R.id.status_registered) {
+                    switch (spinnerPosition)
+                    {
+                        case 1:
+                            mData.get(position).setStatus(Travel.RequestType.accepted);
+                            break;
+                        case 2:
+                            mData.get(position).setStatus(Travel.RequestType.run);
+                            break;
+                        case 3:
+                            mData.get(position).setStatus(Travel.RequestType.close);
+                    }
 
                     //mData.get(position).setStatus(st(spinnerPosition));
 

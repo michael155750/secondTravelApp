@@ -10,56 +10,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-
-        <Space
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2" />
-
-        <Spinner
-            android:id="@+id/status_registered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Spinner
-            android:id="@+id/compay_registered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Space
-            android:layout_width="21dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2" />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1"
         >
-
-        <Space
-            android:layout_width="21dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.5" />
-        <TextView
-            android:id="@+id/date_registered"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="14dp"
-            android:textColor="@color/teal_200"
-            android:textStyle="italic"
-            android:layout_weight="2" />
 
         <Space
             android:layout_width="21dp"
@@ -96,6 +49,55 @@
 
 
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+
+        <Space
+            android:layout_width="21dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5" />
+        <TextView
+            android:id="@+id/date_registered"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="14dp"
+            android:textColor="@color/teal_200"
+            android:textStyle="italic"
+            android:layout_weight="2" />
+
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+
+        <Spinner
+            android:id="@+id/status_registered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/compay_registered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Space
+            android:layout_width="21dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+    </LinearLayout>
+
 
     <Space
         android:layout_width="21dp"

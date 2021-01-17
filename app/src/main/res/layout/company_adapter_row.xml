@@ -38,23 +38,6 @@
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
                 />
-            <Button
-                android:id="@+id/company_call_client"
-                android:layout_height="30dp"
-                android:layout_width="wrap_content"
-                android:layout_weight="0.5"
-                />
-            <Space
-                android:layout_weight="0.5"
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                />
-            <CheckBox
-                android:id="@+id/accept"
-                android:layout_height="30dp"
-                android:layout_width="wrap_content"
-                android:layout_weight="0.5"
-                />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -72,26 +55,53 @@
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
                 />
-            <TextView
-                android:id="@+id/client_name"
-                android:layout_height="30dp"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
 
-                />
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                />
             <TextView
                 android:id="@+id/num_days"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:textColor="@color/black"
-                android:text="qwe"
                 />
         </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/client_name"
+            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+
+            />
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            />
+
+        <Button
+            android:id="@+id/company_call_client"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Call" />
+        <Space
+            android:layout_weight="0.5"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            />
+        <CheckBox
+            android:id="@+id/accept"
+            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.5"
+            />
+
+    </LinearLayout>
 
     <Space
         android:layout_width="match_parent"
