@@ -12,15 +12,26 @@ import java.util.ArrayList;
 
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.R;
+import com.example.secondtravelapp.UI.RegisteredTravels.RegisteredCustomListAdapter;
+import com.example.secondtravelapp.services.GPS;
 
 public class HistoryCustomListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Travel> travels;
+    private HistoryCustomListAdapter.HistoryTravelListener listener;
 
     public HistoryCustomListAdapter(Context context, ArrayList<Travel> travels) {
         this.context = context;
         this.travels = travels;
     }
+    public interface HistoryTravelListener {
+        void onButtonClicked(int position, View view);
+    }
+
+    public void setListener(HistoryCustomListAdapter.HistoryTravelListener listener){
+        this.listener=listener;
+    }
+
 
     @Override
     public int getCount() {
@@ -59,18 +70,24 @@ public class HistoryCustomListAdapter extends BaseAdapter {
 
          */
 
-        viewHolder.company.setText(travels.get(position).getCompany().toString());
-        //viewHolder.way.setText();
+
+        viewHolder.company.setText(travels.get(position).getCompany().get(true).toString());
+        float distance = GPS.calculateDistance(travels.get(position).getPickupAddress().getLat(),
+                travels.get(position).getPickupAddress().getLon(), travels.get(position).getDestAddress().getLat()
+                ,travels.get(position).getDestAddress().getLon());
+        viewHolder.way.setText(Float.toString(distance) + " קילומטר");
+
         viewHolder.changeStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                travels.get(position).setStatus(Travel.RequestType.paid);
+                listener.onButtonClicked(position, v);
+                //travels.get(position).setStatus(Travel.RequestType.paid);
             }
         });
         viewHolder.email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //send email
+                listener.onButtonClicked(position, v);
             }
         });
 

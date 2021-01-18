@@ -201,6 +201,7 @@ public class CompanyTravelsFragment extends Fragment {
 
         t11.setNumOfPassengers(2);
         t11.travelDateTypeSetter(new Date(2020, 2, 2));
+        t11.arrivalDateTypeSetter(new Date(2020, 2, 15));
         t11.setChildrenTransportation(true);
         t11.setSafeGuarded(true);
 
@@ -229,9 +230,11 @@ public class CompanyTravelsFragment extends Fragment {
                 }
                 if (view.getId() == R.id.accept){
                     CheckBox accept = root.findViewById(R.id.accept);
-                    if(accept.isChecked()){
+                    /*if(accept.isChecked()){
                         viewModel.acceptTravel(mData.get(position));
                     }
+
+                     */
                 }
             }
         });

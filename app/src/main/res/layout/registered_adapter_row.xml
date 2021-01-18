@@ -54,13 +54,11 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"/>
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
-
 
         <Space
             android:layout_width="21dp"
@@ -74,6 +72,19 @@
             android:textColor="@color/teal_200"
             android:textStyle="italic"
             android:layout_weight="2" />
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Space
             android:layout_width="30dp"
@@ -100,8 +111,7 @@
 
 
     <Space
-        android:layout_width="21dp"
-        android:layout_height="15dp"
-        android:layout_weight="1" />
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
 </LinearLayout>

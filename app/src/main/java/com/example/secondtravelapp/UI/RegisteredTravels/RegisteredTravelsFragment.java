@@ -240,14 +240,14 @@ public class RegisteredTravelsFragment extends Fragment {
 
 
         ArrayList<String> mSpinnerData = new ArrayList<>();
-        //mSpinnerData.add(0, "Chose company");//Select
+        mSpinnerData.add(0, "Chose company");//Select
         mSpinnerData.add("Dan");
         mSpinnerData.add("Egged");
         mSpinnerData.add("Metropolin");
         mSpinnerData.add("Kavim");
 
         ArrayList<String> typeSpinnerData = new ArrayList<>();
-        //typeSpinnerData.add(0, "Select");//Accepted
+        typeSpinnerData.add(0, "Select");//Accepted
         typeSpinnerData.add("Accepted");
         typeSpinnerData.add("Run");
         typeSpinnerData.add("Close");

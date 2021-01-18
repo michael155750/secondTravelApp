@@ -247,7 +247,9 @@ public class Travel {
 
     public void arrivalDateTypeSetter(Date arrivalDate) {
         DateConverter dateConverter = new DateConverter();
-        this.travelDate = dateConverter.dateToTimestamp(arrivalDate);
+        arrivalDate.setYear(arrivalDate.getYear() - 1900);
+        arrivalDate.setMonth(arrivalDate.getMonth() - 1);
+        this.arrivalDate = dateConverter.dateToTimestamp(arrivalDate);
     }
 
     /*************** Converters **************/

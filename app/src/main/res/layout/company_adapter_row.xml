@@ -27,12 +27,6 @@
                 android:layout_height="match_parent"
                 />
 
-            <TextView
-                android:id="@+id/num_passengers"
-                android:layout_height="30dp"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                />
             <Space
                 android:layout_weight="0.5"
                 android:layout_width="10dp"
@@ -56,20 +50,31 @@
                 android:layout_height="match_parent"
                 />
 
-            <TextView
-                android:id="@+id/num_days"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                />
         </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/num_days"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            />
+        <Space
+            android:layout_weight="0.5"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            />
 
         <TextView
             android:id="@+id/client_name"
@@ -79,9 +84,37 @@
 
             />
         <Space
+            android:layout_weight="0.5"
             android:layout_width="10dp"
             android:layout_height="match_parent"
             />
+        <TextView
+            android:id="@+id/num_passengers"
+            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            />
+        <Space
+            android:layout_weight="0.5"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            />
+
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
 
         <Button
             android:id="@+id/company_call_client"
@@ -107,7 +140,4 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
 
-    <!--<DatePicker
-        android:layout_width="30dp"
-        android:layout_height="30dp" />-->
 </LinearLayout>
