@@ -33,10 +33,9 @@ import java.util.List;
 
 public class HistoryTravelsFragment extends Fragment {
 
-    ArrayList<String> companiesEmail;
     Context context;
     boolean accessPermission;
-    List<String> administrators;
+    ArrayList<String> administrators;
     private MainTravelsViewModel viewModel;
     NVDActivity activity;
     String email;
@@ -264,14 +263,7 @@ public class HistoryTravelsFragment extends Fragment {
         t11.setStatus(Travel.RequestType.paid);
         mData.add(t11);
 
-        /*
-        companiesEmail = new ArrayList<>();
-        companiesEmail.add(1, "cs@dan.co.il");
-        companiesEmail.add(2, "ins@Egged.co.il");
-        companiesEmail.add(3, "tviot@metropoline.com");
-        companiesEmail.add(4, "info@Kavim.com");
-
-         */
+        
 
 
         HistoryCustomListAdapter adapter = new HistoryCustomListAdapter(this.getContext(), mData);
@@ -294,16 +286,16 @@ public class HistoryTravelsFragment extends Fragment {
                     switch (company)
                     {
                         case "Dan":
-                            companyEmail = companiesEmail.get(1);
+                            companyEmail = "cs@dan.co.il";
                             break;
                         case "Egged":
-                            companyEmail = companiesEmail.get(2);
+                            companyEmail = "ins@Egged.co.il";
                             break;
                         case  "Metropolin":
-                            companyEmail = companiesEmail.get(3);
+                            companyEmail = "tviot@metropoline.com";
                             break;
                         case  "Kavim":
-                            companyEmail = companiesEmail.get(4);
+                            companyEmail = "info@Kavim.com";
                             break;
 
                     }
