@@ -71,11 +71,13 @@ public class HistoryCustomListAdapter extends BaseAdapter {
          */
 
 
-        viewHolder.company.setText(travels.get(position).getCompany().get(true).toString());
-        float distance = GPS.calculateDistance(travels.get(position).getPickupAddress().getLat(),
-                travels.get(position).getPickupAddress().getLon(), travels.get(position).getDestAddress().getLat()
-                ,travels.get(position).getDestAddress().getLon());
-        viewHolder.way.setText(Float.toString(distance) + " קילומטר");
+        //viewHolder.company.setText(travels.get(position).getCompany().get(true).toString());
+        /*float distance = GPS.calculateDistance(travels.get(position).getPickupAddress().getLat(),
+               travels.get(position).getPickupAddress().getLon(), travels.get(position).getDestAddress().getLat()
+               ,travels.get(position).getDestAddress().getLon());
+        viewHolder.way.setText(Float.toString(distance) + " kilometers");
+
+         */
 
         viewHolder.changeStatus.setOnClickListener(new View.OnClickListener() {
             @Override

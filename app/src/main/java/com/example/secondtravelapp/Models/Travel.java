@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 @Entity (tableName = "travels")
 public class Travel {
 
+    public static Travel.CompanyConverter CompanyConverter;
     /*********** properties **************/
 
     @NonNull
