@@ -106,10 +106,10 @@ public class CompanyCustomListAdapter extends BaseAdapter {
         numOfPassengers.setText("מספר הנוסעים: " + passengers.toString());
 
         dest.setText(GPS.getPlace(context, travels.get(position).getDestAddress()) + "אל: ");
-        clientName.setText(travels.get(position).getClientName());
+        clientName.setText("שם: " + travels.get(position).getClientName());
         if (travels.get(position).arrivalDateTypeGetter() != null &&
                 travels.get(position).travelDateTypeGetter() != null)
-            numOfDays.setText(numberOfDays(travels.get(position).arrivalDateTypeGetter(),travels.get(position).travelDateTypeGetter()).toString() + "מספר הימים: "  );
+            numOfDays.setText(numberOfDays(travels.get(position).arrivalDateTypeGetter(),travels.get(position).travelDateTypeGetter()).toString() + " מספר "  );
         else
             numOfDays.setText("0 " + "ימים");
 

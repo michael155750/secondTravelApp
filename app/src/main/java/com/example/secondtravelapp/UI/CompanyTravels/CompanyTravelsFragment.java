@@ -230,7 +230,10 @@ public class CompanyTravelsFragment extends Fragment {
                 }
                 if (view.getId() == R.id.accept){
                     CheckBox accept = root.findViewById(R.id.accept);
-                    /*if(accept.isChecked()){
+                    /*
+                    // we cannot do that because the mData is without key
+                    since mdata travel are not real fire base travels.
+                    if(accept.isChecked()){
                         viewModel.acceptTravel(mData.get(position));
                     }
 

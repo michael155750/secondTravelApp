@@ -71,13 +71,40 @@ public class HistoryCustomListAdapter extends BaseAdapter {
          */
 
 
-        //viewHolder.company.setText(travels.get(position).getCompany().get(true).toString());
-        /*float distance = GPS.calculateDistance(travels.get(position).getPickupAddress().getLat(),
+        String companyName = null;
+        Boolean bool;
+        bool = travels.get(position).getOneCompanyBool("Dan");
+
+        if (bool)
+        {
+            companyName = "Dan";
+        }else{
+            bool = travels.get(position).getOneCompanyBool("Metropolin");
+            if (bool){
+                companyName = "Metropolin";
+            }else{
+                bool = travels.get(position).getOneCompanyBool("Egged");
+                if (bool){
+                    companyName = "Egged";
+                } else
+                {
+                    bool = travels.get(position).getOneCompanyBool("Kavim");
+                    if (bool){
+                        companyName = "Kavim";
+                    }
+                }
+            }
+        }
+        if (companyName != null){
+            viewHolder.company.setText(companyName);
+        }
+
+        float distance = GPS.calculateDistance(travels.get(position).getPickupAddress().getLat(),
                travels.get(position).getPickupAddress().getLon(), travels.get(position).getDestAddress().getLat()
                ,travels.get(position).getDestAddress().getLon());
-        viewHolder.way.setText(Float.toString(distance) + " kilometers");
+        //viewHolder.way.setText(Float.toString(distance) + " kilometers");
 
-         */
+
 
         viewHolder.changeStatus.setOnClickListener(new View.OnClickListener() {
             @Override

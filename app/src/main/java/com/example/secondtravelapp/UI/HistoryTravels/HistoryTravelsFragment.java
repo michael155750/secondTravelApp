@@ -116,6 +116,10 @@ public class HistoryTravelsFragment extends Fragment {
         t1.setClientEmail("avi@gmail.com");
         t1.setClientPhone("021234567");
 
+        t1.setOneCompanyTrue("Metropolin");
+        t1.setOneCompany("Dan");
+        t1.setOneCompany("Egged");
+        t1.setOneCompany("Kavim");
         t1.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
 
         t1.setNumOfPassengers(2);
@@ -131,7 +135,10 @@ public class HistoryTravelsFragment extends Fragment {
         t2.setClientName("Hedva Izhaki");
         t2.setClientEmail("hedva@gmail.com");
         t2.setClientPhone("021224597");
-        //t2.setPickupAddress(new UserLocation(3, 4));
+        t2.setOneCompanyTrue("Metropolin");
+        t2.setOneCompany("Dan");
+        t2.setOneCompany("Egged");
+        t2.setOneCompany("Kavim");
         t2.setNumOfPassengers(2);
         t2.travelDateTypeSetter(new Date(2021, 1, 2));
         t2.setChildrenTransportation(true);
@@ -146,6 +153,11 @@ public class HistoryTravelsFragment extends Fragment {
         t3.setClientName("David Levi");
         t3.setClientEmail("david@gmail.com");
         t3.setClientPhone("084224596");
+        t3.setOneCompany("Metropolin");
+        t3.setOneCompanyTrue("Metropolin");
+        t3.setOneCompany("Dan");
+        t3.setOneCompany("Egged");
+        t3.setOneCompany("Kavim");
         //t3.setPickupAddress(new UserLocation(9, 9));
         t3.setNumOfPassengers(4);
         t3.travelDateTypeSetter(new Date(2020, 9, 2));
@@ -163,16 +175,22 @@ public class HistoryTravelsFragment extends Fragment {
 
         t4.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
 
+        t4.setOneCompany("Kavim");
         t4.setNumOfPassengers(2);
         t4.travelDateTypeSetter(new Date(2020, 2, 2));
         t4.setChildrenTransportation(true);
         t4.setSafeGuarded(true);
+        t4.setOneCompanyTrue("Metropolin");
+        t4.setOneCompany("Dan");
+        t4.setOneCompany("Egged");
+        t4.setOneCompany("Kavim");
 
         t4.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         t4.setStatus(Travel.RequestType.paid);
         mData.add(t4);
         Travel t5 = new Travel();
         t5.setClientName("Avi Cohen");
+        t5.setOneCompany("Metropolin");
         t5.setClientEmail("avi@gmail.com");
         t5.setClientPhone("021234567");
 
@@ -182,6 +200,10 @@ public class HistoryTravelsFragment extends Fragment {
         t5.travelDateTypeSetter(new Date(2020, 2, 2));
         t5.setChildrenTransportation(true);
         t5.setSafeGuarded(true);
+        t5.setOneCompanyTrue("Metropolin");
+        t5.setOneCompany("Dan");
+        t5.setOneCompany("Egged");
+        t5.setOneCompany("Kavim");
 
         t5.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         t5.setStatus(Travel.RequestType.paid);
@@ -191,6 +213,7 @@ public class HistoryTravelsFragment extends Fragment {
         t6.setClientEmail("avi@gmail.com");
         t6.setClientPhone("021234567");
 
+        t6.setOneCompany("Metropolin");
         t6.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
 
         t6.setNumOfPassengers(2);
@@ -198,6 +221,10 @@ public class HistoryTravelsFragment extends Fragment {
         t6.setChildrenTransportation(true);
         t6.setSafeGuarded(true);
 
+        t6.setOneCompanyTrue("Metropolin");
+        t6.setOneCompany("Dan");
+        t6.setOneCompany("Egged");
+        t6.setOneCompany("Kavim");
         t6.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         t6.setStatus(Travel.RequestType.paid);
         mData.add(t6);
@@ -213,6 +240,11 @@ public class HistoryTravelsFragment extends Fragment {
         t7.setChildrenTransportation(true);
         t7.setSafeGuarded(true);
 
+        t7.setOneCompanyTrue("Metropolin");
+        t7.setOneCompany("Dan");
+        t7.setOneCompany("Egged");
+        t7.setOneCompany("Kavim");
+        t7.setOneCompany("Metropolin");
         t7.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         t7.setStatus(Travel.RequestType.paid);
         mData.add(t7);
@@ -228,6 +260,11 @@ public class HistoryTravelsFragment extends Fragment {
         t8.setChildrenTransportation(true);
         t8.setSafeGuarded(true);
 
+
+        t8.setOneCompanyTrue("Metropolin");
+        t8.setOneCompany("Dan");
+        t8.setOneCompany("Egged");
+        t8.setOneCompany("Kavim");
         t8.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         t8.setStatus(Travel.RequestType.paid);
         mData.add(t8);
@@ -243,6 +280,11 @@ public class HistoryTravelsFragment extends Fragment {
         t9.setChildrenTransportation(true);
         t9.setSafeGuarded(true);
 
+        t9.setOneCompanyTrue("Metropolin");
+        t9.setOneCompany("Dan");
+        t9.setOneCompany("Egged");
+        t9.setOneCompany("Kavim");
+
         t9.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         t9.setStatus(Travel.RequestType.paid);
         mData.add(t9);
@@ -254,6 +296,10 @@ public class HistoryTravelsFragment extends Fragment {
 
         t11.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
 
+        t11.setOneCompanyTrue("Metropolin");
+        t11.setOneCompany("Dan");
+        t11.setOneCompany("Egged");
+        t11.setOneCompany("Kavim");
         t11.setNumOfPassengers(2);
         t11.travelDateTypeSetter(new Date(2020, 2, 2));
         t11.setChildrenTransportation(true);
@@ -273,12 +319,12 @@ public class HistoryTravelsFragment extends Fragment {
             public void onButtonClicked(int position, View view) {
                 if (view.getId() == R.id.change_status_button) {
                     mData.get(position).setStatus(Travel.RequestType.paid);
-                    viewModel.updateTravel(mData.get(position));
+                    //viewModel.updateTravel(mData.get(position));
                     Toast.makeText(getContext(), "Status changed to paid", Toast.LENGTH_LONG).show();
 
 
                 }
-                /*
+
                 if (view.getId() == R.id.email_button) {
                     String company = Travel.CompanyConverter.asString(mData.get(position).getCompany());
                     String companyEmail = null;
@@ -305,16 +351,24 @@ public class HistoryTravelsFragment extends Fragment {
                     } else {
 
 
-                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                        emailIntent.setData(Uri.parse("email:" + companyEmail));
-                        startActivity(emailIntent);
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{companyEmail});
+                        emailIntent.setType("message/rfc822");
+                        if (null != emailIntent.resolveActivity(getActivity().getPackageManager())){
+                            startActivity(emailIntent);
+                        }
+                        else{
+                            Toast.makeText(getContext(), "There is no application that support that action", Toast.LENGTH_LONG).show();
+                        }
+
                     }
 
 
                     //mData.get(position).setStatus(st(spinnerPosition));
 
                 }
-                */
+
 
 
             }

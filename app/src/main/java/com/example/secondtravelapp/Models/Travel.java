@@ -178,6 +178,7 @@ public class Travel {
     }
 
     public HashMap<String, Boolean> getCompany() {
+
         return company;
     }
 
@@ -188,6 +189,14 @@ public class Travel {
     public void setOneCompany(String company) {
 
         this.company.put(company, false);
+    }
+
+    public void setOneCompanyTrue(String company) {
+        this.company.put(company, true);
+    }
+
+    public Boolean getOneCompanyBool(String string){
+        return company.get(string);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

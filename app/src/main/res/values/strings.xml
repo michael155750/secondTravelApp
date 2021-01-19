@@ -19,4 +19,7 @@
         Only administrators are allowed to reach this page
         Try: company travels or registered travels.
     </string>
+    <string name="Email">
+       email
+    </string>
 </resources>
