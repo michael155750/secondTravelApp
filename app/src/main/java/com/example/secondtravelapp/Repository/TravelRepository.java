@@ -144,12 +144,12 @@ public class TravelRepository implements ITravelRepository {
 //        return companyTravelList;
 //    }
 
- /*   @Override
-    public List<Travel> getAllHistoryTravels() throws Exception {
+    @Override
+    public LiveData<List<Travel>> getAllHistoryTravels() throws Exception {
         //working with casting
 
         return historyDataSource.getTravels();
-    }*/
+    }
 
 
     @Override

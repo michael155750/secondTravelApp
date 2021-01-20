@@ -1,6 +1,7 @@
 package com.example.secondtravelapp.UI.RegisteredTravels;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProviders;
+
 import java.util.ArrayList;
 
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.TravelDataSource;
 import com.example.secondtravelapp.R;
 import com.example.secondtravelapp.UI.CompanyTravels.CompanyCustomListAdapter;
+import com.example.secondtravelapp.UI.MainTravelsViewModel;
 import com.example.secondtravelapp.services.GPS;
 
 
@@ -25,10 +31,11 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
     private ArrayList<String> companySpinnerList;
     private ArrayList<String> statusSpinner;
     private ArrayList<Travel> travels;
-    private RegisteredCustomListAdapter.RegisteredTravelListener listener;
+    private RegisteredTravelListener listener;
     static boolean lockFirstTimeCompany = false;
     static boolean lockFirstTimeStatus = false;
-
+    private String companyEmail = null;
+   
 
     public RegisteredCustomListAdapter(/*Context context, ArrayList<Travel> travels,
                                        ArrayList<String> spinnerItems, ArrayList<String> type*/
@@ -112,20 +119,20 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
                 }
 
                 lockFirstTimeCompany = true;
+                /*companyEmail = companySpinnerList.get(_position);*/
 
-
-                //Toast.makeText(context, companySpinner.get(_position), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here//Select
+                /*companyEmail = null;*/
             }
 
         });
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, this.statusSpinner);
         type.setAdapter(adapter1);
         type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int _position, long id) {
 
@@ -135,8 +142,10 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
 
 
                 lockFirstTimeStatus = true;
+               /* if (companyEmail != null) {
+                    travels.get(position).changeCompanyValue(companyEmail);
 
-                //Toast.makeText(context, statusSpinner.get(_position), Toast.LENGTH_LONG).show();
+                }*/
             }
 
             @Override

@@ -71,7 +71,7 @@ public class CompanyTravelsFragment extends Fragment {
 
         //Find the location of the company
 
-        companyLocation = new UserLocation(GPS.getLocationFromAddress(this.getContext(),"אברהם שטרן 33"));
+        companyLocation = new UserLocation(GPS.getLocationFromAddress(this.getContext(),"אברהם שטרן 33 ירושלים"));
         locationManager = (LocationManager) this.getContext().getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
@@ -298,14 +298,13 @@ public class CompanyTravelsFragment extends Fragment {
                 }
                 if (view.getId() == R.id.accept){
                     CheckBox accept = root.findViewById(R.id.accept);
-                    /*
-                    // we cannot do that because the mData is without key
-                    since mdata travel are not real fire base travels.
+
+
                     if(accept.isChecked()){
-                        viewModel.acceptTravel(mData.get(position));
+                        viewModel.acceptTravel(travels.get(position));
                     }
 
-                     */
+
                 }
             }
         });

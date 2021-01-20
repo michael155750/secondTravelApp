@@ -3,6 +3,7 @@ package com.example.secondtravelapp.UI;
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.secondtravelapp.Models.Travel;
@@ -21,6 +22,7 @@ public class MainTravelsViewModel extends AndroidViewModel {
     //private MutableLiveData<String> mText;
     private MutableLiveData<List<Travel>> allTravelsLiveData = new MutableLiveData<>();
     private MutableLiveData<List<Travel>> companyTravelsLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<Travel>> clientTravelsLiveData = new MutableLiveData<>();
     private List<Travel> allTravelList;
     //public ITravelRepository getRepository(){
     //  return  repository;
@@ -60,6 +62,10 @@ public class MainTravelsViewModel extends AndroidViewModel {
         repository.acceptTravel(travel);
     }
 
+    public void acceptCompany(String email,Travel travel) {
+        repository.acceptCompany(email,travel);
+    }
+
     public void sentSuggestions(String email, Travel travel) {
         repository.sentSuggestion(email, travel);
     }
@@ -69,9 +75,19 @@ public class MainTravelsViewModel extends AndroidViewModel {
         return allTravelsLiveData;
     }
 
-    /*public MutableLiveData<List<Travel>> getClientTravels(String name){
-        return repository.getClientTravels(name);
-    }*/
+    public MutableLiveData<List<Travel>> getClientTravels(String clientEmail){
+        List<Travel> clientTravelList = new LinkedList<Travel>();
+        for (Travel travel : allTravelList) {
+
+            if (travel.getClientEmail().equals(clientEmail) &&
+                    travel.getStatus() == Travel.RequestType.sent) {
+                clientTravelList.add(travel);
+            }
+        }
+
+        clientTravelsLiveData.setValue(clientTravelList);
+        return clientTravelsLiveData;
+    }
 
     public MutableLiveData<List<Travel>> getCompanyTravels(Double distance, UserLocation companyLocation)
     {
@@ -96,8 +112,8 @@ public class MainTravelsViewModel extends AndroidViewModel {
     {
         return repository.getIsSuccess();
     }
-/*
+
     public LiveData<List<Travel>> getAllHistoryTravels() throws Exception {
         return repository.getAllHistoryTravels();
-    }*/
+    }
 }

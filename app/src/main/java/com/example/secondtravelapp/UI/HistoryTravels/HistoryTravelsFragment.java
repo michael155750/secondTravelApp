@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
@@ -89,17 +90,18 @@ public class HistoryTravelsFragment extends Fragment {
 
         root = inflater.inflate(R.layout.fragment_history_travels, container, false);
 
-        listView = root.findViewById(R.id.list_view_items);
-       /* LiveData<List<Travel>> historyTravels = null;
+       /* listView = root.findViewById(R.id.list_view_items);
+        LiveData<List<Travel>> historyTravels = null;
         try {
-         //   historyTravels = viewModel.getAllHistoryTravels();
+           // historyTravels = viewModel.getAllHistoryTravels();
+
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        historyTravels.observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
+        }*/
+      /*  historyTravels.observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
             @Override
             public void onChanged(List<Travel> travelList) {
-               /* TextView textView = (TextView) root.findViewById(R.id.histo);
+                TextView textView = (TextView) root.findViewById(R.id.histo);
                 String builder = "";
                 for (Travel travel: travelList)
                     builder.concat(travel.getClientName()).concat("\n");
@@ -112,7 +114,7 @@ public class HistoryTravelsFragment extends Fragment {
         //CustomListAdapter adapter = new CustomListAdapter(this, generateItemsList());
 
 
-        ArrayList<Travel> mData = new ArrayList<>();
+       /* ArrayList<Travel> mData = new ArrayList<>();
         Travel t1 = new Travel();
         t1.setClientName("Avi Cohen");
         t1.setClientEmail("avi@gmail.com");
@@ -281,7 +283,7 @@ public class HistoryTravelsFragment extends Fragment {
         t11.setStatus(Travel.RequestType.paid);
         mData.add(t11);*/
 
-        HistoryCustomListAdapter adapter = new HistoryCustomListAdapter(this.getContext(), mData);
+     /*   HistoryCustomListAdapter adapter = new HistoryCustomListAdapter(this.getContext(), mData);
 
         adapter.setListener(new HistoryCustomListAdapter.HistoryTravelListener() {
             @Override

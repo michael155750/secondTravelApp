@@ -80,7 +80,7 @@ public class RegisteredTravelsFragment extends Fragment {
 
 
         //MutableLiveData<List<Travel>> travels = viewModel.getClientTravels(email);
-         viewModel.getAllTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
+         viewModel.getClientTravels(email).observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
             @Override
             public void onChanged(List<Travel> travelList) {
                 mData.addAll(travelList);

@@ -69,7 +69,7 @@ public interface ITravelRepository {
      *         get all travels in the history which stored in the data base
      * @return MutableLiveData of list of travels
      */
-   // List<Travel> getAllHistoryTravels() throws Exception;
+    LiveData<List<Travel>> getAllHistoryTravels() throws Exception;
 
     /**
      *         ???
