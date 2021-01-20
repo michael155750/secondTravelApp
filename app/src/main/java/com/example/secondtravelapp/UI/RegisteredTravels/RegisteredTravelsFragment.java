@@ -39,6 +39,7 @@ import java.util.List;
 /**
  * class registered travels fragment represents
  */
+
 public class RegisteredTravelsFragment extends Fragment {
 
     private MainTravelsViewModel viewModel;
@@ -47,6 +48,7 @@ public class RegisteredTravelsFragment extends Fragment {
     Context context;
     NVDActivity activity;
     String email;
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -72,10 +74,6 @@ public class RegisteredTravelsFragment extends Fragment {
         listView = (ListView) root.findViewById(R.id.listview_registered);
 
 
-        //Connection with the above layers
-        // MutableLiveData<List<Travel>> travels = viewModel.getRepository().getClientTravels(viewModel.getEmail());
-
-        //ArrayList<Travel> mData = new ArrayList<>(travels.getValue());
 
 
         ArrayList<Travel> mData = new ArrayList<>();
@@ -241,7 +239,7 @@ public class RegisteredTravelsFragment extends Fragment {
 */
 
         ArrayList<String> mSpinnerData = new ArrayList<>();
-        mSpinnerData.add(0, "Choose company");//Select
+        //Select
        // mSpinnerData.add("Dan");
         //mSpinnerData.add("Egged");
         //mSpinnerData.add("Metropolin");

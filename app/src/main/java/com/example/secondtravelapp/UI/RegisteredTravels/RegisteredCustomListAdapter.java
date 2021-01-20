@@ -37,7 +37,7 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
             Context context) {
         this.context = context;
         this.travels = travels;
-        this.companySpinnerList = spinnerItems;
+        this.companySpinnerList = new ArrayList<String>();
         this.statusSpinner = type;
     }
 
@@ -95,7 +95,10 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         date.setText("בתאריך" + travels.get(position).getTravelDate() );
         destination.setText("אל: " + GPS.getPlace(context, travels.get(position).getDestAddress()) );
 
-        for (String company : travels.get(position).getCompany().keySet()){
+
+            companySpinnerList.clear();
+        companySpinnerList.add(0, "Choose company");
+        for (String company : travels.get(position).companyGetter().keySet()){
             companySpinnerList.add(company);
 
         }
@@ -142,6 +145,7 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
             }
 
         });
+
 
         return view;
     }

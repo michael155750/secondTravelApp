@@ -6,15 +6,22 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.secondtravelapp.Models.Travel;
+import com.example.secondtravelapp.Models.UserLocation;
 import com.example.secondtravelapp.Repository.ITravelRepository;
 import com.example.secondtravelapp.Repository.TravelRepository;
+import com.example.secondtravelapp.services.GPS;
 
+import java.util.LinkedList;
 import java.util.List;
+
+import static java.lang.Math.sqrt;
 
 public class MainTravelsViewModel extends AndroidViewModel {
     ITravelRepository repository;
     //private MutableLiveData<String> mText;
     private MutableLiveData<List<Travel>> allTravelsLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<Travel>> companyTravelsLiveData = new MutableLiveData<>();
+    private List<Travel> allTravelList;
     //public ITravelRepository getRepository(){
     //  return  repository;
     // }
@@ -26,8 +33,10 @@ public class MainTravelsViewModel extends AndroidViewModel {
         ITravelRepository.NotifyToTravelListListener notifyToTravelListListener = new ITravelRepository.NotifyToTravelListListener() {
             @Override
             public void onTravelsChanged() {
-                List<Travel> travelList = repository.getAllTravels();
-                allTravelsLiveData.setValue(travelList);
+                allTravelList = repository.getAllTravels();
+                allTravelsLiveData.setValue(allTravelList);
+
+
 
             }
         };
@@ -62,17 +71,32 @@ public class MainTravelsViewModel extends AndroidViewModel {
 
     /*public MutableLiveData<List<Travel>> getClientTravels(String name){
         return repository.getClientTravels(name);
+    }*/
+
+    public MutableLiveData<List<Travel>> getCompanyTravels(Double distance, UserLocation companyLocation)
+    {
+        List<Travel> companyTravelList = new LinkedList<Travel>();
+
+        for (Travel travel : allTravelList) {
+
+            if (GPS.calculateDistance(travel.getPickupAddress().getLat(), travel.getPickupAddress().getLon(),
+                                                            companyLocation.getLat(), companyLocation.getLon()) <= distance &&
+                    travel.getStatus() == Travel.RequestType.sent) {
+
+                companyTravelList.add(travel);
+            }
+
+        }
+        companyTravelsLiveData.setValue(companyTravelList);
+        return companyTravelsLiveData;
+
     }
 
-    public MutableLiveData<List<Travel>> getCompanyTravels(Double distance, UserLocation location)
-    {
-        return repository.getCompanyTravels(distance, location);
-    }
     public MutableLiveData<Boolean> getIsSuccess()
     {
         return repository.getIsSuccess();
     }
-
+/*
     public LiveData<List<Travel>> getAllHistoryTravels() throws Exception {
         return repository.getAllHistoryTravels();
     }*/

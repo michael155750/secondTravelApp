@@ -1,7 +1,28 @@
 package com.example.secondtravelapp.UI.CompanyTravels;
 
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+
+
+
+
+
+import com.google.android.gms.maps.model.LatLng;
+
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +40,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.secondtravelapp.Models.Travel;
+import com.example.secondtravelapp.Models.UserLocation;
 import com.example.secondtravelapp.R;
 import com.example.secondtravelapp.UI.MainTravelsViewModel;
 import com.example.secondtravelapp.UI.RegisteredTravels.RegisteredCustomListAdapter;
@@ -29,24 +51,70 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import static androidx.core.content.ContextCompat.checkSelfPermission;
+
 public class CompanyTravelsFragment extends Fragment {
 
     private MainTravelsViewModel viewModel;
-    List<Travel> travels = new LinkedList<Travel>();
+    ArrayList<Travel> travels = new ArrayList<Travel>();
     private ListView listView;
+    UserLocation companyLocation;
+    final double distFromCompany = 10;
+
+    LocationManager locationManager;
+    LocationListener locationListener;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
         viewModel = ViewModelProviders.of(getActivity()).get(MainTravelsViewModel.class);
+
+        //Find the location of the company
+
+        companyLocation = new UserLocation(GPS.getLocationFromAddress(this.getContext(),"אברהם שטרן 33"));
+        locationManager = (LocationManager) this.getContext().getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                companyLocation.setLat(location.getLatitude());
+                companyLocation.setLon(location.getLongitude());
+            }
+            public void onStatusChanged(String provider, int status, Bundle extras) {   }
+
+            public void onProviderEnabled(String provider) { }
+
+            public void onProviderDisabled(String provider) { }
+        };
+
+        //     Check the SDK version and whether the permission is already granted or not.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(this.getContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 5);
+
+        } else {
+            // Android version is lesser than 6.0 or the permission is already granted.
+
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        }
+
+        Thread timer = new Thread() {
+            public void run(){
+                try {
+                    sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+        timer.start();
+
         //move to on click for get the details of the company
-        /*viewModel.getCompanyTravels(distance, location).observe(this, new Observer<List<Travel>>() {
+        viewModel.getCompanyTravels(distFromCompany, companyLocation).observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
             @Override
             public void onChanged(List<Travel> temp) {
-                travels.clear();
+
                 travels.addAll(temp);
             }
-        });*/
+        });
 
 
         View root = inflater.inflate(R.layout.fragment_company_travels, container, false);
@@ -59,7 +127,7 @@ public class CompanyTravelsFragment extends Fragment {
             }
         });*/
 
-        ArrayList<Travel> mData = new ArrayList<>();
+       /* ArrayList<Travel> mData = new ArrayList<>();
         Travel t1 = new Travel();
         t1.setClientName("Avi Cohen");
         t1.setClientEmail("avi@gmail.com");
@@ -207,15 +275,15 @@ public class CompanyTravelsFragment extends Fragment {
 
         t11.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
         t11.setStatus(Travel.RequestType.paid);
-        mData.add(t11);
+        mData.add(t11);*/
 
-        CompanyCustomListAdapter adapter = new CompanyCustomListAdapter(this.getContext(), mData);
+        CompanyCustomListAdapter adapter = new CompanyCustomListAdapter(this.getContext(), travels);
 
         adapter.setListener(new CompanyCustomListAdapter.CompanyTravelListener() {
             @Override
             public void onButtonClicked(int position, View view) {
                 if (view.getId() == R.id.company_call_client) {
-                    String phone = mData.get(position).getClientPhone();
+                    String phone = travels.get(position).getClientPhone();
 
                     if (phone.isEmpty()) {
                         Toast.makeText(getContext(), "no phone number exist", Toast.LENGTH_LONG).show();
@@ -246,5 +314,19 @@ public class CompanyTravelsFragment extends Fragment {
 
         listView.setAdapter(adapter);
         return root;
+    }
+
+    @SuppressLint("MissingPermission")
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 5) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission is granted
+
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+
+            }
+        }
+
     }
 }

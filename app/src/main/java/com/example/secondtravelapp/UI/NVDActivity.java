@@ -73,7 +73,7 @@ public class NVDActivity extends AppCompatActivity {
         startService(new Intent(com.example.secondtravelapp.UI.NVDActivity.this, TravelChangeService.class));
 
 
-        addInitialData();
+        //addInitialData();
     }
 
     @Override

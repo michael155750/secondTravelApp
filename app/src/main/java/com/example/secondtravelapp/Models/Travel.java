@@ -179,6 +179,11 @@ public class Travel {
     }
 
     public HashMap<String, Boolean> getCompany() {
+
+        return company;
+    }
+
+    public HashMap<String, Boolean> companyGetter() {
         LinkedList<String> companySet = new LinkedList<String>();
         companySet.addAll(company.keySet());
         for (String c: companySet) {
@@ -189,7 +194,6 @@ public class Travel {
         }
         return company;
     }
-
     public void setCompany(HashMap<String, Boolean> company) {
         LinkedList<String> companySet = new LinkedList<String>();
         companySet.addAll(company.keySet());

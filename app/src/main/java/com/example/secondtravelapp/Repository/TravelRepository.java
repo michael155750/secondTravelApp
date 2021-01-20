@@ -112,7 +112,7 @@ public class TravelRepository implements ITravelRepository {
         return travelList;
     }
 
-    @Override
+   /* @Override
     public List<Travel> getClientTravels(String clientEmail) {
         List<Travel> clientTravelList = new LinkedList<Travel>();
         for (Travel travel : travelList) {
@@ -123,26 +123,26 @@ public class TravelRepository implements ITravelRepository {
         }
         return clientTravelList;
 
-    }
+    }*/
 
-    @Override
-    public List<Travel> getCompanyTravels(Double distance, UserLocation currentAddress) {
-        List<Travel> companyTravelList = new LinkedList<Travel>();
-        Double companyDistance = 0d;
-        Double distanceX = 0d;
-        Double distanceY = 0d;
-        for (Travel travel : travelList) {
-            distanceX = (travel.getPickupAddress().getLon() - currentAddress.getLon());
-            distanceY = (travel.getPickupAddress().getLat() - currentAddress.getLat());
-            companyDistance = sqrt(distanceX * distanceX + distanceY * distanceY);
-            if (companyDistance <= distance && travel.getStatus() == Travel.RequestType.sent) {
-
-                companyTravelList.add(travel);
-            }
-
-        }
-        return companyTravelList;
-    }
+//    @Override
+//    public List<Travel> getCompanyTravels(Double distance, UserLocation currentAddress) {
+//        List<Travel> companyTravelList = new LinkedList<Travel>();
+//        Double companyDistance = 0d;
+//        Double distanceX = 0d;
+//        Double distanceY = 0d;
+//        for (Travel travel : travelList) {
+//            distanceX = (travel.getPickupAddress().getLon() - currentAddress.getLon());
+//            distanceY = (travel.getPickupAddress().getLat() - currentAddress.getLat());
+//            companyDistance = sqrt(distanceX * distanceX + distanceY * distanceY);
+//            if (companyDistance <= distance && travel.getStatus() == Travel.RequestType.sent) {
+//
+//                companyTravelList.add(travel);
+//            }
+//
+//        }
+//        return companyTravelList;
+//    }
 
  /*   @Override
     public List<Travel> getAllHistoryTravels() throws Exception {

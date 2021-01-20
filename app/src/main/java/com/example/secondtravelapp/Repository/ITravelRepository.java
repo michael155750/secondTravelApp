@@ -55,17 +55,17 @@ public interface ITravelRepository {
      * @param  clientEmail - the email of the customer
      * @return MutableLiveData of list travels
      */
-    List<Travel> getClientTravels(String clientEmail);
+    /*List<Travel> getClientTravels(String clientEmail);
 
-    /**
+    *//**
      *         gets all the travel that belong to certain company
      * @param  distance -      the distance between the company location (and the pickup address?)
      * @param  currentAddress  the address of the company
      * @return MutableLiveData of list of travels
-     */
+     *//*
    List<Travel> getCompanyTravels(Double distance, UserLocation currentAddress);
 
-    /**
+    *//**
      *         get all travels in the history which stored in the data base
      * @return MutableLiveData of list of travels
      */
