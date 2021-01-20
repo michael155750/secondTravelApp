@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.R;
@@ -37,8 +38,7 @@ public class CompanyTravelsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
-        viewModel =
-                new ViewModelProvider(this).get(MainTravelsViewModel.class);
+        viewModel = ViewModelProviders.of(getActivity()).get(MainTravelsViewModel.class);
         //move to on click for get the details of the company
         /*viewModel.getCompanyTravels(distance, location).observe(this, new Observer<List<Travel>>() {
             @Override

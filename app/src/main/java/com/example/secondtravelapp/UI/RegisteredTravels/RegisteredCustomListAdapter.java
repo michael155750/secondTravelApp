@@ -22,7 +22,7 @@ import com.example.secondtravelapp.services.GPS;
 
 public class RegisteredCustomListAdapter extends BaseAdapter{
     private Context context;
-    private ArrayList<String> companySpinner;
+    private ArrayList<String> companySpinnerList;
     private ArrayList<String> statusSpinner;
     private ArrayList<Travel> travels;
     private RegisteredCustomListAdapter.RegisteredTravelListener listener;
@@ -37,7 +37,7 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
             Context context) {
         this.context = context;
         this.travels = travels;
-        this.companySpinner = spinnerItems;
+        this.companySpinnerList = spinnerItems;
         this.statusSpinner = type;
     }
 
@@ -95,7 +95,11 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         date.setText("בתאריך" + travels.get(position).getTravelDate() );
         destination.setText("אל: " + GPS.getPlace(context, travels.get(position).getDestAddress()) );
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, this.companySpinner);
+        for (String company : travels.get(position).getCompany().keySet()){
+            companySpinnerList.add(company);
+
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, this.companySpinnerList);
         companySpinner.setAdapter(adapter);
         companySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -103,7 +107,6 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
                 if(lockFirstTimeCompany) {
                     listener.onButtonClicked(position, _position, selectedItemView);
                 }
-
 
                 lockFirstTimeCompany = true;
 

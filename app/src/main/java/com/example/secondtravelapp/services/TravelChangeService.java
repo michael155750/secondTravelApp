@@ -1,13 +1,13 @@
 package com.example.secondtravelapp.services;
 
-import android.app.Service;
+import androidx.lifecycle.LifecycleService;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LifecycleService;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
@@ -75,6 +75,7 @@ public class TravelChangeService extends LifecycleService {
     public IBinder onBind(Intent arg0) {
         super.onBind(arg0);
         return null;
+
     }
 
   /*  public class ActionThread extends Thread {

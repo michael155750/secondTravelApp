@@ -19,6 +19,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+
 
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.Models.UserLocation;
@@ -64,8 +66,8 @@ public class RegisteredTravelsFragment extends Fragment {
         activity = ((NVDActivity) getActivity());
         email = activity.getEmail();
 
-        viewModel =
-                new ViewModelProvider(getActivity()).get(MainTravelsViewModel.class);
+
+        viewModel = ViewModelProviders.of(getActivity()).get(MainTravelsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_registered_travels, container, false);
         listView = (ListView) root.findViewById(R.id.listview_registered);
 
@@ -77,18 +79,17 @@ public class RegisteredTravelsFragment extends Fragment {
 
 
         ArrayList<Travel> mData = new ArrayList<>();
-        /*
+
 
         //MutableLiveData<List<Travel>> travels = viewModel.getClientTravels(email);
-        MutableLiveData<List<Travel>> travels = viewModel.getAllTravels();
-        travels.observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
+         viewModel.getAllTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
             @Override
             public void onChanged(List<Travel> travelList) {
                 mData.addAll(travelList);
             }
         });
 
-         */
+         /*
        Travel t1 = new Travel();
         t1.setClientName("Avi Cohen");
         t1.setClientEmail("avi@gmail.com");
@@ -237,14 +238,15 @@ public class RegisteredTravelsFragment extends Fragment {
         t11.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
         t11.setStatus(Travel.RequestType.paid);
         mData.add(t11);
-
+*/
 
         ArrayList<String> mSpinnerData = new ArrayList<>();
-        mSpinnerData.add(0, "Chose company");//Select
-        mSpinnerData.add("Dan");
-        mSpinnerData.add("Egged");
-        mSpinnerData.add("Metropolin");
-        mSpinnerData.add("Kavim");
+        mSpinnerData.add(0, "Choose company");//Select
+       // mSpinnerData.add("Dan");
+        //mSpinnerData.add("Egged");
+        //mSpinnerData.add("Metropolin");
+        //mSpinnerData.add("Kavim");
+
 
         ArrayList<String> typeSpinnerData = new ArrayList<>();
         typeSpinnerData.add(0, "Select");//Accepted
@@ -260,7 +262,7 @@ public class RegisteredTravelsFragment extends Fragment {
             @Override
             public void onButtonClicked(int position, int spinnerPosition, View view) {
                 if (view.getId() == R.id.compay_registered) {
-                    mData.get(position).setOneCompany(mSpinnerData.get(spinnerPosition));
+                    mData.get(position).setOneCompany(mSpinnerData.get(spinnerPosition)+"@gmail.com");
                     viewModel.updateTravel(mData.get(position));
 
 

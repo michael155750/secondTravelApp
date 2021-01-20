@@ -33,6 +33,7 @@ public class HistoryCustomListAdapter extends BaseAdapter {
     }
 
 
+
     @Override
     public int getCount() {
         return travels.size(); //returns total item in the list
@@ -60,7 +61,7 @@ public class HistoryCustomListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        /*
+
         Travel currentItem = (Travel) getItem(position);
         String companyEmail = null;
         for (String email: currentItem.getCompany().keySet()){
@@ -68,41 +69,41 @@ public class HistoryCustomListAdapter extends BaseAdapter {
                 companyEmail = email;
         }
 
-         */
 
 
-        String companyName = null;
-        Boolean bool;
-        bool = travels.get(position).getOneCompanyBool("Dan");
 
-        if (bool)
-        {
-            companyName = "Dan";
-        }else{
-            bool = travels.get(position).getOneCompanyBool("Metropolin");
-            if (bool){
-                companyName = "Metropolin";
-            }else{
-                bool = travels.get(position).getOneCompanyBool("Egged");
-                if (bool){
-                    companyName = "Egged";
-                } else
-                {
-                    bool = travels.get(position).getOneCompanyBool("Kavim");
-                    if (bool){
-                        companyName = "Kavim";
-                    }
-                }
-            }
-        }
-        if (companyName != null){
-            viewHolder.company.setText(companyName);
-        }
-
+//        String companyName = null;
+//        Boolean bool;
+//        bool = travels.get(position).getOneCompanyBool("Dan");
+//
+//        if (bool)
+//        {
+//            companyName = "Dan";
+//        }else{
+//            bool = travels.get(position).getOneCompanyBool("Metropolin");
+//            if (bool){
+//                companyName = "Metropolin";
+//            }else{
+//                bool = travels.get(position).getOneCompanyBool("Egged");
+//                if (bool){
+//                    companyName = "Egged";
+//                } else
+//                {
+//                    bool = travels.get(position).getOneCompanyBool("Kavim");
+//                    if (bool){
+//                        companyName = "Kavim";
+//                    }
+//                }
+//            }
+//        }
+//        if (companyName != null){
+//            viewHolder.company.setText(companyName);
+//        }
+        viewHolder.company.setText(companyEmail);
         float distance = GPS.calculateDistance(travels.get(position).getPickupAddress().getLat(),
                travels.get(position).getPickupAddress().getLon(), travels.get(position).getDestAddress().getLat()
                ,travels.get(position).getDestAddress().getLon());
-        //viewHolder.way.setText(Float.toString(distance) + " kilometers");
+        viewHolder.way.setText(Float.toString(distance) + " kilometers");
 
 
 

@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.secondtravelapp.Models.Travel;
 import com.example.secondtravelapp.R;
@@ -81,7 +82,8 @@ public class HistoryTravelsFragment extends Fragment {
          */
 
 
-        viewModel = new ViewModelProvider(this).get(MainTravelsViewModel.class);
+
+        viewModel = ViewModelProviders.of(getActivity()).get(MainTravelsViewModel.class);
         View root;
         // if (accessPermission) {
 
@@ -116,10 +118,10 @@ public class HistoryTravelsFragment extends Fragment {
         t1.setClientEmail("avi@gmail.com");
         t1.setClientPhone("021234567");
 
-        t1.setOneCompanyTrue("Metropolin");
-        t1.setOneCompany("Dan");
-        t1.setOneCompany("Egged");
-        t1.setOneCompany("Kavim");
+        t1.setOneCompanyTrue("Metropolin@gmail.com");
+        t1.setOneCompany("Dan@gmail.com");
+        t1.setOneCompany("Egged@gmail.com");
+        t1.setOneCompany("Kavim@gmail.com");
         t1.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
 
         t1.setNumOfPassengers(2);
@@ -135,39 +137,37 @@ public class HistoryTravelsFragment extends Fragment {
         t2.setClientName("Hedva Izhaki");
         t2.setClientEmail("hedva@gmail.com");
         t2.setClientPhone("021224597");
-        t2.setOneCompanyTrue("Metropolin");
-        t2.setOneCompany("Dan");
-        t2.setOneCompany("Egged");
-        t2.setOneCompany("Kavim");
+        t2.setOneCompanyTrue("Metropolin@gmail.com");
+        t2.setOneCompany("Dan@gmail.com");
+        t2.setOneCompany("Egged@gmail.com");
+        t2.setOneCompany("Kavim@gmail.com");
         t2.setNumOfPassengers(2);
         t2.travelDateTypeSetter(new Date(2021, 1, 2));
         t2.setChildrenTransportation(true);
         t2.setSafeGuarded(true);
-        //t2.setSource("Tel Aviv");
-        //t2.setDest("Machon Lev");
-        //t2.setDestAddress(new UserLocation(7, 2));
+        t2.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
         t2.setStatus(Travel.RequestType.close);
+        t2.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         mData.add(t2);
 
         Travel t3 = new Travel();
         t3.setClientName("David Levi");
         t3.setClientEmail("david@gmail.com");
         t3.setClientPhone("084224596");
-        t3.setOneCompany("Metropolin");
-        t3.setOneCompanyTrue("Metropolin");
-        t3.setOneCompany("Dan");
-        t3.setOneCompany("Egged");
-        t3.setOneCompany("Kavim");
-        //t3.setPickupAddress(new UserLocation(9, 9));
+
+        t3.setOneCompanyTrue("Metropolin@gmail.com");
+        t3.setOneCompany("Dan@gmail.com");
+        t3.setOneCompany("Egged@gmail.com");
+        t3.setOneCompany("Kavim@gmail.com");
+        t3.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
         t3.setNumOfPassengers(4);
         t3.travelDateTypeSetter(new Date(2020, 9, 2));
         t3.setChildrenTransportation(false);
         t3.setSafeGuarded(true);
-        //t3.setSource("Jerusalem, Hacotel");
-        //t3.setDest("Machon Lev");
-        //t3.setDestAddress(new UserLocation(1, 8));
-        mData.add(t3);
+        t3.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
 
+        mData.add(t3);
+/*
         Travel t4 = new Travel();
         t4.setClientName("Avi Cohen");
         t4.setClientEmail("avi@gmail.com");
@@ -200,10 +200,6 @@ public class HistoryTravelsFragment extends Fragment {
         t5.travelDateTypeSetter(new Date(2020, 2, 2));
         t5.setChildrenTransportation(true);
         t5.setSafeGuarded(true);
-        t5.setOneCompanyTrue("Metropolin");
-        t5.setOneCompany("Dan");
-        t5.setOneCompany("Egged");
-        t5.setOneCompany("Kavim");
 
         t5.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         t5.setStatus(Travel.RequestType.paid);
@@ -213,19 +209,14 @@ public class HistoryTravelsFragment extends Fragment {
         t6.setClientEmail("avi@gmail.com");
         t6.setClientPhone("021234567");
 
-        t6.setOneCompany("Metropolin");
-        t6.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
+        t6.setPickupAddress(GPS.getLocationFromAddress(this.getContext(),"Stern 33 Jerusalem Israel"));
 
         t6.setNumOfPassengers(2);
         t6.travelDateTypeSetter(new Date(2020, 2, 2));
         t6.setChildrenTransportation(true);
         t6.setSafeGuarded(true);
 
-        t6.setOneCompanyTrue("Metropolin");
-        t6.setOneCompany("Dan");
-        t6.setOneCompany("Egged");
-        t6.setOneCompany("Kavim");
-        t6.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
+        t6.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
         t6.setStatus(Travel.RequestType.paid);
         mData.add(t6);
         Travel t7 = new Travel();
@@ -240,12 +231,7 @@ public class HistoryTravelsFragment extends Fragment {
         t7.setChildrenTransportation(true);
         t7.setSafeGuarded(true);
 
-        t7.setOneCompanyTrue("Metropolin");
-        t7.setOneCompany("Dan");
-        t7.setOneCompany("Egged");
-        t7.setOneCompany("Kavim");
-        t7.setOneCompany("Metropolin");
-        t7.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
+        t7.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
         t7.setStatus(Travel.RequestType.paid);
         mData.add(t7);
         Travel t8 = new Travel();
@@ -260,12 +246,7 @@ public class HistoryTravelsFragment extends Fragment {
         t8.setChildrenTransportation(true);
         t8.setSafeGuarded(true);
 
-
-        t8.setOneCompanyTrue("Metropolin");
-        t8.setOneCompany("Dan");
-        t8.setOneCompany("Egged");
-        t8.setOneCompany("Kavim");
-        t8.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
+        t8.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
         t8.setStatus(Travel.RequestType.paid);
         mData.add(t8);
         Travel t9 = new Travel();
@@ -280,12 +261,7 @@ public class HistoryTravelsFragment extends Fragment {
         t9.setChildrenTransportation(true);
         t9.setSafeGuarded(true);
 
-        t9.setOneCompanyTrue("Metropolin");
-        t9.setOneCompany("Dan");
-        t9.setOneCompany("Egged");
-        t9.setOneCompany("Kavim");
-
-        t9.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
+        t9.setDestAddress(GPS.getLocationFromAddress(this.getContext(),"Misgav Ladach, Jerusalem, Israel"));
         t9.setStatus(Travel.RequestType.paid);
         mData.add(t9);
 
@@ -296,10 +272,6 @@ public class HistoryTravelsFragment extends Fragment {
 
         t11.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
 
-        t11.setOneCompanyTrue("Metropolin");
-        t11.setOneCompany("Dan");
-        t11.setOneCompany("Egged");
-        t11.setOneCompany("Kavim");
         t11.setNumOfPassengers(2);
         t11.travelDateTypeSetter(new Date(2020, 2, 2));
         t11.setChildrenTransportation(true);
@@ -307,10 +279,7 @@ public class HistoryTravelsFragment extends Fragment {
 
         t11.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         t11.setStatus(Travel.RequestType.paid);
-        mData.add(t11);
-
-        
-
+        mData.add(t11);*/
 
         HistoryCustomListAdapter adapter = new HistoryCustomListAdapter(this.getContext(), mData);
 

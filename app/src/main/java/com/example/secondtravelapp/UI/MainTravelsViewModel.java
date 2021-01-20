@@ -22,7 +22,7 @@ public class MainTravelsViewModel extends AndroidViewModel {
 
     public MainTravelsViewModel(Application p) throws Exception {
         super(p);
-        repository = (ITravelRepository) TravelRepository.getInstance(p);
+        repository = /*(ITravelRepository)*/ TravelRepository.getInstance(p);
         ITravelRepository.NotifyToTravelListListener notifyToTravelListListener = new ITravelRepository.NotifyToTravelListListener() {
             @Override
             public void onTravelsChanged() {
@@ -32,6 +32,7 @@ public class MainTravelsViewModel extends AndroidViewModel {
             }
         };
         repository.setNotifyToTravelListListener(notifyToTravelListListener);
+
     }
 
     // public LiveData<String> getText() {

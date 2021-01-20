@@ -19,6 +19,7 @@ import java.util.LinkedList;
 
 
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -178,26 +179,41 @@ public class Travel {
     }
 
     public HashMap<String, Boolean> getCompany() {
-
+        LinkedList<String> companySet = new LinkedList<String>();
+        companySet.addAll(company.keySet());
+        for (String c: companySet) {
+            String newc = c.replace("*", ".");
+            boolean cValue = company.get(c);
+            company.remove(c);
+            company.put(newc, cValue);
+        }
         return company;
     }
 
     public void setCompany(HashMap<String, Boolean> company) {
+        LinkedList<String> companySet = new LinkedList<String>();
+        companySet.addAll(company.keySet());
+       for (String c:companySet){
+           String newc= c.replace(".","*");
+          boolean cValue = company.get(c);
+           company.remove(c);
+           company.put(newc,cValue);
+       }
         this.company = company;
     }
 
     public void setOneCompany(String company) {
+        String newc = company.replace(".", "*");
 
-        this.company.put(company, false);
+
+        this.company.put(newc, false);
     }
 
     public void setOneCompanyTrue(String company) {
-        this.company.put(company, true);
+        String newc = company.replace(".", "*");
+        this.company.put(newc, true);
     }
 
-    public Boolean getOneCompanyBool(String string){
-        return company.get(string);
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void changeCompanyValue(String email){

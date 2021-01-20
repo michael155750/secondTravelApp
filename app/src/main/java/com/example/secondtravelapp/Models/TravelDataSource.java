@@ -21,6 +21,7 @@ public class TravelDataSource implements  ITravelDataSource{
     private static final String TAG = "Firebase";
     private MutableLiveData<Boolean> isSuccess= new MutableLiveData<>();
     private List<Travel> allTravelsList;
+    private TravelsChangedListener travelsChangedListener;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference travels = firebaseDatabase.getReference("ExistingTravels");
 
@@ -67,7 +68,7 @@ public class TravelDataSource implements  ITravelDataSource{
     }
 
 
-    private TravelsChangedListener travelsChangedListener;
+
     public void setTravelsChangedListener(TravelsChangedListener l) {
 
         travelsChangedListener = l;
