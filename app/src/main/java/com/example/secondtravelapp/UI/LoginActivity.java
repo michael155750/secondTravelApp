@@ -110,6 +110,7 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     private void createAccount(String email, String password) {
+
         Log.e(TAG, "createAccount:" + email);
         if (!validateForm(email, password)) {
             return;
@@ -120,15 +121,11 @@ public class LoginActivity extends AppCompatActivity implements
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            sendEmailVerification();
                             Log.e(TAG, "createAccount: Success!");
 
                             // update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
-                            Intent intent = new Intent(LoginActivity.this, NVDActivity.class);
-                            intent.putExtra("myEmail", user.getEmail());
-                            startActivity(intent);
-                            finish();
+
                         } else {
                             Log.e(TAG, "createAccount: Fail!", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed!", Toast.LENGTH_SHORT).show();
@@ -158,6 +155,7 @@ public class LoginActivity extends AppCompatActivity implements
                             intent.putExtra("myEmail", user.getEmail());
                             startActivity(intent);
                             finish();
+
                         } else {
                             Log.e(TAG, "signIn: Fail!", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed!", Toast.LENGTH_SHORT).show();
@@ -166,6 +164,7 @@ public class LoginActivity extends AppCompatActivity implements
                         }
                     }
                 });
+
     }
 
    /* private void signOut() {
@@ -173,7 +172,7 @@ public class LoginActivity extends AppCompatActivity implements
         updateUI(null);
     }*/
 
-   /* private void sendEmailVerification() {
+    private void sendEmailVerification() {
         // Disable Verify Email button
         //findViewById(R.id.btn_verify_email).setEnabled(false);
 
@@ -191,6 +190,12 @@ public class LoginActivity extends AppCompatActivity implements
                                 // user is verified, so you can finish this activity or send user to activity which you want.
                                 // finish();
                                 Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                //updateUI(user);
+                                Intent intent = new Intent(LoginActivity.this, NVDActivity.class);
+                                intent.putExtra("myEmail", user.getEmail());
+                                startActivity(intent);
+                                finish();
                             }
                         } else {
                             Log.e(TAG, "sendEmailVerification failed!", task.getException());
@@ -198,7 +203,7 @@ public class LoginActivity extends AppCompatActivity implements
                         }
                     }
                 });
-    }*/
+    }
 
     private boolean validateForm(String email, String password) {
 

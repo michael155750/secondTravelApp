@@ -73,7 +73,7 @@ public class NVDActivity extends AppCompatActivity {
         startService(new Intent(com.example.secondtravelapp.UI.NVDActivity.this, TravelChangeService.class));
 
 
-        //addInitialData();
+        addInitialData();
     }
 
     @Override
@@ -119,7 +119,7 @@ public class NVDActivity extends AppCompatActivity {
             t1.setStatus(Travel.RequestType.paid);
             viewModel.addTravel(t1);
 
-            Travel t2 = new Travel();
+            /*Travel t2 = new Travel();
             t2.setClientName("Hedva Izhaki");
             t2.setClientEmail("hedva@gmail.com");
             t2.setClientPhone("021224597");
@@ -151,7 +151,7 @@ public class NVDActivity extends AppCompatActivity {
             t3.setChildrenTransportation(false);
             t3.setSafeGuarded(true);
             t3.setDestAddress(GPS.getLocationFromAddress(this, "Misgav Ladach, Jerusalem, Israel"));
-            viewModel.addTravel(t3);
+            viewModel.addTravel(t3);*/
 
 
         } catch (Exception e) {

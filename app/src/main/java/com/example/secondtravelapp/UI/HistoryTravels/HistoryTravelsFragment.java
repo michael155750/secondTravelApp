@@ -90,26 +90,27 @@ public class HistoryTravelsFragment extends Fragment {
 
         root = inflater.inflate(R.layout.fragment_history_travels, container, false);
 
-       /* listView = root.findViewById(R.id.list_view_items);
-        LiveData<List<Travel>> historyTravels = null;
-        try {
-           // historyTravels = viewModel.getAllHistoryTravels();
+        listView = root.findViewById(R.id.list_view_items);
 
+
+
+        try {
+            //viewModel.getAllHistoryTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
+            viewModel.getAllTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
+                @Override
+                public void onChanged(List<Travel> travelList) {
+                    //TextView textView = (TextView) root.findViewById(R.id.histo);
+                    String builder = "";
+                    //for (Travel travel: travelList)
+                     //   builder.concat(travel.getClientName()).concat("\n");
+                    //textView.setText(builder);
+
+
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
-      /*  historyTravels.observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
-            @Override
-            public void onChanged(List<Travel> travelList) {
-                TextView textView = (TextView) root.findViewById(R.id.histo);
-                String builder = "";
-                for (Travel travel: travelList)
-                    builder.concat(travel.getClientName()).concat("\n");
-                textView.setText(builder);
-
-
-            }
-        });*/
+        }
         //ListView itemsListView = (ListView)findViewById(R.id.list_view_items);
         //CustomListAdapter adapter = new CustomListAdapter(this, generateItemsList());
 
