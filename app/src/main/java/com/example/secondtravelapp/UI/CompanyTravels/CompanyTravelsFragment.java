@@ -9,9 +9,7 @@ import android.location.Address;
 import android.location.Geocoder;
 
 
-
-
-
+import com.example.secondtravelapp.UI.NVDActivity;
 import com.google.android.gms.maps.model.LatLng;
 
 import android.Manifest;
@@ -60,7 +58,7 @@ public class CompanyTravelsFragment extends Fragment {
     private ListView listView;
     UserLocation companyLocation;
     final double distFromCompany = 10;
-
+    String companyEmail;
     LocationManager locationManager;
     LocationListener locationListener;
 
@@ -68,7 +66,7 @@ public class CompanyTravelsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
         viewModel = ViewModelProviders.of(getActivity()).get(MainTravelsViewModel.class);
-
+        companyEmail= ((NVDActivity) getActivity()).getEmail();
         //Find the location of the company
 
         companyLocation = new UserLocation(GPS.getLocationFromAddress(this.getContext(),"אברהם שטרן 33 ירושלים"));
@@ -301,7 +299,8 @@ public class CompanyTravelsFragment extends Fragment {
 
 
                     if(accept.isChecked()){
-                        viewModel.acceptTravel(travels.get(position));
+                        travels.get(position).setOneCompany(companyEmail);
+                        viewModel.updateTravel(travels.get(position));
                     }
 
 

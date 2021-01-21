@@ -94,13 +94,13 @@ public class HistoryTravelsFragment extends Fragment {
 
 
 
-        try {
+      /*  try {
             //viewModel.getAllHistoryTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
             viewModel.getAllTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
                 @Override
                 public void onChanged(List<Travel> travelList) {
                     //TextView textView = (TextView) root.findViewById(R.id.histo);
-                    String builder = "";
+                    //String builder = "";
                     //for (Travel travel: travelList)
                      //   builder.concat(travel.getClientName()).concat("\n");
                     //textView.setText(builder);
@@ -114,7 +114,7 @@ public class HistoryTravelsFragment extends Fragment {
         //ListView itemsListView = (ListView)findViewById(R.id.list_view_items);
         //CustomListAdapter adapter = new CustomListAdapter(this, generateItemsList());
 
-
+*/
        /* ArrayList<Travel> mData = new ArrayList<>();
         Travel t1 = new Travel();
         t1.setClientName("Avi Cohen");
@@ -283,25 +283,25 @@ public class HistoryTravelsFragment extends Fragment {
         t11.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
         t11.setStatus(Travel.RequestType.paid);
         mData.add(t11);*/
-
-     /*   HistoryCustomListAdapter adapter = new HistoryCustomListAdapter(this.getContext(), mData);
+/*
+        HistoryCustomListAdapter adapter = new HistoryCustomListAdapter(this.getContext(), mData);
 
         adapter.setListener(new HistoryCustomListAdapter.HistoryTravelListener() {
             @Override
             public void onButtonClicked(int position, View view) {
                 if (view.getId() == R.id.change_status_button) {
                     mData.get(position).setStatus(Travel.RequestType.paid);
-                    //viewModel.updateTravel(mData.get(position));
+                    viewModel.updateTravel(mData.get(position));
                     Toast.makeText(getContext(), "Status changed to paid", Toast.LENGTH_LONG).show();
 
 
                 }
 
                 if (view.getId() == R.id.email_button) {
-                    String company = Travel.CompanyConverter.asString(mData.get(position).getCompany());
-                    String companyEmail = null;
-
-                    switch (company)
+                   // String company = Travel.CompanyConverter.asString(mData.get(position).getCompany());
+                    String companyEmail = mData.get(position).getClientEmail();
+*/
+                    /*switch (company)
                     {
                         case "Dan":
                             companyEmail = "cs@dan.co.il";
@@ -321,8 +321,8 @@ public class HistoryTravelsFragment extends Fragment {
                     if (companyEmail.isEmpty()) {
                         Toast.makeText(getContext(), "no email exist", Toast.LENGTH_LONG).show();
                     } else {
-
-
+*/
+/*
                         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
                         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{companyEmail});
@@ -334,7 +334,7 @@ public class HistoryTravelsFragment extends Fragment {
                             Toast.makeText(getContext(), "There is no application that support that action", Toast.LENGTH_LONG).show();
                         }
 
-                    }
+                   // }
 
 
                     //mData.get(position).setStatus(st(spinnerPosition));
@@ -348,7 +348,7 @@ public class HistoryTravelsFragment extends Fragment {
 
 
         listView.setAdapter(adapter);
-
+*/
         // }
         /*else {
         root = inflater.inflate(R.layout.no_access, container, false);

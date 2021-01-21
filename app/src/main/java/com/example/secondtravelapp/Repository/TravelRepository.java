@@ -60,8 +60,8 @@ public class TravelRepository implements ITravelRepository {
 
                         for (Iterator<Travel> iterator = historyTravelList.iterator(); iterator.hasNext(); ) {
                             Travel travel = iterator.next();
-                            if (travel.getStatus() != Travel.RequestType.close &&
-                                    travel.getStatus() != Travel.RequestType.paid) {
+                            if (travel.getStatus() != Travel.RequestType.close/* &&
+                                    travel.getStatus() != Travel.RequestType.paid*/) {
                                 iterator.remove();
                             }
                         }
