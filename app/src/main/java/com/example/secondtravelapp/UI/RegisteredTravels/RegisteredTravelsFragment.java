@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
@@ -255,17 +257,20 @@ public class RegisteredTravelsFragment extends Fragment {
 
         adapter = new RegisteredCustomListAdapter(mData, mSpinnerData, typeSpinnerData, this.getContext());
 
+        adapter.setCompanyListener(new RegisteredCustomListAdapter.CompanyListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onButtonClicked(int position, String email, View view) {
+                mData.get(position).changeCompanyValue(email);
+                viewModel.updateTravel(mData.get(position));
+            }
+        });
 
-        adapter.setListener(new RegisteredCustomListAdapter.RegisteredTravelListener() {
+        adapter.setTypeListener(new RegisteredCustomListAdapter.TypeListener() {
             @Override
             public void onButtonClicked(int position, int spinnerPosition, View view) {
-                if (view.getId() == R.id.compay_registered) {
-                    mData.get(position).setOneCompany(mSpinnerData.get(spinnerPosition)+"@gmail.com");
-                    viewModel.updateTravel(mData.get(position));
 
 
-                }
-                if (view.getId() == R.id.status_registered) {
                     switch (spinnerPosition)
                     {
                         case 1:
@@ -277,10 +282,10 @@ public class RegisteredTravelsFragment extends Fragment {
                         case 3:
                             mData.get(position).setStatus(Travel.RequestType.close);
                     }
-
+                    viewModel.updateTravel(mData.get(position));
                     //mData.get(position).setStatus(st(spinnerPosition));
 
-                }
+
             }
         });
 

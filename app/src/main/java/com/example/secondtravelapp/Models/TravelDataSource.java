@@ -77,6 +77,7 @@ public class TravelDataSource implements  ITravelDataSource{
 
     @Override
     public void addTravel(Travel p) {
+        p.setCompany(p.getCompany());
         String id = travels.push().getKey();
         p.setTravelId(id);
         travels.child(id).setValue(p).addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -10,19 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProviders;
 
 import java.util.ArrayList;
 
 import com.example.secondtravelapp.Models.Travel;
-import com.example.secondtravelapp.Models.TravelDataSource;
 import com.example.secondtravelapp.R;
-import com.example.secondtravelapp.UI.CompanyTravels.CompanyCustomListAdapter;
-import com.example.secondtravelapp.UI.MainTravelsViewModel;
 import com.example.secondtravelapp.services.GPS;
 
 
@@ -31,11 +25,12 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
     private ArrayList<String> companySpinnerList;
     private ArrayList<String> statusSpinner;
     private ArrayList<Travel> travels;
-    private RegisteredTravelListener listener;
+    private TypeListener typeListener;
+    private CompanyListener companyListener;
     static boolean lockFirstTimeCompany = false;
     static boolean lockFirstTimeStatus = false;
     private String companyEmail = null;
-   
+
 
     public RegisteredCustomListAdapter(/*Context context, ArrayList<Travel> travels,
                                        ArrayList<String> spinnerItems, ArrayList<String> type*/
@@ -48,13 +43,22 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         this.statusSpinner = type;
     }
 
-    public interface RegisteredTravelListener {
+    public interface TypeListener {
         void onButtonClicked(int position, int spinnerPosition, View view);
     }
 
-    public void setListener(RegisteredCustomListAdapter.RegisteredTravelListener listener){
-        this.listener=listener;
+    public void setTypeListener(TypeListener listener){
+        this.typeListener=listener;
     }
+
+    public interface CompanyListener {
+        void onButtonClicked(int position, String email, View view);
+    }
+
+    public void setCompanyListener(CompanyListener listener){
+        this.companyListener=listener;
+    }
+
 
     @Override
     public int getCount() {
@@ -103,7 +107,7 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         destination.setText("אל: " + GPS.getPlace(context, travels.get(position).getDestAddress()) );
 
 
-            companySpinnerList.clear();
+        companySpinnerList.clear();
         companySpinnerList.add(0, "Choose company");
         for (String company : travels.get(position).companyGetter().keySet()){
             companySpinnerList.add(company);
@@ -115,11 +119,13 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int _position, long id) {
                 if(lockFirstTimeCompany) {
-                    listener.onButtonClicked(position, _position, selectedItemView);
+                    companyEmail = companySpinnerList.get(_position);
+                    companyListener.onButtonClicked(position, companyEmail, selectedItemView);
                 }
 
+
                 lockFirstTimeCompany = true;
-                /*companyEmail = companySpinnerList.get(_position);*/
+
 
             }
 
@@ -136,8 +142,8 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int _position, long id) {
 
-                 if(lockFirstTimeStatus) {
-                    listener.onButtonClicked(position, _position, selectedItemView);
+                if(lockFirstTimeStatus) {
+                    typeListener.onButtonClicked(position, _position, selectedItemView);
                 }
 
 
