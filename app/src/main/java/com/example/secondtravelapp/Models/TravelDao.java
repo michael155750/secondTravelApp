@@ -13,10 +13,10 @@ import java.util.List;
 @Dao
 public interface TravelDao {
     @Query("select * from travels")
-    LiveData<List<Travel>> getAll() throws Exception;
+    List<Travel> getAll() throws Exception;
 
     @Query("select * from travels where travelId=:id")
-    LiveData<Travel> get(String id) throws Exception;
+    Travel get(String id) throws Exception;
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Travel travel) throws Exception;

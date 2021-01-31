@@ -61,7 +61,7 @@ public class NVDActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_history, R.id.nav_company, R.id.nav_registered)
+                R.id.nav_company, R.id.nav_registered, R.id.nav_history)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -116,7 +116,7 @@ public class NVDActivity extends AppCompatActivity {
             t1.setSafeGuarded(true);
 
             t1.setDestAddress(GPS.getLocationFromAddress(this, "Misgav Ladach, Jerusalem, Israel"));
-            t1.setStatus(Travel.RequestType.paid);
+            t1.setStatus(Travel.RequestType.close);
             viewModel.addTravel(t1);
 
             /*Travel t2 = new Travel();

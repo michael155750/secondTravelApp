@@ -69,7 +69,7 @@ public interface ITravelRepository {
      *         get all travels in the history which stored in the data base
      * @return MutableLiveData of list of travels
      */
-    LiveData<List<Travel>> getAllHistoryTravels() throws Exception;
+    List<Travel> getAllHistoryTravels() throws Exception;
 
     /**
      *         ???
@@ -81,4 +81,9 @@ public interface ITravelRepository {
         void onTravelsChanged();
     }
     void setNotifyToTravelListListener(ITravelRepository.NotifyToTravelListListener l);
+
+    interface NotifyToHistoryListener{
+        void onTravelsChanged() throws Exception;
+    }
+    void setNotifyToHistoryListener(ITravelRepository.NotifyToHistoryListener l);
 }

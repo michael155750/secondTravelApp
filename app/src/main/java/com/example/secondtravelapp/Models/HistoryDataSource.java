@@ -13,11 +13,12 @@ public class HistoryDataSource implements IHistoryDataSource {
         travelDao.clear();
     }
 
-    public LiveData<List<Travel>> getTravels() throws Exception{
+    public List<Travel> getTravels() throws Exception{
         return travelDao.getAll();
+
     }
 
-    public LiveData<Travel> getTravel(String id) throws Exception{
+    public Travel getTravel(String id) throws Exception{
         return travelDao.get(id);
     }
 

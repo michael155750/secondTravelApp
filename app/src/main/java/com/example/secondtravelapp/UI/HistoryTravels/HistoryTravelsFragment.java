@@ -92,15 +92,19 @@ public class HistoryTravelsFragment extends Fragment {
 
         listView = root.findViewById(R.id.list_view_items);
 
+//        try {
+//            viewModel.getAllHistoryTravels();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
-
-      /*  try {
-            //viewModel.getAllHistoryTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
-            viewModel.getAllTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
+        try {
+            viewModel.getAllHistoryTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
+            //viewModel.getAllTravels().observe(getViewLifecycleOwner(), new Observer<List<Travel>>() {
                 @Override
                 public void onChanged(List<Travel> travelList) {
                     //TextView textView = (TextView) root.findViewById(R.id.histo);
-                    //String builder = "";
+                    String builder = "";
                     //for (Travel travel: travelList)
                      //   builder.concat(travel.getClientName()).concat("\n");
                     //textView.setText(builder);
@@ -114,7 +118,7 @@ public class HistoryTravelsFragment extends Fragment {
         //ListView itemsListView = (ListView)findViewById(R.id.list_view_items);
         //CustomListAdapter adapter = new CustomListAdapter(this, generateItemsList());
 
-*/
+
        /* ArrayList<Travel> mData = new ArrayList<>();
         Travel t1 = new Travel();
         t1.setClientName("Avi Cohen");

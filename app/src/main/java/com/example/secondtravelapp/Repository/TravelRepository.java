@@ -27,6 +27,7 @@ public class TravelRepository implements ITravelRepository {
     ITravelDataSource travelDataSource;
     IHistoryDataSource historyDataSource;
     private ITravelRepository.NotifyToTravelListListener notifyToTravelListListenerRepository;
+    private ITravelRepository.NotifyToHistoryListener notifyToHistoryListener;
 
     private MutableLiveData<List<Travel>> mutableLiveData = new MutableLiveData<>();
     List<Travel> travelList;
@@ -70,6 +71,9 @@ public class TravelRepository implements ITravelRepository {
 
                         if (notifyToTravelListListenerRepository != null)
                             notifyToTravelListListenerRepository.onTravelsChanged();
+
+                        if (notifyToHistoryListener != null)
+                            notifyToHistoryListener.onTravelsChanged();
                     }
                 };
 
@@ -145,10 +149,10 @@ public class TravelRepository implements ITravelRepository {
 //    }
 
     @Override
-    public LiveData<List<Travel>> getAllHistoryTravels() throws Exception {
+    public List<Travel> getAllHistoryTravels() throws Exception {
         //working with casting
-
-        return historyDataSource.getTravels();
+        List<Travel> temp = historyDataSource.getTravels();
+        return temp;
     }
 
 
@@ -160,5 +164,10 @@ public class TravelRepository implements ITravelRepository {
 
     public void setNotifyToTravelListListener(ITravelRepository.NotifyToTravelListListener l) {
         notifyToTravelListListenerRepository = l;
+    }
+
+    @Override
+    public void setNotifyToHistoryListener(NotifyToHistoryListener l) {
+        notifyToHistoryListener = l;
     }
 }

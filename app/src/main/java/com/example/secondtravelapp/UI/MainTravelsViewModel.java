@@ -23,7 +23,9 @@ public class MainTravelsViewModel extends AndroidViewModel {
     private MutableLiveData<List<Travel>> allTravelsLiveData = new MutableLiveData<>();
     private MutableLiveData<List<Travel>> companyTravelsLiveData = new MutableLiveData<>();
     private MutableLiveData<List<Travel>> clientTravelsLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<Travel>> historyLiveData = new MutableLiveData<>();
     private List<Travel> allTravelList;
+    private List<Travel> allTravelHistoryList;
     //public ITravelRepository getRepository(){
     //  return  repository;
     // }
@@ -37,12 +39,18 @@ public class MainTravelsViewModel extends AndroidViewModel {
             public void onTravelsChanged() {
                 allTravelList = repository.getAllTravels();
                 allTravelsLiveData.setValue(allTravelList);
-
-
-
             }
         };
         repository.setNotifyToTravelListListener(notifyToTravelListListener);
+
+        ITravelRepository.NotifyToHistoryListener notifyToHistoryListener = new ITravelRepository.NotifyToHistoryListener() {
+            @Override
+            public void onTravelsChanged() throws Exception {
+                allTravelHistoryList = repository.getAllHistoryTravels();
+                historyLiveData.setValue(allTravelHistoryList);
+            }
+        };
+        repository.setNotifyToHistoryListener(notifyToHistoryListener);
 
     }
 
@@ -114,6 +122,6 @@ public class MainTravelsViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Travel>> getAllHistoryTravels() throws Exception {
-        return repository.getAllHistoryTravels();
+        return historyLiveData;
     }
 }

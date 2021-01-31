@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public interface IHistoryDataSource {
-    public LiveData<List<Travel>> getTravels() throws Exception;
-    public LiveData<Travel> getTravel(String id) throws Exception;
+    public List<Travel> getTravels() throws Exception;
+    public Travel getTravel(String id) throws Exception;
     public void addTravel(Travel p) throws Exception;
     public void addTravel(List<Travel> travelList) throws Exception;
     public void editTravel(Travel p) throws Exception;

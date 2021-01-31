@@ -3,6 +3,7 @@ package com.example.secondtravelapp.services;
 import androidx.lifecycle.LifecycleService;
 import android.content.Intent;
 import android.os.IBinder;
+
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import androidx.lifecycle.Observer;
 
 import com.example.secondtravelapp.Models.ITravelDataSource;
 import com.example.secondtravelapp.Models.TravelDataSource;
+
 
 public class TravelChangeService extends LifecycleService {
     //Integer sum = 0;
@@ -47,7 +49,7 @@ public class TravelChangeService extends LifecycleService {
 
                      if (element){
                          Intent intent1 = new Intent();
-
+                        intent1.putExtra("massage","");
                          intent1.setAction("com.example.broadcast.MY_NOTIFICATION");
                          sendBroadcast(intent1);
                      }
