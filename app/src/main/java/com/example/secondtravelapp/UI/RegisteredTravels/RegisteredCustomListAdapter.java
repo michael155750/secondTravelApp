@@ -103,7 +103,7 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         Spinner type = view.findViewById(R.id.status_registered);
 
         textView.setText("מ: " + GPS.getPlace(context, travels.get(position).getPickupAddress()) );
-        date.setText("בתאריך" + travels.get(position).getTravelDate() );
+        date.setText("בתאריך " + travels.get(position).getTravelDate() );
         destination.setText("אל: " + GPS.getPlace(context, travels.get(position).getDestAddress()) );
 
 

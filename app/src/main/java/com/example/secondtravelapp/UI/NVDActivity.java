@@ -101,7 +101,7 @@ public class NVDActivity extends AppCompatActivity {
 
             Travel t1 = new Travel();
             t1.setClientName("Avi Cohen");
-            t1.setClientEmail("avi@gmail.com");
+            t1.setClientEmail("michael155750@gmail.com");
             t1.setClientPhone("021234567");
 
             t1.setOneCompanyTrue("Metropolin@gmail.com");
@@ -116,12 +116,12 @@ public class NVDActivity extends AppCompatActivity {
             t1.setSafeGuarded(true);
 
             t1.setDestAddress(GPS.getLocationFromAddress(this, "Misgav Ladach, Jerusalem, Israel"));
-            t1.setStatus(Travel.RequestType.close);
+            t1.setStatus(Travel.RequestType.sent);
             viewModel.addTravel(t1);
 
-            /*Travel t2 = new Travel();
+            Travel t2 = new Travel();
             t2.setClientName("Hedva Izhaki");
-            t2.setClientEmail("hedva@gmail.com");
+            t2.setClientEmail("michael155750@gmail.com");
             t2.setClientPhone("021224597");
             t2.setOneCompanyTrue("Metropolin@gmail.com");
             t2.setOneCompany("Dan@gmail.com");
@@ -132,7 +132,7 @@ public class NVDActivity extends AppCompatActivity {
             t2.setChildrenTransportation(true);
             t2.setSafeGuarded(true);
             t2.setPickupAddress(GPS.getLocationFromAddress(this, "Stern 33 Jerusalem Israel"));
-            t2.setStatus(Travel.RequestType.close);
+            t2.setStatus(Travel.RequestType.sent);
             t2.setDestAddress(GPS.getLocationFromAddress(this, "Misgav Ladach, Jerusalem, Israel"));
             viewModel.addTravel(t2);
 
@@ -151,7 +151,7 @@ public class NVDActivity extends AppCompatActivity {
             t3.setChildrenTransportation(false);
             t3.setSafeGuarded(true);
             t3.setDestAddress(GPS.getLocationFromAddress(this, "Misgav Ladach, Jerusalem, Israel"));
-            viewModel.addTravel(t3);*/
+            viewModel.addTravel(t3);
 
 
         } catch (Exception e) {
