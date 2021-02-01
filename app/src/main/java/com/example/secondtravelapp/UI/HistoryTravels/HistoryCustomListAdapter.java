@@ -64,9 +64,12 @@ public class HistoryCustomListAdapter extends BaseAdapter {
 
         Travel currentItem = (Travel) getItem(position);
         String companyEmail = null;
+
         for (String email: currentItem.getCompany().keySet()){
+
+            String email2 = new String( email.replace('*', '.'));
             if (currentItem.getCompany().get(email))
-                companyEmail = email;
+                companyEmail = email2;
         }
 
 
