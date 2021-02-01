@@ -22,7 +22,7 @@ import com.example.secondtravelapp.services.GPS;
 
 public class RegisteredCustomListAdapter extends BaseAdapter{
     private Context context;
-    private ArrayList<String> companySpinnerList;
+
     private ArrayList<String> statusSpinner;
     private ArrayList<Travel> travels;
     private TypeListener typeListener;
@@ -39,7 +39,7 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
             Context context) {
         this.context = context;
         this.travels = travels;
-        this.companySpinnerList = new ArrayList<String>();
+
         this.statusSpinner = type;
     }
 
@@ -106,14 +106,14 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         date.setText("בתאריך " + travels.get(position).getTravelDate() );
         destination.setText("אל: " + GPS.getPlace(context, travels.get(position).getDestAddress()) );
 
-
+        ArrayList<String> companySpinnerList = new ArrayList<String>();
         companySpinnerList.clear();
         companySpinnerList.add(0, "Choose company");
         for (String company : travels.get(position).companyGetter().keySet()){
             companySpinnerList.add(company);
 
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, this.companySpinnerList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, companySpinnerList);
         companySpinner.setAdapter(adapter);
         companySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

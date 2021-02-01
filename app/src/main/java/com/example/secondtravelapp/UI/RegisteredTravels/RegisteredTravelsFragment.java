@@ -261,8 +261,10 @@ public class RegisteredTravelsFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onButtonClicked(int position, String email, View view) {
-                mData.get(position).changeCompanyValue(email);
-                viewModel.updateTravel(mData.get(position));
+                if(!email.equals("Choose company")) {
+                    mData.get(position).changeCompanyValue(email);
+                    viewModel.updateTravel(mData.get(position));
+                }
             }
         });
 
