@@ -55,33 +55,7 @@ public class HistoryTravelsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-       /* administrators.add("asaf0522238528@gmail.com");
-        administrators.add("michael155750@gmail.com");
-        administrators.add("ezradashtt@gmail.com");
 
-        */
-        //activity = ((NVDActivity) getActivity());
-        //email = activity.getEmail();
-        /*
-        for (String adminEmail : administrators) {
-            if (email == adminEmail) {
-                accessPermission = true;
-            }
-        }
-
-         */
-
-        /*HashMap<String, String> companiesEmail = new HashMap<String, String>() {
-            {
-                put("cs@dan.co.il", "Dan");
-                put("ins@Egged.co.il", "Egged");
-                put("tviot@metropoline.com", "Metropolin");
-                put("info@Kavim.com", "Kavim");
-            }
-
-        };
-
-         */
 
 
         viewModel = ViewModelProviders.of(getActivity()).get(MainTravelsViewModel.class);
@@ -115,62 +89,7 @@ public class HistoryTravelsFragment extends Fragment {
 
 
 
-       /* ArrayList<Travel> mData = new ArrayList<>();
-        Travel t1 = new Travel();
-        t1.setClientName("Avi Cohen");
-        t1.setClientEmail("avi@gmail.com");
-        t1.setClientPhone("021234567");
 
-        t1.setOneCompanyTrue("Metropolin@gmail.com");
-        t1.setOneCompany("Dan@gmail.com");
-        t1.setOneCompany("Egged@gmail.com");
-        t1.setOneCompany("Kavim@gmail.com");
-        t1.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
-
-        t1.setNumOfPassengers(2);
-        t1.travelDateTypeSetter(new Date(2020, 2, 2));
-        t1.setChildrenTransportation(true);
-        t1.setSafeGuarded(true);
-
-        t1.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
-        t1.setStatus(Travel.RequestType.paid);
-        mData.add(t1);
-
-        Travel t2 = new Travel();
-        t2.setClientName("Hedva Izhaki");
-        t2.setClientEmail("hedva@gmail.com");
-        t2.setClientPhone("021224597");
-        t2.setOneCompanyTrue("Metropolin@gmail.com");
-        t2.setOneCompany("Dan@gmail.com");
-        t2.setOneCompany("Egged@gmail.com");
-        t2.setOneCompany("Kavim@gmail.com");
-        t2.setNumOfPassengers(2);
-        t2.travelDateTypeSetter(new Date(2021, 1, 2));
-        t2.setChildrenTransportation(true);
-        t2.setSafeGuarded(true);
-        t2.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
-        t2.setStatus(Travel.RequestType.close);
-        t2.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
-        mData.add(t2);
-
-        Travel t3 = new Travel();
-        t3.setClientName("David Levi");
-        t3.setClientEmail("david@gmail.com");
-        t3.setClientPhone("084224596");
-
-        t3.setOneCompanyTrue("Metropolin@gmail.com");
-        t3.setOneCompany("Dan@gmail.com");
-        t3.setOneCompany("Egged@gmail.com");
-        t3.setOneCompany("Kavim@gmail.com");
-        t3.setPickupAddress(GPS.getLocationFromAddress(this.getContext(), "Stern 33 Jerusalem Israel"));
-        t3.setNumOfPassengers(4);
-        t3.travelDateTypeSetter(new Date(2020, 9, 2));
-        t3.setChildrenTransportation(false);
-        t3.setSafeGuarded(true);
-        t3.setDestAddress(GPS.getLocationFromAddress(this.getContext(), "Misgav Ladach, Jerusalem, Israel"));
-
-        mData.add(t3);
-*/
         HistoryCustomListAdapter adapter = new HistoryCustomListAdapter(this.getContext(), mData);
 
         adapter.setListener(new HistoryCustomListAdapter.HistoryTravelListener() {

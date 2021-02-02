@@ -165,28 +165,6 @@ public class RegisteredCustomListAdapter extends BaseAdapter{
         return view;
     }
 
-    /*
-    //ViewHolder inner class
-    private class ViewHolder {
 
-        TextView source;
-        TextView dest;
-        TextView date;
-        Spinner status;
-        Spinner companies;
-
-
-
-
-        public ViewHolder(View view) {
-
-            //source = (TextView)view.findViewById(R.id.source_registered);
-            //dest = (TextView)view.findViewById(R.id.dest_registered);
-            date = (TextView)view.findViewById(R.id.date_registered);
-            status = view.findViewsWithText(R.id.status_registered);
-
-        }
-
-     */
 
 }
