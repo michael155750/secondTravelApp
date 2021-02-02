@@ -68,7 +68,7 @@ public class CompanyTravelsFragment extends Fragment {
         viewModel = ViewModelProviders.of(getActivity()).get(MainTravelsViewModel.class);
         companyEmail= ((NVDActivity) getActivity()).getEmail();
         //Find the location of the company
-
+        //if GPS is not working have a default address
         companyLocation = new UserLocation(GPS.getLocationFromAddress(this.getContext(),"אברהם שטרן 33 ירושלים"));
         locationManager = (LocationManager) this.getContext().getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {

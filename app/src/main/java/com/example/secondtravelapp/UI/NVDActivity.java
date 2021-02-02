@@ -73,7 +73,7 @@ public class NVDActivity extends AppCompatActivity {
         startService(new Intent(com.example.secondtravelapp.UI.NVDActivity.this, TravelChangeService.class));
 
 
-        addInitialData();
+        //addInitialData();
     }
 
     @Override
@@ -100,57 +100,61 @@ public class NVDActivity extends AppCompatActivity {
 
 
             Travel t1 = new Travel();
-            t1.setClientName("Avi Cohen");
+            t1.setClientName("Michael Bergshtein");
             t1.setClientEmail("michael155750@gmail.com");
-            t1.setClientPhone("021234567");
-
+            t1.setClientPhone("021232537");
+/*
             t1.setOneCompanyTrue("Metropolin@gmail.com");
             t1.setOneCompany("Dan@gmail.com");
             t1.setOneCompany("Egged@gmail.com");
             t1.setOneCompany("superbus@gmail.com");
-            t1.setPickupAddress(GPS.getLocationFromAddress(this, "Stern 33 Jerusalem Israel"));
 
-            t1.setNumOfPassengers(2);
-            t1.travelDateTypeSetter(new Date(2020, 2, 2));
-            t1.setChildrenTransportation(true);
-            t1.setSafeGuarded(true);
+ */
+            t1.setPickupAddress(GPS.getLocationFromAddress(this, "stern 33,Jerusalem, Israel"));
 
-            t1.setDestAddress(GPS.getLocationFromAddress(this, "Misgav Ladach, Jerusalem, Israel"));
+            t1.setNumOfPassengers(3);
+            t1.travelDateTypeSetter(new Date(2020, 2, 5));
+            t1.setChildrenTransportation(false);
+            t1.setSafeGuarded(false);
+            t1.arrivalDateTypeSetter(new Date(2020, 2, 10) );
+            t1.setDestAddress(GPS.getLocationFromAddress(this, "Shahal, Jerusalem, Israel"));
             t1.setStatus(Travel.RequestType.sent);
             viewModel.addTravel(t1);
 
             Travel t2 = new Travel();
-            t2.setClientName("Hedva Izhaki");
-            t2.setClientEmail("michael155750@gmail.com");
-            t2.setClientPhone("021224597");
-            t2.setOneCompanyTrue("Metropolin@gmail.com");
+            t2.setClientName("Hedva Levi");
+            t2.setClientEmail("hedva@gmail.com");
+            t2.setClientPhone("021294512");
+            /*t2.setOneCompanyTrue("Metropolin@gmail.com");
             t2.setOneCompany("Dan@gmail.com");
             t2.setOneCompany("EggedTiur@gmail.com");
-            t2.setOneCompany("Kavim@gmail.com");
-            t2.setNumOfPassengers(2);
-            t2.travelDateTypeSetter(new Date(2021, 1, 2));
+            t2.setOneCompany("Kavim@gmail.com");*/
+            t2.setNumOfPassengers(22);
+            t2.travelDateTypeSetter(new Date(2021, 3, 2));
             t2.setChildrenTransportation(true);
             t2.setSafeGuarded(true);
-            t2.setPickupAddress(GPS.getLocationFromAddress(this, "Stern 33 Jerusalem Israel"));
+            t2.arrivalDateTypeSetter(new Date(2021, 3, 10) );
+            t2.setPickupAddress(GPS.getLocationFromAddress(this, "Bolivia 33 Jerusalem Israel"));
             t2.setStatus(Travel.RequestType.sent);
-            t2.setDestAddress(GPS.getLocationFromAddress(this, "Misgav Ladach, Jerusalem, Israel"));
+            t2.setDestAddress(GPS.getLocationFromAddress(this, "Kubovi 3, Jerusalem, Israel"));
             viewModel.addTravel(t2);
 
             Travel t3 = new Travel();
-            t3.setClientName("David Levi");
-            t3.setClientEmail("david@gmail.com");
-            t3.setClientPhone("084224596");
+            t3.setClientName("David Cohen");
+            t3.setClientEmail("david11@gmail.com");
+            t3.setClientPhone("084223596");
 
-            t3.setOneCompanyTrue("Metropolin@gmail.com");
+           /* t3.setOneCompanyTrue("Metropolin@gmail.com");
             t3.setOneCompany("Nativ@gmail.com");
             t3.setOneCompany("Egged@gmail.com");
-            t3.setOneCompany("Kavim@gmail.com");
-            t3.setPickupAddress(GPS.getLocationFromAddress(this, "Stern 33 Jerusalem Israel"));
-            t3.setNumOfPassengers(4);
-            t3.travelDateTypeSetter(new Date(2020, 9, 2));
+            t3.setOneCompany("Kavim@gmail.com");*/
+            t3.setPickupAddress(GPS.getLocationFromAddress(this, "Daskal , Jerusalem Israel"));
+            t3.setNumOfPassengers(42);
+            t3.travelDateTypeSetter(new Date(2020, 8, 2));
             t3.setChildrenTransportation(false);
             t3.setSafeGuarded(true);
-            t3.setDestAddress(GPS.getLocationFromAddress(this, "Misgav Ladach, Jerusalem, Israel"));
+            t3.arrivalDateTypeSetter(new Date(2020, 9, 10) );
+            t3.setDestAddress(GPS.getLocationFromAddress(this, "Yafo street 133, Jerusalem, Israel"));
             viewModel.addTravel(t3);
 
 
