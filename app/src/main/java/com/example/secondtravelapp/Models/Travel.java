@@ -314,13 +314,16 @@ public class Travel {
      * @param company - an hash map of companies
      */
     public void setCompany(HashMap<String, Boolean> company) {
+
         LinkedList<String> companySet = new LinkedList<String>();
-        companySet.addAll(company.keySet());
-        for (String c : companySet) {
-            String newc = c.replace(".", "*");
-            boolean cValue = company.get(c);
-            company.remove(c);
-            company.put(newc, cValue);
+        if (company !=null) {
+            companySet.addAll(company.keySet());
+            for (String c : companySet) {
+                String newc = c.replace(".", "*");
+                boolean cValue = company.get(c);
+                company.remove(c);
+                company.put(newc, cValue);
+            }
         }
         this.company = company;
     }

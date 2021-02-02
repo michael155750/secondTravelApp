@@ -24,7 +24,7 @@ public class TravelDataSource implements  ITravelDataSource{
     private TravelsChangedListener travelsChangedListener;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference travels = firebaseDatabase.getReference("ExistingTravels");
-
+    private Boolean lockFirstTime = false;
     private static TravelDataSource instance;
 
     public static TravelDataSource getInstance() throws Exception{
@@ -40,6 +40,9 @@ public class TravelDataSource implements  ITravelDataSource{
             travels.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (lockFirstTime)
+                        isSuccess.setValue(true);
+                    lockFirstTime = true;
                     allTravelsList.clear();
                     if (dataSnapshot.exists()) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren())
